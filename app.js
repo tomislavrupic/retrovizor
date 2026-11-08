@@ -100,7 +100,7 @@ function selectPhoto(id, {pan=false,hash=true}={}) {
   $('previous').disabled=index<=0; $('next').disabled=index===state.visible.length-1;
   $('lightbox-prev').disabled=index<=0; $('lightbox-next').disabled=index===state.visible.length-1;
   document.querySelectorAll('[data-id]').forEach(node=>node.setAttribute('aria-current',String(node.dataset.id===id)));
-  if (previous && state.markers.has(previous.id)) state.markers.get(previous.id).setIcon(makeIcon(previous,false));
+  if (previous && state.markers.has(previous.id)) state.markers.get(previous.id).setIcon(makeIcon(previous,false)).setZIndexOffset(0);
   const marker=state.markers.get(id);
   if(marker) {
     marker.setIcon(makeIcon(photo,true));
