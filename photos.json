@@ -11,6 +11,17 @@
     "thumb": "assets/thumbs/A00.jpg"
   },
   {
+    "id": "P7562",
+    "title": "Quiet tree-lined street",
+    "lat": -33.42307777777778,
+    "lng": -70.61385277777777,
+    "capturedAt": "2026-11-07 09:41:19-03:00",
+    "locationLabel": "Providencia, Santiago",
+    "category": "street",
+    "image": "assets/photos/P7562.jpg",
+    "thumb": "assets/thumbs/P7562.jpg"
+  },
+  {
     "id": "A02",
     "title": "Palms and blue sky",
     "lat": -33.427730555555556,
@@ -42,6 +53,17 @@
     "category": "architecture",
     "image": "assets/photos/A46.jpg",
     "thumb": "assets/thumbs/A46.jpg"
+  },
+  {
+    "id": "P7584",
+    "title": "Palacio Schacht and glass tower",
+    "lat": -33.42503611111111,
+    "lng": -70.61259444444444,
+    "capturedAt": "2026-11-07 10:06:50-03:00",
+    "locationLabel": "Palacio Schacht, Providencia",
+    "category": "architecture",
+    "image": "assets/photos/P7584.jpg",
+    "thumb": "assets/thumbs/P7584.jpg"
   },
   {
     "id": "A05",
@@ -88,28 +110,6 @@
     "thumb": "assets/thumbs/A09.jpg"
   },
   {
-    "id": "A49",
-    "title": "Visitors at the overlook",
-    "lat": -33.42604722222222,
-    "lng": -70.63385833333334,
-    "capturedAt": "2026-11-07 13:27:29-03:00",
-    "locationLabel": "Cerro San Cristóbal, Santiago",
-    "category": "people",
-    "image": "assets/photos/A49.jpg",
-    "thumb": "assets/thumbs/A49.jpg"
-  },
-  {
-    "id": "A50",
-    "title": "The green ridge opens",
-    "lat": -33.425377777777776,
-    "lng": -70.63331666666666,
-    "capturedAt": "2026-11-07 13:41:17-03:00",
-    "locationLabel": "Cerro San Cristóbal, Santiago",
-    "category": "landscape",
-    "image": "assets/photos/A50.jpg",
-    "thumb": "assets/thumbs/A50.jpg"
-  },
-  {
     "id": "A13",
     "title": "The city opens",
     "lat": -33.42922222222222,
@@ -121,26 +121,48 @@
     "thumb": "assets/thumbs/A13.jpg"
   },
   {
-    "id": "A14",
-    "title": "Andes and skyline",
-    "lat": -33.42554166666667,
-    "lng": -70.63253055555555,
-    "capturedAt": "2026-11-07 13:53:21-03:00",
-    "locationLabel": "Cerro San Cristóbal, Santiago",
-    "category": "cityscape",
-    "image": "assets/photos/A14.jpg",
-    "thumb": "assets/thumbs/A14.jpg"
-  },
-  {
-    "id": "A51",
-    "title": "The overlook gathers",
-    "lat": -33.42553611111111,
-    "lng": -70.63259166666666,
-    "capturedAt": "2026-11-07 13:56:47-03:00",
+    "id": "A49",
+    "title": "Visitors at the overlook",
+    "lat": -33.42604722222222,
+    "lng": -70.63385833333334,
+    "capturedAt": "2026-11-07 13:27:29-03:00",
     "locationLabel": "Cerro San Cristóbal, Santiago",
     "category": "people",
-    "image": "assets/photos/A51.jpg",
-    "thumb": "assets/thumbs/A51.jpg"
+    "image": "assets/photos/A49.jpg",
+    "thumb": "assets/thumbs/A49.jpg"
+  },
+  {
+    "id": "A19",
+    "title": "A figure in the sky",
+    "lat": -33.425774999999994,
+    "lng": -70.63305555555554,
+    "capturedAt": "2026-11-07 13:33:51-03:00",
+    "locationLabel": "Cerro San Cristóbal, Santiago",
+    "category": "sculpture",
+    "image": "assets/photos/A19.jpg",
+    "thumb": "assets/thumbs/A19.jpg"
+  },
+  {
+    "id": "A20",
+    "title": "Steps into sunlight",
+    "lat": -33.42535833333333,
+    "lng": -70.63314722222222,
+    "capturedAt": "2026-11-07 13:37:57-03:00",
+    "locationLabel": "Cerro San Cristóbal, Santiago",
+    "category": "architecture",
+    "image": "assets/photos/A20.jpg",
+    "thumb": "assets/thumbs/A20.jpg"
+  },
+  {
+    "id": "A50",
+    "title": "The green ridge opens",
+    "lat": -33.425377777777776,
+    "lng": -70.63331666666666,
+    "capturedAt": "2026-11-07 13:41:17-03:00",
+    "locationLabel": "Cerro San Cristóbal, Santiago",
+    "category": "landscape",
+    "image": "assets/photos/A50.jpg",
+    "thumb": "assets/thumbs/A50.jpg"
   },
   {
     "id": "A16",
@@ -176,26 +198,26 @@
     "thumb": "assets/thumbs/A18.jpg"
   },
   {
-    "id": "A19",
-    "title": "A figure in the sky",
-    "lat": -33.425774999999994,
-    "lng": -70.63305555555554,
-    "capturedAt": "2026-11-07 13:33:51-03:00",
+    "id": "A14",
+    "title": "Andes and skyline",
+    "lat": -33.42554166666667,
+    "lng": -70.63253055555555,
+    "capturedAt": "2026-11-07 13:53:21-03:00",
     "locationLabel": "Cerro San Cristóbal, Santiago",
-    "category": "sculpture",
-    "image": "assets/photos/A19.jpg",
-    "thumb": "assets/thumbs/A19.jpg"
+    "category": "cityscape",
+    "image": "assets/photos/A14.jpg",
+    "thumb": "assets/thumbs/A14.jpg"
   },
   {
-    "id": "A20",
-    "title": "Steps into sunlight",
-    "lat": -33.42535833333333,
-    "lng": -70.63314722222222,
-    "capturedAt": "2026-11-07 13:37:57-03:00",
+    "id": "A51",
+    "title": "The overlook gathers",
+    "lat": -33.42553611111111,
+    "lng": -70.63259166666666,
+    "capturedAt": "2026-11-07 13:56:47-03:00",
     "locationLabel": "Cerro San Cristóbal, Santiago",
-    "category": "architecture",
-    "image": "assets/photos/A20.jpg",
-    "thumb": "assets/thumbs/A20.jpg"
+    "category": "people",
+    "image": "assets/photos/A51.jpg",
+    "thumb": "assets/thumbs/A51.jpg"
   },
   {
     "id": "A23",
@@ -220,28 +242,6 @@
     "thumb": "assets/thumbs/A24.jpg"
   },
   {
-    "id": "A25",
-    "title": "A sea of color",
-    "lat": -33.43140833333333,
-    "lng": -70.63445277777778,
-    "capturedAt": "2026-11-07 14:41:48-03:00",
-    "locationLabel": "Santiago, Chile",
-    "category": "public-art",
-    "image": "assets/photos/A25.jpg",
-    "thumb": "assets/thumbs/A25.jpg"
-  },
-  {
-    "id": "A26",
-    "title": "The painted eye",
-    "lat": -33.43143055555555,
-    "lng": -70.63428611111112,
-    "capturedAt": "2026-11-07 14:42:36-03:00",
-    "locationLabel": "Santiago, Chile",
-    "category": "mural",
-    "image": "assets/photos/A26.jpg",
-    "thumb": "assets/thumbs/A26.jpg"
-  },
-  {
     "id": "A27",
     "title": "A door drawn in gold",
     "lat": -33.43117222222222,
@@ -264,6 +264,72 @@
     "thumb": "assets/thumbs/A28.jpg"
   },
   {
+    "id": "A25",
+    "title": "A sea of color",
+    "lat": -33.43140833333333,
+    "lng": -70.63445277777778,
+    "capturedAt": "2026-11-07 14:41:48-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "public-art",
+    "image": "assets/photos/A25.jpg",
+    "thumb": "assets/thumbs/A25.jpg"
+  },
+  {
+    "id": "A26",
+    "title": "The painted eye",
+    "lat": -33.43143055555555,
+    "lng": -70.63428611111112,
+    "capturedAt": "2026-11-07 14:42:36-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "mural",
+    "image": "assets/photos/A26.jpg",
+    "thumb": "assets/thumbs/A26.jpg"
+  },
+  {
+    "id": "P7890",
+    "title": "Colorful corner on the walk",
+    "lat": -33.43207222222222,
+    "lng": -70.63725277777779,
+    "capturedAt": "2026-11-07 15:43:01-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "street-art",
+    "image": "assets/photos/P7890.jpg",
+    "thumb": "assets/thumbs/P7890.jpg"
+  },
+  {
+    "id": "P7892",
+    "title": "Mosaic pavement and figures",
+    "lat": -33.432024999999996,
+    "lng": -70.63825277777778,
+    "capturedAt": "2026-11-07 15:44:29-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "public-art",
+    "image": "assets/photos/P7892.jpg",
+    "thumb": "assets/thumbs/P7892.jpg"
+  },
+  {
+    "id": "P7893",
+    "title": "Painted corner and storefronts",
+    "lat": -33.43344444444444,
+    "lng": -70.63851944444446,
+    "capturedAt": "2026-11-07 15:48:10-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "street-art",
+    "image": "assets/photos/P7893.jpg",
+    "thumb": "assets/thumbs/P7893.jpg"
+  },
+  {
+    "id": "P7894",
+    "title": "Bridge with the Andes beyond",
+    "lat": -33.43524166666666,
+    "lng": -70.63890833333333,
+    "capturedAt": "2026-11-07 15:53:15-03:00",
+    "locationLabel": "Puente Purísima, Santiago",
+    "category": "bridge",
+    "image": "assets/photos/P7894.jpg",
+    "thumb": "assets/thumbs/P7894.jpg"
+  },
+  {
     "id": "A29",
     "title": "Through the market",
     "lat": -33.437355555555555,
@@ -273,6 +339,39 @@
     "category": "market",
     "image": "assets/photos/A29.jpg",
     "thumb": "assets/thumbs/A29.jpg"
+  },
+  {
+    "id": "P7897",
+    "title": "Bocanáriz wine detail",
+    "lat": -33.43841666666666,
+    "lng": -70.64118888888889,
+    "capturedAt": "2026-11-07 16:21:30-03:00",
+    "locationLabel": "Bocanáriz, Barrio Lastarria",
+    "category": "food-drink",
+    "image": "assets/photos/P7897.jpg",
+    "thumb": "assets/thumbs/P7897.jpg"
+  },
+  {
+    "id": "P7900",
+    "title": "Meal and table detail",
+    "lat": -33.43840833333333,
+    "lng": -70.641175,
+    "capturedAt": "2026-11-07 16:55:13-03:00",
+    "locationLabel": "Bocanáriz, Barrio Lastarria",
+    "category": "food-drink",
+    "image": "assets/photos/P7900.jpg",
+    "thumb": "assets/thumbs/P7900.jpg"
+  },
+  {
+    "id": "P7904",
+    "title": "Lastarria restaurant fronts",
+    "lat": -33.43835555555555,
+    "lng": -70.64102222222223,
+    "capturedAt": "2026-11-07 18:11:01-03:00",
+    "locationLabel": "Barrio Lastarria, Santiago",
+    "category": "restaurant-street",
+    "image": "assets/photos/P7904.jpg",
+    "thumb": "assets/thumbs/P7904.jpg"
   },
   {
     "id": "A44",
@@ -306,6 +405,17 @@
     "category": "people",
     "image": "assets/photos/A32.jpg",
     "thumb": "assets/thumbs/A32.jpg"
+  },
+  {
+    "id": "P7919",
+    "title": "Basilica façade",
+    "lat": -33.43805,
+    "lng": -70.64675277777778,
+    "capturedAt": "2026-11-07 18:28:50-03:00",
+    "locationLabel": "Basílica de La Merced, Santiago",
+    "category": "architecture",
+    "image": "assets/photos/P7919.jpg",
+    "thumb": "assets/thumbs/P7919.jpg"
   },
   {
     "id": "A33",
@@ -352,39 +462,6 @@
     "thumb": "assets/thumbs/A36.jpg"
   },
   {
-    "id": "A37",
-    "title": "Back among the crowd",
-    "lat": -33.43841111111111,
-    "lng": -70.6511388888889,
-    "capturedAt": "2026-11-07 19:54:36-03:00",
-    "locationLabel": "Santiago Centro",
-    "category": "street-life",
-    "image": "assets/photos/A37.jpg",
-    "thumb": "assets/thumbs/A37.jpg"
-  },
-  {
-    "id": "A38",
-    "title": "Paintings remember the day",
-    "lat": -33.43792222222222,
-    "lng": -70.65099444444445,
-    "capturedAt": "2026-11-07 19:57:51-03:00",
-    "locationLabel": "Santiago Centro",
-    "category": "art",
-    "image": "assets/photos/A38.jpg",
-    "thumb": "assets/thumbs/A38.jpg"
-  },
-  {
-    "id": "A39",
-    "title": "Into evening",
-    "lat": -33.438222222222215,
-    "lng": -70.64949166666668,
-    "capturedAt": "2026-11-07 20:05:56-03:00",
-    "locationLabel": "Santiago Centro",
-    "category": "cityscape",
-    "image": "assets/photos/A39.jpg",
-    "thumb": "assets/thumbs/A39.jpg"
-  },
-  {
     "id": "A47",
     "title": "Walkers through the golden canyon",
     "lat": -33.43846111111111,
@@ -394,6 +471,17 @@
     "category": "street-life",
     "image": "assets/photos/A47.jpg",
     "thumb": "assets/thumbs/A47.jpg"
+  },
+  {
+    "id": "A37",
+    "title": "Back among the crowd",
+    "lat": -33.43841111111111,
+    "lng": -70.6511388888889,
+    "capturedAt": "2026-11-07 19:54:36-03:00",
+    "locationLabel": "Santiago Centro",
+    "category": "street-life",
+    "image": "assets/photos/A37.jpg",
+    "thumb": "assets/thumbs/A37.jpg"
   },
   {
     "id": "A48",
@@ -407,6 +495,17 @@
     "thumb": "assets/thumbs/A48.jpg"
   },
   {
+    "id": "A38",
+    "title": "Paintings remember the day",
+    "lat": -33.43792222222222,
+    "lng": -70.65099444444445,
+    "capturedAt": "2026-11-07 19:57:51-03:00",
+    "locationLabel": "Santiago Centro",
+    "category": "art",
+    "image": "assets/photos/A38.jpg",
+    "thumb": "assets/thumbs/A38.jpg"
+  },
+  {
     "id": "A43",
     "title": "A quiet doorway",
     "lat": -33.43824444444444,
@@ -416,5 +515,16 @@
     "category": "architecture",
     "image": "assets/photos/A43.jpg",
     "thumb": "assets/thumbs/A43.jpg"
+  },
+  {
+    "id": "A39",
+    "title": "Into evening",
+    "lat": -33.438222222222215,
+    "lng": -70.64949166666668,
+    "capturedAt": "2026-11-07 20:05:56-03:00",
+    "locationLabel": "Santiago Centro",
+    "category": "cityscape",
+    "image": "assets/photos/A39.jpg",
+    "thumb": "assets/thumbs/A39.jpg"
   }
 ]

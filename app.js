@@ -2,7 +2,7 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const state = { photos: [], visible: [], current: null, map: null, clusters: null, markers: new Map(), view: 'map' };
+const state = { photos: [], visible: [], current: null, map: null, clusters: null, markers: new Map(), view: 'map', scouts: [] };
 const captions = {
   street: 'A free day. No set destination. Just a camera and a city to walk through.',
   landscape: 'A little space to breathe, with the city just beyond the frame.',
@@ -16,7 +16,10 @@ const captions = {
   garden: 'Shade, green, and a pause between streets.',
   'street-life': 'A city made of passing moments.',
   art: 'Another way of seeing the same city.',
-  plaza: 'The day opens out into the square.'
+  plaza: 'The day opens out into the square.',
+  'food-drink': 'A pause at the table, and another small memory of the city.',
+  'restaurant-street': 'Tables, conversation, and the street moving around them.',
+  'street-art': 'Color and everyday life sharing the same corner.'
 };
 
 function element(tag, className, text) {
@@ -28,6 +31,18 @@ function element(tag, className, text) {
 function photoTime(photo) {
   const value = new Date(photo.capturedAt.replace(' ', 'T'));
   return new Intl.DateTimeFormat('en-GB', {timeZone:'America/Santiago', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}).format(value);
+}
+function mapsDirectionsUrl(destination) {
+  const url = new URL('https://www.google.com/maps/dir/');
+  url.searchParams.set('api', '1');
+  url.searchParams.set('destination', destination);
+  return url.href;
+}
+function photoDirectionsUrl(photo) { return mapsDirectionsUrl(`${photo.lat},${photo.lng}`); }
+function scoutDirectionsUrl(place) {
+  const hasCoordinates = Number.isFinite(place.lat) && Number.isFinite(place.lng);
+  const destination = place.mapQuery || (hasCoordinates ? `${place.lat},${place.lng}` : `${place.address || place.name}, Santiago, Chile`);
+  return mapsDirectionsUrl(destination);
 }
 function announce(text) { $('announcement').textContent = text; }
 function buildPhotoButton(photo, gallery = false) {
@@ -96,6 +111,9 @@ function selectPhoto(id, {pan=false,hash=true}={}) {
   $('photo-caption').textContent=captions[photo.category]||'A moment from a day in Santiago.';
   $('photo-time').textContent=photoTime(photo);
   $('photo-coordinates').textContent=`${Math.abs(photo.lat).toFixed(4)}° S · ${Math.abs(photo.lng).toFixed(4)}° W`;
+  $('photo-directions').href=photoDirectionsUrl(photo);
+  $('photo-directions').setAttribute('aria-label',`Get directions to ${photo.locationLabel}`);
+  $('photo-scout').hidden=!state.scouts.some(place=>place.photoIds?.includes(id));
   $('photo-index').textContent=`${String(index+1).padStart(2,'0')} / ${state.visible.length}`;
   $('previous').disabled=index<=0; $('next').disabled=index===state.visible.length-1;
   $('lightbox-prev').disabled=index<=0; $('lightbox-next').disabled=index===state.visible.length-1;
@@ -123,22 +141,67 @@ function stepPhoto(direction) {
   }
 }
 function setView(view) {
+  if(view!=='scout'&&location.hash.startsWith('#scout')) {
+    const hash=state.current?`#photo=${encodeURIComponent(state.current.id)}`:'';
+    history.replaceState(null,'',`${location.pathname}${location.search}${hash}`);
+  }
   state.view=view;
   $('explorer').classList.toggle('gallery-mode',view==='gallery');$('gallery').hidden=view!=='gallery';
-  for(const v of ['map','gallery']) {$(`${v}-tab`).classList.toggle('active',view===v);$(`${v}-tab`).setAttribute('aria-pressed',String(view===v));}
-  $('overview').hidden=view==='gallery';
+  $('explorer').classList.toggle('scout-mode',view==='scout');$('scout').hidden=view!=='scout';
+  for(const v of ['map','gallery','scout']) {$(`${v}-tab`).classList.toggle('active',view===v);$(`${v}-tab`).setAttribute('aria-pressed',String(view===v));}
+  $('overview').hidden=view!=='map';$('place-filter').hidden=view==='scout';document.querySelector('.filter-label').hidden=view==='scout';$('archive').hidden=view==='scout';
+  $('collection-count').hidden=view==='scout';
   if(view==='map'&&state.map){state.map.invalidateSize();overview();}
+}
+function externalLink(text,url,className='') {
+  const link=element('a',className,text);link.href=url;link.target='_blank';link.rel='noopener';return link;
+}
+function showScout(id) {
+  setView('scout');
+  $('scout-filter').value='all';renderScouting();
+  history.replaceState(null,'',id?`#scout=${encodeURIComponent(id)}`:'#scout');
+  if(id){const card=$('scout-cards').querySelector(`[data-scout="${id}"]`);card?.scrollIntoView({block:'start',behavior:'instant'});card?.focus({preventScroll:true});}
+}
+function renderScouting() {
+  const filter=$('scout-filter').value;
+  const places=state.scouts.filter(p=>filter==='all'||(filter==='photographed')===Boolean(p.photoIds?.length));
+  $('scout-count').textContent=`${places.length} locations`;
+  $('scout-cards').replaceChildren(...places.map(place=>{
+    const card=element('article','scout-card');card.dataset.scout=place.id;card.tabIndex=-1;
+    const photo=state.photos.find(p=>p.id===place.heroId);
+    if(photo){const img=element('img','scout-image');img.src=photo.image;img.alt=photo.title;img.loading='lazy';card.append(img);}
+    else {const blank=element('div','scout-unphotographed');blank.append(element('span','section-label','NEXT STOP'),element('strong','',place.area),element('span','technical','Not yet photographed'));card.append(blank);}
+    const body=element('div','scout-body');body.append(element('p','section-label',`${photo?'Photographed':'To scout'} / ${place.kind}`),element('h3','',place.name),element('p','scout-address',place.address));
+    body.append(element('p','scout-pitch',place.idea));
+    const details=element('dl','scout-details');
+    for(const [label,value] of [['Light / timing',place.light],['Sound / setup',place.sound],['Visit',place.hours],['Access',place.access]]){const row=element('div');row.append(element('dt','',label),element('dd','',value));details.append(row);}
+    body.append(details);
+    if(place.dates)body.append(element('p','scout-dates',place.dates));
+    const actions=element('div','scout-actions');
+    if(photo){const mapButton=element('button','','View on photo map');mapButton.addEventListener('click',()=>{$('place-filter').value='all';renderCollection();setView('map');selectPhoto(photo.id,{pan:true});$('map-tab').scrollIntoView({block:'start',behavior:'instant'});});actions.append(mapButton);}
+    actions.append(externalLink('Directions ↗',scoutDirectionsUrl(place),'button'));
+    body.insertBefore(actions,body.querySelector('.scout-pitch'));
+    const sources=element('div','scout-sources');sources.append(element('span','technical','Official information: '));place.sources.forEach((source,index)=>{if(index)sources.append(document.createTextNode(' · '));sources.append(externalLink(source.title+' ↗',source.url));});body.append(sources);
+    if(place.contact)body.append(element('p','scout-contact',place.contact));
+    card.append(body);return card;
+  }));
 }
 function updateLightbox() {
   const photo=state.current;
   $('lightbox-image').src=photo.image;$('lightbox-image').alt=photo.title;
   $('lightbox-title').textContent=`${photo.title} · ${photo.locationLabel}`;
   $('lightbox-index').textContent=$('photo-index').textContent;
+  $('lightbox-directions').href=photoDirectionsUrl(photo);
+  $('lightbox-directions').setAttribute('aria-label',`Get directions to ${photo.locationLabel}`);
 }
 function openLightbox() {if(!state.current) return;updateLightbox();if(!$('lightbox').open)$('lightbox').showModal();}
 function selectHash() {
+  if(location.hash==='#scout'){setView('scout');return true;}
+  const scoutId=new URLSearchParams(location.hash.slice(1)).get('scout');
+  if(state.scouts.some(p=>p.id===scoutId)){showScout(scoutId);return true;}
   const id=new URLSearchParams(location.hash.slice(1)).get('photo');
   if(state.photos.some(p=>p.id===id)) {
+    if(state.view==='scout')setView('map');
     if(!state.visible.some(p=>p.id===id)) {$('place-filter').value='all';renderCollection();}
     selectPhoto(id,{pan:true,hash:false});return true;
   }return false;
@@ -154,6 +217,7 @@ async function start() {
     const photos=await response.json();
     state.photos=photos.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng)).sort((a,b)=>a.capturedAt.localeCompare(b.capturedAt));
     if(!state.photos.length)throw new Error('Empty photo list');
+    try {const scoutResponse=await fetch('scouting.json');if(!scoutResponse.ok)throw new Error('Scouting guide unavailable');state.scouts=(await scoutResponse.json()).locations;renderScouting();}catch(error){$('scout-cards').textContent='The filming guide could not load. Reload the page to try again.';console.error(error);}
     [...new Set(state.photos.map(p=>p.locationLabel))].forEach(place=>{const option=element('option','',place);option.value=place;$('place-filter').append(option);});
     initMap();renderCollection();
     if(!selectHash()) {const hero=state.photos.find(p=>p.id==='A48')||state.photos[0];selectPhoto(hero.id,{pan:false,hash:false});}
@@ -164,6 +228,8 @@ async function start() {
     $('open-photo').addEventListener('click',openLightbox);$('close-lightbox').addEventListener('click',()=>$('lightbox').close());
     $('lightbox').addEventListener('click',event=>{if(event.target===$('lightbox'))$('lightbox').close();});
     $('map-tab').addEventListener('click',()=>setView('map'));$('gallery-tab').addEventListener('click',()=>setView('gallery'));
+    $('scout-tab').addEventListener('click',()=>showScout());$('scout-filter').addEventListener('change',renderScouting);
+    $('photo-scout').addEventListener('click',()=>showScout(state.scouts.find(place=>place.photoIds?.includes(state.current.id))?.id));
     $('share-photo').addEventListener('click',copyMemory);window.addEventListener('hashchange',selectHash);
     document.addEventListener('keydown',event=>{if(!$('lightbox').open)return;if(event.key==='ArrowLeft'){event.preventDefault();stepPhoto(-1);}if(event.key==='ArrowRight'){event.preventDefault();stepPhoto(1);}});
   }catch(error){$('load-error').hidden=false;$('collection-count').textContent='Photographs unavailable';console.error(error);}

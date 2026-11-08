@@ -31,7 +31,7 @@
 
   <main>
     <div class="explore-toolbar">
-      <div class="view-tabs" aria-label="View"><button id="map-tab" aria-pressed="true" class="active">Map</button><button id="gallery-tab" aria-pressed="false">Archive</button></div>
+      <div class="view-tabs" aria-label="View"><button id="map-tab" aria-pressed="true" class="active">Map</button><button id="gallery-tab" aria-pressed="false">Archive</button><button id="scout-tab" aria-pressed="false">Filming guide</button></div>
       <label class="filter-label" for="place-filter">Place</label><select id="place-filter" aria-label="Filter photographs by place"><option value="all">All places</option></select>
       <button id="overview" class="quiet-button">Show all pins</button>
       <span id="collection-count" class="technical toolbar-count">Loading photographs…</span>
@@ -50,11 +50,19 @@
           <p id="photo-place" class="section-label"></p><h2 id="photo-title">A walk through Santiago</h2>
           <p id="photo-caption" class="photo-caption">The streets, the hills, and the little moments in between.</p>
           <dl class="metadata"><div><dt>Captured</dt><dd id="photo-time">—</dd></div><div><dt>Location</dt><dd id="photo-coordinates">—</dd></div></dl>
+          <a id="photo-directions" class="button photo-directions" href="https://www.google.com/maps/dir/?api=1" target="_blank" rel="noopener">Google Maps directions ↗</a>
           <div class="photo-navigation"><button id="previous" aria-label="Previous photograph">← <span>Previous</span></button><button id="next" aria-label="Next photograph"><span>Next</span> →</button></div>
           <button id="share-photo" class="quiet-button share-photo">Copy link to this memory ↗</button>
+          <button id="photo-scout" class="quiet-button share-photo" hidden>Filming notes for this place ↗</button>
         </div>
       </aside>
       <section id="gallery" class="gallery" aria-label="Photograph archive" hidden></section>
+      <section id="scout" class="scout" aria-labelledby="scout-title" hidden>
+        <div class="scout-intro"><div><p class="section-label">Small-crew documentary / 8–22 November 2026</p><h2 id="scout-title">Places to return to. Stories to look for.</h2><p>Photo-backed locations from the walk, plus a few next stops. Light and scene ideas are scouting suggestions; venue access still needs to be arranged.</p></div><a class="button" href="#scout" id="share-guide">Link to this guide ↗</a></div>
+        <div class="scout-toolbar"><label for="scout-filter">Show</label><select id="scout-filter"><option value="all">All filming locations</option><option value="photographed">Places photographed</option><option value="new">New places to scout</option></select><span id="scout-count" class="technical"></span></div>
+        <div id="scout-cards" class="scout-cards"></div>
+        <div class="scout-footnote"><p>Opening information checked 8 November 2026. Confirm with the venue before travelling; published visitor hours do not grant filming access. This is a scouting shortlist, not a booked shooting schedule.</p><p>For planned use of streets or pavements: <a href="https://www.munistgo.cl/via-publica/" target="_blank" rel="noopener">Santiago public-space office ↗</a> · <a href="https://transparencia.providencia.cl/Carpeta/VerTabla/23493" target="_blank" rel="noopener">Providencia filming / public-space process ↗</a></p></div>
+      </section>
     </div>
 
     <section id="archive" class="archive" aria-label="Photographs in capture order">
@@ -69,7 +77,7 @@
   <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
   <dialog id="lightbox" aria-label="Photograph viewer">
     <div class="lightbox-header"><span id="lightbox-title"></span><button id="close-lightbox" aria-label="Close photograph viewer">Close ×</button></div>
-    <img id="lightbox-image" alt=""><div class="lightbox-footer"><button id="lightbox-prev" aria-label="Previous photograph">← Previous</button><span id="lightbox-index" class="technical"></span><button id="lightbox-next" aria-label="Next photograph">Next →</button></div>
+    <img id="lightbox-image" alt=""><div class="lightbox-footer"><button id="lightbox-prev" aria-label="Previous photograph">← Previous</button><span id="lightbox-index" class="technical"></span><a id="lightbox-directions" class="button" href="https://www.google.com/maps/dir/?api=1" target="_blank" rel="noopener">Directions ↗</a><button id="lightbox-next" aria-label="Next photograph">Next →</button></div>
   </dialog>
 </body>
 </html>

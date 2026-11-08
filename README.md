@@ -4,7 +4,9 @@ A photographic walk through Santiago, by Tomislav Rupić.
 
 **[Explore the map](https://tomislavrupic.github.io/retrovizor/)** · **[Watch the film](https://youtu.be/2HaneFA94fo)**
 
-38 selected photographs, placed using their original GPS metadata. Choose a pin, browse the day's photographs, or open the archive. Nearby photos group together on the map; zoom in or click a group to explore them. Each memory has its own shareable link.
+48 selected photographs, placed using their original GPS metadata. Choose a pin, browse the day's photographs, or open the archive. Nearby photos group together on the map; zoom in or click a group to explore them. Each memory has its own shareable link and Google Maps directions.
+
+The [filming guide](https://tomislavrupic.github.io/retrovizor/#scout) covers 13 locations for small-crew documentary and street scenes during 8–22 November 2026. Ten locations are illustrated by photographs from the walk, including Bocanáriz; three additional places are clearly marked as new scouting candidates. Each has directions, scene ideas, light/sound suggestions, practical access notes and official sources. Published hours were checked on 8 November 2026; confirm before travelling. Filming access has not been booked.
 
 ## Run locally
 
