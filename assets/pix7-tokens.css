@@ -1,0 +1,68 @@
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --pix-surface-canvas: #060a0d;
+  --pix-surface-panel: #091015;
+  --pix-surface-raised: #0c141a;
+  --pix-surface-input: #080e12;
+
+  /* Structure */
+  --pix-border-subtle: #1b2a33;
+  --pix-border-strong: #29404c;
+  --pix-text-primary: #d6dbe0;
+  --pix-text-secondary: #738491;
+  --pix-text-disabled: #42535e;
+
+  /* Semantic signals. These meanings are immutable. */
+  --pix-action: #439fd4;
+  --pix-action-strong: #68b9e7;
+  --pix-action-deep: #123653;
+  --pix-action-glow: rgba(67, 159, 212, 0.18);
+  --pix-healthy: #00d293;
+  --pix-warning: #d8a04f;
+  --pix-failure: #e04b4b;
+  --pix-metadata: #559fc7;
+  --pix-emotional: #a674c7;
+  --pix-inactive: #738491;
+
+  /* Typography */
+  --pix-font-display: "Avenir Next Condensed", "Helvetica Neue", sans-serif;
+  --pix-font-interface: "Avenir Next", "Helvetica Neue", sans-serif;
+  --pix-font-technical: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+
+  /* Spatial rhythm */
+  --pix-space-1: 2px;
+  --pix-space-2: 4px;
+  --pix-space-3: 8px;
+  --pix-space-4: 12px;
+  --pix-space-5: 16px;
+  --pix-space-6: 24px;
+  --pix-space-7: 32px;
+
+  /* Geometry and motion */
+  --pix-radius-small: 3px;
+  --pix-radius-medium: 4px;
+  --pix-motion-fast: 120ms;
+  --pix-motion-standard: 160ms;
+  --pix-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Compatibility aliases for the ALi Imagine reference implementation. */
+  --bg: var(--pix-surface-canvas);
+  --panel: var(--pix-surface-panel);
+  --panel-raised: var(--pix-surface-raised);
+  --line: var(--pix-border-subtle);
+  --line-bright: var(--pix-border-strong);
+  --text: var(--pix-text-primary);
+  --muted: var(--pix-text-secondary);
+  --faint: var(--pix-text-disabled);
+  --signal: var(--pix-action);
+  --signal-hot: var(--pix-action-strong);
+  --cyan: var(--pix-metadata);
+  --green: var(--pix-healthy);
+  --amber: var(--pix-warning);
+  --warning: var(--pix-warning);
+  --orange: var(--pix-action-strong);
+  --red: var(--pix-failure);
+  --mono: var(--pix-font-technical);
+}

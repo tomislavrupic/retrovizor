@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#060a0d">
+  <title>A Day in Santiago — Retrovizor</title>
+  <meta name="description" content="A day in Santiago, somewhere between a walk and a dream. Explore Tomislav Rupić’s photographs on an interactive map.">
+  <meta property="og:title" content="A Day in Santiago — Retrovizor">
+  <meta property="og:description" content="A photographic walk through Santiago. Open the map and explore the memories.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tomislavrupic.github.io/retrovizor/">
+  <meta property="og:image" content="https://tomislavrupic.github.io/retrovizor/assets/cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/vendor/leaflet.css">
+  <link rel="stylesheet" href="assets/vendor/MarkerCluster.css">
+  <link rel="stylesheet" href="assets/pix7-tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="assets/vendor/leaflet.js"></script>
+  <script defer src="assets/vendor/leaflet.markercluster.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#archive">Skip to photographs</a>
+  <header class="site-header">
+    <div class="identity"><span class="wordmark">RETROVIZOR<span class="wordmark-dot">.</span></span><span class="edition">PHOTO JOURNAL / 01</span></div>
+    <div class="project"><h1>A day in Santiago</h1><p>Somewhere between a walk and a dream.</p></div>
+    <a class="button film-link" href="https://youtu.be/2HaneFA94fo" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg><span>Watch the film</span></a>
+  </header>
+
+  <main>
+    <div class="explore-toolbar">
+      <div class="view-tabs" aria-label="View"><button id="map-tab" aria-pressed="true" class="active">Map</button><button id="gallery-tab" aria-pressed="false">Archive</button></div>
+      <label class="filter-label" for="place-filter">Place</label><select id="place-filter" aria-label="Filter photographs by place"><option value="all">All places</option></select>
+      <button id="overview" class="quiet-button">Show all pins</button>
+      <span id="collection-count" class="technical toolbar-count">Loading photographs…</span>
+    </div>
+
+    <div id="explorer" class="explorer">
+      <section class="map-region" aria-label="Photograph locations">
+        <div id="map" aria-label="Interactive map of Santiago photograph locations"></div>
+        <div class="map-note"><span>SANTIAGO, CHILE</span><p>Choose a photograph to explore a moment.</p></div>
+        <p id="map-message" class="map-message" hidden></p>
+      </section>
+      <aside id="selection" class="selection" aria-labelledby="photo-title">
+        <div class="selection-heading"><span class="section-label">Selected memory</span><span id="photo-index" class="technical"></span></div>
+        <button id="open-photo" class="photo-stage" aria-label="Open selected photograph full size"><img id="selected-image" alt="" fetchpriority="high"><span class="expand-label">View photograph ↗</span></button>
+        <div class="photo-details">
+          <p id="photo-place" class="section-label"></p><h2 id="photo-title">A walk through Santiago</h2>
+          <p id="photo-caption" class="photo-caption">The streets, the hills, and the little moments in between.</p>
+          <dl class="metadata"><div><dt>Captured</dt><dd id="photo-time">—</dd></div><div><dt>Location</dt><dd id="photo-coordinates">—</dd></div></dl>
+          <div class="photo-navigation"><button id="previous" aria-label="Previous photograph">← <span>Previous</span></button><button id="next" aria-label="Next photograph"><span>Next</span> →</button></div>
+          <button id="share-photo" class="quiet-button share-photo">Copy link to this memory ↗</button>
+        </div>
+      </aside>
+      <section id="gallery" class="gallery" aria-label="Photograph archive" hidden></section>
+    </div>
+
+    <section id="archive" class="archive" aria-label="Photographs in capture order">
+      <div class="archive-heading"><h2 class="section-label">The day's memories</h2><span class="technical">Select a frame · explore its place</span></div>
+      <div id="filmstrip" class="filmstrip"></div>
+    </section>
+    <p id="load-error" class="load-error" hidden>Photographs could not be loaded. <button onclick="location.reload()">Try again</button></p>
+    <noscript><p class="load-error">Enable JavaScript to explore this photo map. You can also <a href="https://youtu.be/2HaneFA94fo">watch the Santiago film</a>.</p></noscript>
+  </main>
+
+  <footer><span>Photographs by Tomislav Rupić</span><span class="footer-note">Pins follow the original photo geotags.</span><a href="https://youtu.be/2HaneFA94fo" target="_blank" rel="noopener">A day in Santiago ↗</a></footer>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+  <dialog id="lightbox" aria-label="Photograph viewer">
+    <div class="lightbox-header"><span id="lightbox-title"></span><button id="close-lightbox" aria-label="Close photograph viewer">Close ×</button></div>
+    <img id="lightbox-image" alt=""><div class="lightbox-footer"><button id="lightbox-prev" aria-label="Previous photograph">← Previous</button><span id="lightbox-index" class="technical"></span><button id="lightbox-next" aria-label="Next photograph">Next →</button></div>
+  </dialog>
+</body>
+</html>
