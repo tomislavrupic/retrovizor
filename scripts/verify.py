@@ -21,7 +21,7 @@ for photo in photos:
         assert b'Exif\x00\x00' not in data, path
 for reference in re.findall(r'(?:src|href)="([^"#]+)"', (root / 'index.html').read_text()):
     if not reference.startswith(('https:', 'http:')):
-        assert (root / reference).exists(), reference
+        assert (root / reference.split('?', 1)[0]).exists(), reference
 scouting = json.loads((root / 'scouting.json').read_text())
 assert scouting['window'] == {'start': '2026-11-08', 'end': '2026-11-22'}
 places = scouting['locations']

@@ -20,6 +20,7 @@ Static GitHub Pages photo journal for Tomislav Rupić, hosted from the `main` br
 - No autoplay or decorative animation. Respect reduced motion and keyboard navigation.
 - Public map uses OSM tiles with visible attribution, normal browser caching and Referer; no bulk prefetch.
 - User specifically requested GitHub Pages. Do not deploy a parallel Sites instance.
+- Version the local app.js/style.css URLs in index.html when their behavior changes, so returning visitors do not receive a new HTML shell with cached older scripts/styles. The verifier strips URL queries before checking local assets.
 - Every photograph and scouting card links to Google Maps Directions. Photo links use original GPS camera coordinates; named guide locations use their verified address or named destination.
 - Light, sound and scene notes are scouting suggestions. Source visitor hours from official pages, date the research, and distinguish visitor access from arranged filming access. Never claim bookings or permissions that have not been obtained.
 - Keep the conflicting PDF interview holds provisional until the producer confirms them. Do not publish PDFs, private apartment addresses, crew contacts or source extracts. Do not infer a private residential location for Jorge. Directions open only for known public destinations.
