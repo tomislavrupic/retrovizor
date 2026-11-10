@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-10",
+  "title": "Santiago · Day 2",
+  "subtitle": "Van from Hotel Diego de Velázquez · small-crew documentary",
+  "summary": "Market → hill if cleared → Lastarria → interview holds → Centro on foot → Goran in evening light. All times are local and provisional.",
+  "status": "Working plan · appointments pending",
+  "light": [
+    {"label": "Sunrise / sunset", "value": "06:35 / 20:18", "note": "Tuesday 10 November, Santiago. Buildings and the hill can block direct sun earlier."},
+    {"label": "Morning exteriors", "value": "09:00–12:00", "note": "Market life first. By the 10:00 lift opening, light is already strong; Andes views face morning backlight and depend on visibility."},
+    {"label": "Host / evening", "value": "18:45–19:20", "note": "Aim for soft side or back light for Goran. Keep the final traffic pickups for the lower light before sunset; seek open shade if contrast is still hard."}
+  ],
+  "notices": [
+    "This combines the 10 November daily report and the inconsistently dated 11 November call sheet. The 13:00 and 14:30–16:30 interview entries are holds, not two confirmed appointments. Producer must reconcile guest, date, duration and travel before departure.",
+    "Proposed hotel brief 08:15, van departure 08:30. This brings the brief 15 minutes earlier than the suggested call sheet. Evening coverage follows the report’s 20:30 wrap, rather than the other draft’s 16:30 finish.",
+    "Check weather, visibility and access at 07:30. The supplied weather notes conflict with the DMC model; use the current forecast on the day. If the summit is cloudy or media access is not cleared, use the city fallback below.",
+    "Hill filming needs advance Parquemet media authorization. Van access is separate and is not assumed. Funicular public service begins 10:00 Tuesday; an entry ticket is not filming approval. If not ascending by 10:20, abandon the hill and protect interview travel.",
+    "City fallback: La Vega frontage/cleared market until 09:45, Lastarria 10:15–11:00, then early lunch and interview transfer. Bring Centro coverage forward only if the confirmed interview address and timing allow it.",
+    "Transfers are planning allowances, not live traffic or reserved parking. Driver checks legal pickup points and current routing. Numbered pins use photo GPS or published venue maps; address-only stops still have directions. No private apartment or crew contacts are published.",
+    "Priority when running late: interviews, Goran with book, newspapers, city wide, fruit, Metro, bank/state-company and traffic. Drop extra brands, fuel detour and additional angles first. Checkboxes save only on this device; they do not sync across the crew."
+  ],
+  "legs": [
+    {"title": "Morning · van to the hill entrance", "mode": "driving", "origin": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile", "destination": "Funicular Santiago, Pío Nono 450, Providencia, Chile", "waypoints": ["La Vega Central, Dávila Baeza 700, Recoleta, Chile"], "note": "08:30 departure. Allow 25–40 min for the market leg and 15–25 min from market to the gate, including unloading/parking. Shorten or skip the market if delayed. Do not drive to the summit."},
+    {"title": "After the hill · van", "mode": "driving", "origin": "Funicular Santiago, Pío Nono 450, Providencia, Chile", "destination": "José Victorino Lastarria 276, Santiago, Chile", "waypoints": [], "note": "Reserve 10:50–11:30 for descent, walking back to the van, transfer and unload. No midday route link until the interview location is confirmed."},
+    {"title": "Centro · walk, part 1", "mode": "walking", "origin": "Plaza de Armas, Santiago, Chile", "destination": "BancoEstado, Avenida Libertador Bernardo O’Higgins 1111, Santiago, Chile", "waypoints": ["Codelco Casa Matriz, Huérfanos 1270, Santiago, Chile"], "note": "One legal van drop-off/parking arrangement for the central cluster. Pick up newspapers and everyday street details between stops. Roughly 20–30 min walking total, plus filming."},
+    {"title": "Centro · walk, part 2", "mode": "walking", "origin": "BancoEstado, Avenida Libertador Bernardo O’Higgins 1111, Santiago, Chile", "destination": "Plaza de la Constitución, Santiago, Chile", "waypoints": ["McDonald’s, Ahumada 12, Santiago, Chile"], "note": "Bank → Metro/brand corner → Goran’s setting. Roughly 15–20 min walking total, plus filming. Keep Goran’s 18:45 start ahead of extra inserts."},
+    {"title": "Return · van", "mode": "driving", "origin": "Plaza de la Constitución, Santiago, Chile", "destination": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile", "waypoints": [], "note": "Arrange a legal pickup on a reachable surrounding street. Record traffic en route; the route can change with restrictions. Fuel is an optional separate stop, not forced into navigation. Hotel wrap by 20:30."}
+  ],
+  "stops": [
+    {
+      "id": "hotel", "time": "08:15 brief · 08:30 depart", "title": "Hotel Diego de Velázquez", "status": "Start confirmed · call time proposed",
+      "address": "Guardia Vieja 150, Providencia", "mapQuery": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "lat": -33.4239845, "lng": -70.6101074,
+      "shots": [{"id": "book-ready", "text": "Bring Goran’s chosen book; agree the short stand-up and book inserts."}, {"id": "gopro-ready", "text": "Secure the GoPro before driving; passenger handles camera checks."}],
+      "transfer": "25–40 min allowance to La Vega, including a legal drop-off and gear unload.",
+      "notes": "Pin is the approximate location from the hotel’s published map. Confirm interview holds and hill/market access before leaving. Driver drives; use legal road lanes and pickup points."
+    },
+    {
+      "id": "la-vega", "time": "09:00–09:25", "title": "La Vega · fruit and working life", "status": "Interior filming conditional",
+      "address": "Dávila Baeza 700, Recoleta", "mapQuery": "La Vega Central, Dávila Baeza 700, Recoleta, Chile",
+      "shots": [{"id": "fruit-wide", "text": "Fruit-stall wide, stacks of produce, working hands, weighing and exchange."}, {"id": "market-vehicles", "text": "Deliveries, loading and identifiable trucks if active; collect clean ambient sound."}],
+      "light": "Early activity matters more than golden light. Use even covered light for fruit and hands; match exposure at bright entrances.",
+      "transfer": "Leave by 09:25; allow 15–25 min to the funicular gate, including parking. If late, reduce to one wide and one detail or skip.",
+      "notes": "Official Tuesday visitor hours 07:00–17:00. Market filming/reportage requires prior coordination through its contact form. Without it, use public street frontage only. This is a new scouting stop with an address link, not a photo GPS pin."
+    },
+    {
+      "id": "funicular-gate", "time": "09:50 gate · 10:00 service starts", "title": "Pío Nono · hill access", "status": "Media access and service to confirm",
+      "address": "Funicular Santiago, Pío Nono 450, Providencia", "mapQuery": "Funicular Santiago, Pío Nono 450, Providencia, Chile",
+      "lat": -33.4300359, "lng": -70.635853,
+      "shots": [{"id": "gate-context", "text": "One arrival/transport context shot only if it does not delay the ascent."}],
+      "transfer": "The ride is about 5–7 min; allow extra time for tickets, queue and walking from the upper station. Van stays below unless specifically authorized.",
+      "notes": "Published Tuesday service 10:00–19:45. Prior Parquemet media authorization is required for the filming visit. If the crew is not ascending by 10:20, switch to Lastarria and protect lunch/interview travel."
+    },
+    {
+      "id": "cerro", "time": "10:20–10:50", "title": "Cerro San Cristóbal · city scale", "status": "Optional if cleared and visible",
+      "address": "Cumbre / Terraza Bellavista, Cerro San Cristóbal", "mapQuery": "Cumbre Cerro San Cristóbal, Parque Metropolitano de Santiago, Chile",
+      "lat": -33.42554, "lng": -70.63259, "photoId": "A51",
+      "shots": [{"id": "city-panorama", "text": "Locked city wide, slow panorama and one short timelapse."}, {"id": "andes-context", "text": "Andes and city layers if visible; visitors looking out for human scale."}],
+      "light": "At this hour the sun is already high toward the east/northeast. East-facing Andes can be backlit; choose the clearest angle rather than promising sunlit mountains.",
+      "transfer": "Hard stop 10:50. Allow 40 min for descent, van pickup, transfer and Lastarria unload. Directions identify the viewpoint; road navigation ends at the lower gate.",
+      "notes": "Pin and reference image come from the earlier photo walk. Clouds, haze or access delays trigger the city fallback. A future clear morning is preferable to spending the interview buffer waiting here."
+    },
+    {
+      "id": "lastarria", "time": "11:30–12:00", "title": "Lastarria · everyday street scenes", "status": "Street exteriors · access not booked",
+      "address": "José Victorino Lastarria, around nos. 264–276, Santiago", "mapQuery": "José Victorino Lastarria 276, Santiago, Chile",
+      "lat": -33.4383555556, "lng": -70.6410222222, "photoId": "P7904",
+      "shots": [{"id": "lastarria-life", "text": "Historic street wide, café/restaurant fronts, pedestrians and small interactions."}, {"id": "cables", "text": "Visible electrical cables and everyday infrastructure where actually encountered."}, {"id": "kiosk-scout", "text": "Scout an open newspaper kiosk; if absent, carry the shot to Centro."}],
+      "light": "Use shaded pavement and doorways as the sun climbs; shoot across the street for readable façades and avoid dappled faces.",
+      "transfer": "Finish at 12:00. Reserve 12:00–13:00 for quick lunch, travel and setup; exact interview destination can change this cutoff.",
+      "notes": "Bocanáriz is here for a frontage pickup; do not depend on lunch opening or an interior filming slot. Interview setup takes priority over extra café angles."
+    },
+    {
+      "id": "interview-holds", "time": "12:00–16:30 protected block", "title": "Lunch, transfers and interview holds", "status": "Producer confirmation required",
+      "address": "Interview locations pending / private call sheet",
+      "shots": [{"id": "interview-confirmed", "text": "Confirm the guest, date, address and duration before choosing the final schedule."}, {"id": "interview-coverage", "text": "Confirmed interview, room tone and relevant hands/book/work details with the contributor."}],
+      "light": "Use midday for controlled interview light and lunch, keeping the lower evening sun for exteriors.",
+      "transfer": "The drafts list 13:00 and 14:30–16:30. They are alternative holds until reconciled; both are not assumed to fit. Reserve 16:30–17:10 to reach Centro only if the confirmed address makes it realistic.",
+      "notes": "The 13:00 location is unconfirmed. The other draft contains a private apartment location, retained off this public site. If both interviews are needed, producer must resolve duration/transfer overlap; trim B-roll rather than compress interviews."
+    },
+    {
+      "id": "plaza-armas", "time": "17:10–17:40", "title": "Plaza de Armas · press and public life", "status": "Start depends on interview finish",
+      "address": "Plaza de Armas, Santiago", "mapQuery": "Plaza de Armas, Santiago, Chile",
+      "lat": -33.43826, "lng": -70.65093, "photoId": "A48",
+      "shots": [{"id": "plaza-wide", "text": "Cathedral/plaza establishing wide, pedestrians, performers and ordinary moments."}, {"id": "press", "text": "Find an open kiosk: newspaper mastheads, actual dated headlines, seller and hands buying/reading."}, {"id": "metro-plaza", "text": "Metro entrance/logo and people entering; keep station-interior coverage separate unless arranged."}],
+      "light": "Later western light can give side light and readable architecture; choose a shaded edge for people and match exposure between angles.",
+      "transfer": "Arrange one legal van drop-off for the Centro walking cluster. Allow about 10–15 min walking toward Huérfanos 1270, shooting only quick inserts en route.",
+      "notes": "Kiosks are a live scout target, not a guaranteed operating stall. Contemporary papers illustrate current press; junta-era coverage still requires the relevant archive/editorial context."
+    },
+    {
+      "id": "codelco", "time": "17:50–18:05", "title": "Codelco · state-owned company", "status": "Exterior pickup",
+      "address": "Huérfanos 1270, Santiago", "mapQuery": "Codelco Casa Matriz, Huérfanos 1270, Santiago, Chile",
+      "shots": [{"id": "codelco-sign", "text": "Legible company sign, building context and the public-facing company-history mural if accessible."}],
+      "light": "Use the street’s available shade/side light; expose the sign cleanly. Keep to two or three useful compositions.",
+      "transfer": "Allow 10–15 min on foot to Alameda / BancoEstado; if late, take one identifying wide and move on.",
+      "notes": "Official corporate address. This establishes a state-owned mining company’s headquarters; it is not a mine, oil site or renewable-energy facility. Office interiors are not scheduled."
+    },
+    {
+      "id": "alameda", "time": "18:15–18:35", "title": "Alameda · bank, Metro and global brands", "status": "Compact exterior cluster",
+      "address": "BancoEstado, Alameda 1111; Ahumada 12 / Metro Universidad de Chile", "mapQuery": "BancoEstado, Avenida Libertador Bernardo O’Higgins 1111, Santiago, Chile",
+      "shots": [{"id": "bank", "text": "BancoEstado façade and legible bank signage: banking and a state-owned company."}, {"id": "metro-universidad", "text": "Metro Universidad de Chile exterior logo, stairs and commuter flow."}, {"id": "brands", "text": "McDonald’s at Ahumada 12; add Wendy’s, Starbucks or Krispy Kreme only if actually encountered on the route."}, {"id": "street-transport", "text": "Cars, parking, buses and readable bus-lane markings from a safe public viewpoint."}],
+      "light": "Pick the readable side of the street. Keep moving through hard/shaded patches rather than forcing one exposure for the whole block.",
+      "transfer": "Finish by 18:35; allow about 10 min walking to Plaza de la Constitución. Skip extra brands if this threatens Goran’s slot.",
+      "notes": "BancoEstado address is Alameda 1111; the verified chain-store exterior is McDonald’s Ahumada 12. Other named brands are opportunistic targets, not confirmed stops. Bank/store/Metro interiors require a separate arrangement."
+    },
+    {
+      "id": "goran", "time": "18:45–19:20", "title": "Goran with the book · Plaza de la Constitución", "status": "Setting proposed · host to confirm",
+      "address": "Plaza de la Constitución, north of La Moneda, Santiago", "mapQuery": "Plaza de la Constitución, Santiago, Chile",
+      "shots": [{"id": "goran-book", "text": "Goran with the book: wide, medium, hands turning pages and a readable book detail."}, {"id": "goran-standup", "text": "Short stand-up/introduction, a quiet listening beat and clean ambient sound."}],
+      "light": "Prioritize an open-shade or soft side/backlit edge with depth behind Goran. Reposition for building shade and sound; sunset is 20:18, not the time every façade loses light.",
+      "transfer": "Van pickup after 19:20 on a reachable surrounding street. Keep a simple alternate quiet nearby public edge if the square is unavailable.",
+      "notes": "Public-square candidate, not a reserved set or palace access. Choose a quiet permitted position on arrival. If the schedule slips, shorten remaining inserts before sacrificing this scene."
+    },
+    {
+      "id": "fuel", "time": "Optional return pickup · 5–10 min", "title": "Santa María · fuel station", "status": "Only if daylight and route allow",
+      "address": "Shell, Av. Santa María 0888 / Piñones, Providencia", "mapQuery": "Shell, Avenida Santa María 888, Providencia, Chile",
+      "shots": [{"id": "fuel", "text": "Station/sign wide from a suitable public viewpoint; pumps and service activity only with the operator’s agreement."}],
+      "light": "Use remaining daylight; do not prolong the day waiting for an ideal angle.",
+      "transfer": "Driver checks whether it fits the legal return route; skip if traffic or the pickup point makes it a detour.",
+      "notes": "Official station listing is open 24 hours, which does not confirm filming access. Fuel retail is useful city B-roll; oil-production and Norway-comparison footage remain separate tasks."
+    },
+    {
+      "id": "return", "time": "19:20–20:10 traffic · hotel by 20:30", "title": "Van return · roads and evening movement", "status": "Weather and traffic dependent",
+      "address": "Return to Hotel Diego de Velázquez, Guardia Vieja 150, Providencia", "mapQuery": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "shots": [{"id": "gopro-lanes", "text": "Secured GoPro: actual yellow bus lanes, road markings and legal turns, with clear lead-in/lead-out."}, {"id": "traffic", "text": "Buses, trucks if encountered, parked/moving cars and identifiable Chinese makes; log the visible badge."}, {"id": "wrap", "text": "Check and back up media; mark missing shots for the next day."}],
+      "light": "Use lower western light before 20:18; adjust exposure as the route passes into building shade.",
+      "transfer": "Allow 30–60 min for the return and brief pickups. No highway detour is required for this city day; collect highway sequences on later travel.",
+      "notes": "The camera passenger works; the driver follows road rules and current navigation. The return shares the hotel location at stop 1, so it has no duplicate pin."
+    },
+    {
+      "id": "jorge", "time": "Insert once address is confirmed", "title": "Jorge Claro Mimica · exterior and neighborhood", "status": "Unlocated · production to confirm",
+      "address": "Exact building/address pending",
+      "shots": [{"id": "jorge-building", "text": "Correct building exterior, identifying details approved for the film, and a clean neighborhood street wide."}, {"id": "jorge-street", "text": "Short clean street sequence and ambient sound, away from interview setup noise."}],
+      "transfer": "Attach this to the nearest confirmed interview/van leg once production supplies the address. Allow a 15–20 min pickup plus real travel time; reduce optional B-roll if necessary.",
+      "notes": "No guessed address or substitute building is pinned. Keep residential/private details in the crew’s private call sheet."
+    }
+  ],
+  "deferred": [
+    {"title": "Agriculture and highways", "notes": "Collect on the next outside-city travel day: an identifiable working farm, fields, trucks, highway movement and buses. Confirm the route and farm access before adding a timed stop."},
+    {"title": "Oil, solar, wind and new technology", "notes": "Arrange identifiable operating sites or contributors. Keep the oil/Norway comparison in the editorial brief. Street cables and a fuel station cover infrastructure/retail, not energy generation."},
+    {"title": "Desalination, water shortage and data centers", "notes": "Separate location research and access are still needed. Use a verified facility and evidence/contributor for the water story; generic dry scenery or an office building does not complete these shots."}
+  ],
+  "sources": [
+    {"title": "Hotel · official location", "url": "https://hoteldiegodevelazquez.com/ubicacion/"},
+    {"title": "La Vega · address, hours and filming coordination", "url": "https://www.vegacentral.cl/"},
+    {"title": "Funicular · Tuesday hours and Pío Nono entrance", "url": "https://funicularsantiago.cl/"},
+    {"title": "Parquemet · vehicle and media access rules", "url": "https://www.diariooficial.interior.gob.cl/publicaciones/2023/06/03/43568/01/2324307.pdf"},
+    {"title": "Santiago · November daylight", "url": "https://www.timeanddate.com/sun/chile/santiago?month=11&year=2026"},
+    {"title": "DMC · current Santiago/Pudahuel model forecast", "url": "https://climatologia.meteochile.gob.cl/application/diarioe/graficoMeteogramaEstacion/330021"},
+    {"title": "Santiago Turismo · Plaza de Armas", "url": "https://www.santiagoturismo.cl/es/plaza-de-armas/"},
+    {"title": "Santiago Turismo · pedestrian streets", "url": "https://www.santiagoturismo.cl/es/paseos-peatonales/"},
+    {"title": "Codelco · Huérfanos headquarters and mural", "url": "https://codelco.com/mural-en-la-casa-matriz-de-codelco-recoge-la-historia-de-la-minera-el"},
+    {"title": "Consejo de Monumentos · BancoEstado headquarters", "url": "https://www.monumentos.gob.cl/sites/default/files/2026-01/20251229%20Acta%20Sesi%C3%B3n%20EXT%20ENV%20F.pdf"},
+    {"title": "McDonald’s · Ahumada 12", "url": "https://www.mcdonalds.cl/restaurantes/santiago/ahumada-ahu"},
+    {"title": "Santiago Turismo · Plaza de la Constitución", "url": "https://www.santiagoturismo.cl/es/plaza-de-la-constitucion/"},
+    {"title": "Shell · Santa María 0888 station", "url": "https://find.shell.com/cl/fuel/10127789-shell/es_AR"}
+  ]
+}

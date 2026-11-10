@@ -31,16 +31,16 @@
 
   <main>
     <div class="explore-toolbar">
-      <div class="view-tabs" aria-label="View"><button id="map-tab" aria-pressed="true" class="active">Map</button><button id="gallery-tab" aria-pressed="false">Archive</button><button id="scout-tab" aria-pressed="false">Filming guide</button></div>
+      <div class="view-tabs" aria-label="View"><button id="map-tab" aria-pressed="true" class="active">Map</button><button id="gallery-tab" aria-pressed="false">Archive</button><button id="scout-tab" aria-pressed="false">Filming guide</button><button id="plan-tab" aria-pressed="false">Shoot plan</button></div>
       <label class="filter-label" for="place-filter">Place</label><select id="place-filter" aria-label="Filter photographs by place"><option value="all">All places</option></select>
       <button id="overview" class="quiet-button">Show all pins</button>
       <span id="collection-count" class="technical toolbar-count">Loading photographs…</span>
     </div>
 
     <div id="explorer" class="explorer">
-      <section class="map-region" aria-label="Photograph locations">
+      <section class="map-region" id="map-region" aria-label="Photograph locations">
         <div id="map" aria-label="Interactive map of Santiago photograph locations"></div>
-        <div class="map-note"><span>SANTIAGO, CHILE</span><p>Choose a photograph to explore a moment.</p></div>
+        <div class="map-note"><span id="map-note-title">SANTIAGO, CHILE</span><p id="map-note-copy">Choose a photograph to explore a moment.</p></div>
         <p id="map-message" class="map-message" hidden></p>
       </section>
       <aside id="selection" class="selection" aria-labelledby="photo-title">
@@ -63,6 +63,9 @@
         <div id="scout-cards" class="scout-cards"></div>
         <div class="scout-footnote"><p>Opening information checked 8 November 2026. Confirm with the venue before travelling; published visitor hours do not grant filming access. This is a scouting shortlist, not a booked shooting schedule.</p><p>For planned use of streets or pavements: <a href="https://www.munistgo.cl/via-publica/" target="_blank" rel="noopener">Santiago public-space office ↗</a> · <a href="https://transparencia.providencia.cl/Carpeta/VerTabla/23493" target="_blank" rel="noopener">Providencia filming / public-space process ↗</a></p></div>
       </section>
+      <section id="plan" class="shoot-plan" aria-labelledby="plan-title" hidden>
+        <div id="plan-content"></div>
+      </section>
     </div>
 
     <section id="archive" class="archive" aria-label="Photographs in capture order">
@@ -73,7 +76,7 @@
     <noscript><p class="load-error">Enable JavaScript to explore this photo map. You can also <a href="https://youtu.be/2HaneFA94fo">watch the Santiago film</a>.</p></noscript>
   </main>
 
-  <footer><span>Photographs by Tomislav Rupić</span><span class="footer-note">Pins follow the original photo geotags.</span><a href="https://youtu.be/2HaneFA94fo" target="_blank" rel="noopener">A day in Santiago ↗</a></footer>
+  <footer><span>Photographs by Tomislav Rupić</span><span class="footer-note" id="map-footer-note">Pins follow the original photo geotags.</span><a href="https://youtu.be/2HaneFA94fo" target="_blank" rel="noopener">A day in Santiago ↗</a></footer>
   <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
   <dialog id="lightbox" aria-label="Photograph viewer">
     <div class="lightbox-header"><span id="lightbox-title"></span><button id="close-lightbox" aria-label="Close photograph viewer">Close ×</button></div>

@@ -39,4 +39,35 @@ for place in places:
     assert place['sources'] and all(s['url'].startswith('https://') and s['title'] for s in place['sources'])
 assert sum(bool(p['photoIds']) for p in places) == 10
 assert {'P7897', 'P7900'} <= set(next(p for p in places if p['id'] == 'bocanariz')['photoIds'])
-print(f'PASS: {len(photos)} unique geotagged photos, exclusions, stripped EXIF and all assets; {len(places)} filming locations with valid photo references and sources.')
+plan = json.loads((root / 'shoot-plan.json').read_text())
+assert plan['date'] == '2026-11-10'
+stops = plan['stops']
+assert len({s['id'] for s in stops}) == len(stops)
+shot_ids = []
+for stop in stops:
+    assert re.fullmatch(r'[a-z0-9-]+', stop['id'])
+    for field in ('time', 'title', 'status', 'address', 'notes'):
+        assert stop[field].strip(), (stop['id'], field)
+    assert ('lat' in stop) == ('lng' in stop)
+    if 'lat' in stop:
+        assert -33.6 < stop['lat'] < -33.3 and -70.8 < stop['lng'] < -70.5
+    if 'photoId' in stop:
+        reference = next(p for p in photos if p['id'] == stop['photoId'])
+        assert abs(reference['lat'] - stop['lat']) < .00002
+        assert abs(reference['lng'] - stop['lng']) < .00002
+    for shot in stop['shots']:
+        assert shot['id'] and shot['text']
+        shot_ids.append(shot['id'])
+assert len(shot_ids) == len(set(shot_ids))
+for pending in ('interview-holds', 'jorge'):
+    stop = next(s for s in stops if s['id'] == pending)
+    assert not ({'lat', 'lng', 'mapQuery'} & set(stop)), pending
+for leg in plan['legs']:
+    assert leg['mode'] in {'driving', 'walking'}
+    assert leg['origin'] and leg['destination']
+    assert len(leg.get('waypoints', [])) <= 3  # Google Maps mobile web limit
+assert all(s['title'] and s['url'].startswith('https://') for s in plan['sources'])
+public_text = '\n'.join((root / name).read_text() for name in ('shoot-plan.json', 'README.md', 'AGENTS.md', 'index.html', 'app.js'))
+assert '/Users/' not in public_text
+assert not list(root.glob('*.pdf')), 'Production source PDFs must remain outside public site'
+print(f'PASS: {len(photos)} photos, exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
