@@ -80,7 +80,16 @@ function initMap() {
     return L.divIcon({html:content,className:'cluster-icon',iconSize:[64,48]});
   }});
   state.map.addLayer(state.clusters);
-  state.planLayer = L.layerGroup();
+  state.planLayer = L.markerClusterGroup({
+    maxClusterRadius:70,
+    showCoverageOnHover:false,
+    animate:!reduceMotion,
+    spiderfyOnMaxZoom:true,
+    iconCreateFunction:cluster=>{
+      const content=element('div','plan-stop-cluster-label',`${cluster.getChildCount()} stops`);
+      return L.divIcon({html:content,className:'plan-stop-cluster-icon',iconSize:[88,36],iconAnchor:[44,18]});
+    }
+  });
   state.photos.forEach(photo => {
     const marker = L.marker([photo.lat,photo.lng], {icon:makeIcon(photo,false),title:photo.title,alt:photo.title,photoThumb:photo.thumb,keyboard:true,riseOnHover:true});
     marker.bindTooltip(photo.title, {direction:'top',offset:[0,-44]});
@@ -161,7 +170,7 @@ function setView(view,{writeHash=true}={}) {
   const planLabels=view==='plan';
   $('map-region').setAttribute('aria-label',planLabels?'Proposed filming stop locations':'Photograph locations');
   $('map').setAttribute('aria-label',planLabels?'Map of numbered proposed filming stops':'Interactive map of Santiago photograph locations');
-  $('map-footer-note').textContent=planLabels?'Proposed stops; photo GPS and published venue maps. Address-only stops have directions.':'Pins follow the original photo geotags.';
+  $('map-footer-note').textContent=planLabels?'Proposed stops; photo GPS, venue maps and geocoded place locations.':'Pins follow the original photo geotags.';
   if(state.map) {
     const planMode=view==='plan';
     if(state.clusters&&state.map.hasLayer(state.clusters)) state.map.removeLayer(state.clusters);
@@ -341,7 +350,7 @@ async function start() {
     state.photos=photos.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng)).sort((a,b)=>a.capturedAt.localeCompare(b.capturedAt));
     if(!state.photos.length)throw new Error('Empty photo list');
     try {const scoutResponse=await fetch('scouting.json');if(!scoutResponse.ok)throw new Error('Scouting guide unavailable');state.scouts=(await scoutResponse.json()).locations;renderScouting();}catch(error){$('scout-cards').textContent='The filming guide could not load. Reload the page to try again.';console.error(error);}
-    try {const planResponse=await fetch('shoot-plan.json');if(!planResponse.ok)throw new Error('Shoot plan unavailable');state.plan=await planResponse.json();}catch(error){state.plan=null;console.error(error);}
+    try {const planResponse=await fetch('shoot-plan.json?v=20261110-pins1');if(!planResponse.ok)throw new Error('Shoot plan unavailable');state.plan=await planResponse.json();}catch(error){state.plan=null;console.error(error);}
     [...new Set(state.photos.map(p=>p.locationLabel))].forEach(place=>{const option=element('option','',place);option.value=place;$('place-filter').append(option);});
     initMap();renderCollection();renderPlan();
     if(!selectHash()) {const hero=state.photos.find(p=>p.id==='A48')||state.photos[0];selectPhoto(hero.id,{pan:false,hash:false});}

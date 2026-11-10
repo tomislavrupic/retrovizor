@@ -15,7 +15,7 @@
     "Check weather, visibility and access at 07:30. The supplied weather notes conflict with the DMC model; use the current forecast on the day. If the summit is cloudy or media access is not cleared, use the city fallback below.",
     "Hill filming needs advance Parquemet media authorization. Van access is separate and is not assumed. Funicular public service begins 10:00 Tuesday; an entry ticket is not filming approval. If not ascending by 10:20, abandon the hill and protect interview travel.",
     "City fallback: La Vega frontage/cleared market until 09:45, Lastarria 10:15–11:00, then early lunch and interview transfer. Bring Centro coverage forward only if the confirmed interview address and timing allow it.",
-    "Transfers are planning allowances, not live traffic or reserved parking. Driver checks legal pickup points and current routing. Numbered pins use photo GPS or published venue maps; address-only stops still have directions. No private apartment or crew contacts are published.",
+    "Transfers are planning allowances, not live traffic or reserved parking. Driver checks legal pickup points and current routing. Pins use photo GPS, published venue maps and geocoded places; venue-area pins are not necessarily vehicle entrances. Open directions for arrival. No private apartment or crew contacts are published.",
     "Priority when running late: interviews, Goran with book, newspapers, city wide, fruit, Metro, bank/state-company and traffic. Drop extra brands, fuel detour and additional angles first. Checkboxes save only on this device; they do not sync across the crew."
   ],
   "legs": [
@@ -37,10 +37,12 @@
     {
       "id": "la-vega", "time": "09:00–09:25", "title": "La Vega · fruit and working life", "status": "Interior filming conditional",
       "address": "Dávila Baeza 700, Recoleta", "mapQuery": "La Vega Central, Dávila Baeza 700, Recoleta, Chile",
+      "lat": -33.4292485, "lng": -70.6493427,
+      "coordinateSource": {"title": "OpenStreetMap · La Vega Central market area", "url": "https://www.openstreetmap.org/way/28967881"},
       "shots": [{"id": "fruit-wide", "text": "Fruit-stall wide, stacks of produce, working hands, weighing and exchange."}, {"id": "market-vehicles", "text": "Deliveries, loading and identifiable trucks if active; collect clean ambient sound."}],
       "light": "Early activity matters more than golden light. Use even covered light for fruit and hands; match exposure at bright entrances.",
       "transfer": "Leave by 09:25; allow 15–25 min to the funicular gate, including parking. If late, reduce to one wide and one detail or skip.",
-      "notes": "Official Tuesday visitor hours 07:00–17:00. Market filming/reportage requires prior coordination through its contact form. Without it, use public street frontage only. This is a new scouting stop with an address link, not a photo GPS pin."
+      "notes": "Official Tuesday visitor hours 07:00–17:00. Market filming/reportage requires prior coordination through its contact form. Without it, use public street frontage only. The pin marks the mapped market area; directions use the official Dávila Baeza 700 arrival address."
     },
     {
       "id": "funicular-gate", "time": "09:50 gate · 10:00 service starts", "title": "Pío Nono · hill access", "status": "Media access and service to confirm",
@@ -88,6 +90,8 @@
     {
       "id": "codelco", "time": "17:50–18:05", "title": "Codelco · state-owned company", "status": "Exterior pickup",
       "address": "Huérfanos 1270, Santiago", "mapQuery": "Codelco Casa Matriz, Huérfanos 1270, Santiago, Chile",
+      "lat": -33.4403086, "lng": -70.6545618,
+      "coordinateSource": {"title": "OpenStreetMap · CODELCO, Huérfanos 1270", "url": "https://www.openstreetmap.org/way/829003290"},
       "shots": [{"id": "codelco-sign", "text": "Legible company sign, building context and the public-facing company-history mural if accessible."}],
       "light": "Use the street’s available shade/side light; expose the sign cleanly. Keep to two or three useful compositions.",
       "transfer": "Allow 10–15 min on foot to Alameda / BancoEstado; if late, take one identifying wide and move on.",
@@ -96,6 +100,8 @@
     {
       "id": "alameda", "time": "18:15–18:35", "title": "Alameda · bank, Metro and global brands", "status": "Compact exterior cluster",
       "address": "BancoEstado, Alameda 1111; Ahumada 12 / Metro Universidad de Chile", "mapQuery": "BancoEstado, Avenida Libertador Bernardo O’Higgins 1111, Santiago, Chile",
+      "lat": -33.4436319, "lng": -70.6523931,
+      "coordinateSource": {"title": "OpenStreetMap · BancoEstado headquarters, Alameda 1111", "url": "https://www.openstreetmap.org/way/40221637"},
       "shots": [{"id": "bank", "text": "BancoEstado façade and legible bank signage: banking and a state-owned company."}, {"id": "metro-universidad", "text": "Metro Universidad de Chile exterior logo, stairs and commuter flow."}, {"id": "brands", "text": "McDonald’s at Ahumada 12; add Wendy’s, Starbucks or Krispy Kreme only if actually encountered on the route."}, {"id": "street-transport", "text": "Cars, parking, buses and readable bus-lane markings from a safe public viewpoint."}],
       "light": "Pick the readable side of the street. Keep moving through hard/shaded patches rather than forcing one exposure for the whole block.",
       "transfer": "Finish by 18:35; allow about 10 min walking to Plaza de la Constitución. Skip extra brands if this threatens Goran’s slot.",
@@ -104,6 +110,8 @@
     {
       "id": "goran", "time": "18:45–19:20", "title": "Goran with the book · Plaza de la Constitución", "status": "Setting proposed · host to confirm",
       "address": "Plaza de la Constitución, north of La Moneda, Santiago", "mapQuery": "Plaza de la Constitución, Santiago, Chile",
+      "lat": -33.4415261, "lng": -70.6541255,
+      "coordinateSource": {"title": "OpenStreetMap · Plaza de la Constitución", "url": "https://www.openstreetmap.org/way/333850238"},
       "shots": [{"id": "goran-book", "text": "Goran with the book: wide, medium, hands turning pages and a readable book detail."}, {"id": "goran-standup", "text": "Short stand-up/introduction, a quiet listening beat and clean ambient sound."}],
       "light": "Prioritize an open-shade or soft side/backlit edge with depth behind Goran. Reposition for building shade and sound; sunset is 20:18, not the time every façade loses light.",
       "transfer": "Van pickup after 19:20 on a reachable surrounding street. Keep a simple alternate quiet nearby public edge if the square is unavailable.",
@@ -111,11 +119,13 @@
     },
     {
       "id": "fuel", "time": "Optional return pickup · 5–10 min", "title": "Santa María · fuel station", "status": "Only if daylight and route allow",
-      "address": "Shell, Av. Santa María 0888 / Piñones, Providencia", "mapQuery": "Shell, Avenida Santa María 888, Providencia, Chile",
+      "address": "Shell, Av. Santa María 0888 / Piñones, Providencia", "mapQuery": "-33.428612,-70.624929",
+      "lat": -33.428612, "lng": -70.624929,
+      "coordinateSource": {"title": "Shell · official station 10127789 map location", "url": "https://find.shell.com/cl/fuel/10127789-shell/es_AR"},
       "shots": [{"id": "fuel", "text": "Station/sign wide from a suitable public viewpoint; pumps and service activity only with the operator’s agreement."}],
       "light": "Use remaining daylight; do not prolong the day waiting for an ideal angle.",
       "transfer": "Driver checks whether it fits the legal return route; skip if traffic or the pickup point makes it a detour.",
-      "notes": "Official station listing is open 24 hours, which does not confirm filming access. Fuel retail is useful city B-roll; oil-production and Norway-comparison footage remain separate tasks."
+      "notes": "The pin and directions use this station’s official published coordinates at Santa María 0888/Piñones. Its listing says open 24 hours, which does not confirm filming access. Fuel retail is useful city B-roll; oil-production and Norway-comparison footage remain separate tasks."
     },
     {
       "id": "return", "time": "19:20–20:10 traffic · hotel by 20:30", "title": "Van return · roads and evening movement", "status": "Weather and traffic dependent",
@@ -151,6 +161,10 @@
     {"title": "Consejo de Monumentos · BancoEstado headquarters", "url": "https://www.monumentos.gob.cl/sites/default/files/2026-01/20251229%20Acta%20Sesi%C3%B3n%20EXT%20ENV%20F.pdf"},
     {"title": "McDonald’s · Ahumada 12", "url": "https://www.mcdonalds.cl/restaurantes/santiago/ahumada-ahu"},
     {"title": "Santiago Turismo · Plaza de la Constitución", "url": "https://www.santiagoturismo.cl/es/plaza-de-la-constitucion/"},
-    {"title": "Shell · Santa María 0888 station", "url": "https://find.shell.com/cl/fuel/10127789-shell/es_AR"}
+    {"title": "Shell · Santa María 0888 station", "url": "https://find.shell.com/cl/fuel/10127789-shell/es_AR"},
+    {"title": "Map location · La Vega Central", "url": "https://www.openstreetmap.org/way/28967881"},
+    {"title": "Map location · CODELCO", "url": "https://www.openstreetmap.org/way/829003290"},
+    {"title": "Map location · BancoEstado headquarters", "url": "https://www.openstreetmap.org/way/40221637"},
+    {"title": "Map location · Plaza de la Constitución", "url": "https://www.openstreetmap.org/way/333850238"}
   ]
 }

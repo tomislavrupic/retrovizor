@@ -6,7 +6,7 @@ Static GitHub Pages photo journal for Tomislav Rupić, hosted from the `main` br
 - `index.html`, `style.css`, `app.js`: accessible, responsive map, photo selection, archive, and lightbox.
 - `photos.json`: 48 curated geotagged stills with relative assets; sorted by capture time in the UI.
 - `scouting.json`: 13 small-crew filming locations for 8–22 November 2026, with sourced visitor information and photo references. New candidates without photographs belong in the guide, not invented photo pins.
-- `shoot-plan.json`: provisional 10 November van/foot production plan. The Shoot plan tab reuses the Leaflet map with a separate numbered marker layer. Photo-backed coordinates and published venue maps are distinguished from address-only entries; private/unlocated interview holds have no directions. Checklists are device-local, keyed by date/stop/shot in guarded localStorage.
+- `shoot-plan.json`: provisional 10 November van/foot production plan. The Shoot plan tab reuses the Leaflet map with a separate numbered marker-cluster layer (clusters explicitly say “N stops”). Ten stops use photo GPS, published venue locations or checked geocoding with coordinateSource provenance; private/unlocated interview holds have no directions. Checklists are device-local, keyed by date/stop/shot in guarded localStorage.
 - `assets/photos`, `assets/thumbs`: resized derivatives with EXIF removed. Never publish original private source manifests.
 - `assets/vendor`: pinned Leaflet 1.9.4 and MarkerCluster 1.5.3, licenses included.
 - `assets/pix7-tokens.css`: canonical PIX-7 tokens copied from ALi Imagine. Keep semantic colors and media-first hierarchy. This web journal specializes the desktop guide; it does not need production diagnostics.
@@ -20,7 +20,7 @@ Static GitHub Pages photo journal for Tomislav Rupić, hosted from the `main` br
 - No autoplay or decorative animation. Respect reduced motion and keyboard navigation.
 - Public map uses OSM tiles with visible attribution, normal browser caching and Referer; no bulk prefetch.
 - User specifically requested GitHub Pages. Do not deploy a parallel Sites instance.
-- Version the local app.js/style.css URLs in index.html when their behavior changes, so returning visitors do not receive a new HTML shell with cached older scripts/styles. The verifier strips URL queries before checking local assets.
+- Version local app.js/style.css URLs in index.html and the shoot-plan.json fetch URL when releasing changes, so returning visitors do not receive a new HTML shell with cached older scripts/styles. The verifier strips URL queries before checking local assets.
 - Every photograph and scouting card links to Google Maps Directions. Photo links use original GPS camera coordinates; named guide locations use their verified address or named destination.
 - Light, sound and scene notes are scouting suggestions. Source visitor hours from official pages, date the research, and distinguish visitor access from arranged filming access. Never claim bookings or permissions that have not been obtained.
 - Keep the conflicting PDF interview holds provisional until the producer confirms them. Do not publish PDFs, private apartment addresses, crew contacts or source extracts. Do not infer a private residential location for Jorge. Directions open only for known public destinations.

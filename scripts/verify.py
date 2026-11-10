@@ -62,6 +62,14 @@ assert len(shot_ids) == len(set(shot_ids))
 for pending in ('interview-holds', 'jorge'):
     stop = next(s for s in stops if s['id'] == pending)
     assert not ({'lat', 'lng', 'mapQuery'} & set(stop)), pending
+mapped_stops = [s for s in stops if 'lat' in s]
+assert len(mapped_stops) == 10
+for venue in ('la-vega', 'codelco', 'alameda', 'goran', 'fuel'):
+    stop = next(s for s in stops if s['id'] == venue)
+    assert {'lat', 'lng', 'coordinateSource'} <= set(stop)
+    assert stop['coordinateSource']['url'].startswith('https://')
+fuel = next(s for s in stops if s['id'] == 'fuel')
+assert fuel['mapQuery'] == f"{fuel['lat']},{fuel['lng']}", 'Use the operator-confirmed station, not a same-brand search match'
 for leg in plan['legs']:
     assert leg['mode'] in {'driving', 'walking'}
     assert leg['origin'] and leg['destination']
