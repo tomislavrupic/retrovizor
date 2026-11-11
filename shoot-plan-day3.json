@@ -1,0 +1,165 @@
+{
+  "date": "2026-11-11",
+  "title": "Santiago · Day 3",
+  "subtitle": "Vitacura → Providencia · Kombinat produkcija / HRT · local production: Charita Films",
+  "summary": "Interviews only · 10:20 hotel call → Guillermo at Estadio Croata 11:00–13:00 → lunch → 14:30 transfer → Davor 15:30–17:30 → wrap and hotel.",
+  "status": "Day 3 call sheet · Wednesday 11 November",
+  "light": [
+    {
+      "label": "Guillermo · setup",
+      "value": "10:45–11:00",
+      "note": "Choose stable shade or controlled interior light. Prioritize two cameras and clean sound in the 15-minute setup window."
+    },
+    {
+      "label": "Davor · setup",
+      "value": "15:00–15:30",
+      "note": "Use the 30-minute setup window to control changing window light, room reflections and street noise."
+    }
+  ],
+  "notices": [
+    "Interviews only today. The schedule follows the supplied Day 3 call sheet for Wednesday 11 November 2026. All times are local. Day 2 remains separately selectable for reference.",
+    "Crew call is 10:20 in the Hotel Diego de Velázquez lobby. Have equipment ready to load so the van can leave promptly. The call sheet allows about 20–25 minutes to Estadio Croata; check live traffic with the driver before departure.",
+    "Arrival at Estadio Croata is 10:45, leaving 15 minutes before Guillermo’s 11:00 interview. Prioritize sound, two-camera setup and the contributor.",
+    "Lunch is 13:00–14:30. Leave at 14:30 for the Los Leones area. The call sheet allows 20–25 minutes driving, with 15:00 arrival/setup and a 15:30 interview start. These are call-sheet allowances, not measured live journey times.",
+    "Goran works from conversation without a fixed questionnaire. Guillermo is a professor, lawyer and writer; Davor is a journalist in the TVN News Department.",
+    "17:30 is the estimated wrap and start of the return, not hotel arrival. Pack and load before departure.",
+    "The private interview address, apartment details and production phone numbers remain in the crew call sheet. There is no home pin or public navigation to it. The driver uses the private call sheet for the afternoon arrival and pickup.",
+    "Route links are for known public destinations. Checklists save only on this device and do not sync between crew members."
+  ],
+  "legs": [
+    {
+      "title": "10:20 departure · hotel to Estadio Croata",
+      "mode": "driving",
+      "origin": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "destination": "Estadio Croata, Avenida Vitacura 8049, Vitacura, Chile",
+      "waypoints": [],
+      "note": "Call-sheet allowance: 20–25 minutes. Target 10:45 arrival. Driver confirms live traffic, the venue entrance and unloading."
+    },
+    {
+      "title": "14:30 departure · Vitacura to Providencia",
+      "mode": "driving",
+      "origin": "Estadio Croata, Avenida Vitacura 8049, Vitacura",
+      "destination": "Private interview location · crew call sheet",
+      "privateLocation": true,
+      "waypoints": [],
+      "note": "Call-sheet allowance: 20–25 minutes toward Los Leones. Be at the contributor's location by 15:00, then use the 30-minute setup window. Driver navigates to the exact address from the private call sheet."
+    },
+    {
+      "title": "17:30 wrap · return to hotel",
+      "mode": "driving",
+      "origin": "Private interview location · crew call sheet",
+      "destination": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia",
+      "privateLocation": true,
+      "waypoints": [],
+      "note": "Return after packing and loading. No fixed hotel arrival is given in the call sheet. Driver confirms pickup and current traffic."
+    }
+  ],
+  "stops": [
+    {
+      "id": "hotel",
+      "time": "10:20 · crew call and departure",
+      "title": "Hotel lobby · ready to leave",
+      "status": "Call-sheet time",
+      "address": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia",
+      "mapQuery": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "lat": -33.4239845,
+      "lng": -70.6101074,
+      "shots": [
+        {
+          "id": "gear-ready",
+          "text": "Cameras, sound, batteries and media ready; confirm contributor access and the venue entrance with local production."
+        }
+      ],
+      "transfer": "Leave promptly for the 10:45 arrival. The call sheet allows 20–25 minutes by van; there is no scheduled stop en route.",
+      "notes": "Existing hotel pin is approximate, from its published map. Confirm the room, contributor access and the afternoon arrival with local production."
+    },
+    {
+      "id": "estadio-croata",
+      "time": "10:45 setup · 11:00–13:00 interview",
+      "title": "Guillermo Mimica · Estadio Croata",
+      "status": "Interview 1 · approximately two hours",
+      "address": "Av. Vitacura 8049, Vitacura",
+      "mapQuery": "Estadio Croata, Avenida Vitacura 8049, Vitacura, Chile",
+      "shots": [
+        {
+          "id": "guillermo-interview",
+          "text": "Guillermo with Goran: main conversation, second-camera reactions and clean answers. Guillermo is a professor, lawyer and writer."
+        },
+        {
+          "id": "guillermo-sound",
+          "text": "Check both camera recordings and sound; capture a short clean room tone before packing."
+        }
+      ],
+      "light": "Use stable shade or controlled interior light. Have both cameras and sound ready for the 11:00 start.",
+      "transfer": "No transfer at 13:00 if lunch is at the venue. Keep the afternoon van departure at 14:30.",
+      "notes": "Goran works conversationally, without a fixed questionnaire. The supplied call sheet schedules this interview; local production confirms the room and permitted filming areas. The pin marks the sports-centre area, not a confirmed van entrance; directions use the venue address.",
+      "lat": -33.3865625,
+      "lng": -70.5569585,
+      "coordinateSource": {
+        "title": "OpenStreetMap · Estadio Croata, Av. Vitacura 8049",
+        "url": "https://www.openstreetmap.org/way/23408776"
+      }
+    },
+    {
+      "id": "lunch-vitacura",
+      "time": "13:00–14:30 · crew lunch",
+      "title": "Lunch · Estadio Croata / Vitacura",
+      "status": "Crew lunch",
+      "address": "Estadio Croata / Vitacura · lunch venue to be chosen by production",
+      "mapQuery": "Estadio Croata, Avenida Vitacura 8049, Vitacura, Chile",
+      "shots": [],
+      "transfer": "Packed and ready to leave at 14:30. Allow the call-sheet 20–25 minutes toward Los Leones, targeting 15:00 arrival.",
+      "notes": "Directions point to Estadio Croata as the lunch rendezvous, not a separately booked restaurant. Production chooses the lunch venue; be ready for the 14:30 departure."
+    },
+    {
+      "id": "davor-interview",
+      "time": "15:00 setup · 15:30–17:30 interview",
+      "title": "Davor Gjuranovic Letelier · interview",
+      "status": "Interview 2 · maximum two hours",
+      "address": "Providencia · exact arrival details in the crew call sheet",
+      "privateLocation": true,
+      "shots": [
+        {
+          "id": "davor-interview",
+          "text": "Davor and Goran's conversation; main and second-camera coverage, reactions and listening beats. Davor works in TVN's News Department."
+        },
+        {
+          "id": "davor-sound",
+          "text": "Check both camera recordings and sound; capture a short clean room tone before packing."
+        }
+      ],
+      "light": "Use the 15:00–15:30 setup to control window light and background contrast. Check traffic noise and reflections before recording.",
+      "transfer": "Inbound van leaves Estadio Croata at 14:30. At 17:30, wrap, pack and return to the hotel; the call sheet does not give a hotel arrival time.",
+      "notes": "Private residential filming location. The public map deliberately has no home pin, address or directions. Local production and the driver use the crew call sheet for arrival and access."
+    },
+    {
+      "id": "return",
+      "time": "17:30 · estimated wrap, then hotel return",
+      "title": "Wrap · Hotel Diego de Velázquez",
+      "status": "Scheduled end of filming",
+      "address": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia",
+      "mapQuery": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "shots": [
+        {
+          "id": "media-check",
+          "text": "Check media, sound files and backups; note any missing interview or B-roll coverage for the next day."
+        }
+      ],
+      "transfer": "Hotel directions open from your current location. Pack and load before departure; live traffic determines arrival.",
+      "notes": "The call sheet ends at 17:30. Return to the hotel after packing and loading."
+    }
+  ],
+  "deferred": [
+    {
+      "title": "B-roll · carry forward",
+      "notes": "All city, neighborhood, book and infrastructure B-roll is deferred. Today is reserved for the two interviews. The earlier checklist remains in Day 2; the filming guide stays available for future shooting."
+    }
+  ],
+  "sources": [
+    {
+      "title": "OpenStreetMap · Estadio Croata, Av. Vitacura 8049",
+      "url": "https://www.openstreetmap.org/way/23408776"
+    }
+  ],
+  "dayNumber": 3
+}

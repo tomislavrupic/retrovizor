@@ -7,6 +7,7 @@ Static GitHub Pages photo journal for Tomislav Rupić, hosted from the `main` br
 - `photos.json`: 48 curated geotagged stills with relative assets; sorted by capture time in the UI.
 - `scouting.json`: 13 small-crew filming locations for 8–22 November 2026, with sourced visitor information and photo references. New candidates without photographs belong in the guide, not invented photo pins.
 - `shoot-plan.json`: provisional 10 November van/foot production plan. The Shoot plan tab reuses the Leaflet map with a separate numbered marker-cluster layer (clusters explicitly say “N stops”). Ten stops use photo GPS, published venue locations or checked geocoding with coordinateSource provenance; private/unlocated interview holds have no directions. Checklists are device-local, keyed by date/stop/shot in guarded localStorage.
+- `shoot-plan-day3.json`: 11 November call-sheet schedule for Estadio Croata and a private Providencia interview, with no B-roll stops. The existing Shoot plan tab loads both files, defaults to the latest date and offers a day selector. `#plan&day=YYYY-MM-DD` and `#plan=STOP&day=YYYY-MM-DD` link to a specific day. Never derive production day numbers from array positions. Keep each day's checklist keys separate.
 - `assets/photos`, `assets/thumbs`: resized derivatives with EXIF removed. Never publish original private source manifests.
 - `assets/vendor`: pinned Leaflet 1.9.4 and MarkerCluster 1.5.3, licenses included.
 - `assets/pix7-tokens.css`: canonical PIX-7 tokens copied from ALi Imagine. Keep semantic colors and media-first hierarchy. This web journal specializes the desktop guide; it does not need production diagnostics.
@@ -24,6 +25,7 @@ Static GitHub Pages photo journal for Tomislav Rupić, hosted from the `main` br
 - Every photograph and scouting card links to Google Maps Directions. Photo links use original GPS camera coordinates; named guide locations use their verified address or named destination.
 - Light, sound and scene notes are scouting suggestions. Source visitor hours from official pages, date the research, and distinguish visitor access from arranged filming access. Never claim bookings or permissions that have not been obtained.
 - Keep the conflicting PDF interview holds provisional until the producer confirms them. Do not publish PDFs, private apartment addresses, crew contacts or source extracts. Do not infer a private residential location for Jorge. Directions open only for known public destinations.
+- Day 3 follows the supplied dated call sheet: 10:20 call, 10:45 setup, 11:00–13:00 Guillermo, 13:00–14:30 lunch, 14:30 transfer, 15:00 setup, 15:30–17:30 Davor, 17:30 wrap/return. The user specified interviews only; do not add B-roll to this day. `privateLocation: true` suppresses stop pins, address display and directions, and suppresses private route links. The source JSON itself must never contain private address or contact details; hiding them in the UI is insufficient. Do not substitute a public Metro pin for the private home location.
 
 ## Commands and verification
 - Local preview: `python3 -m http.server 4173 --bind 127.0.0.1`

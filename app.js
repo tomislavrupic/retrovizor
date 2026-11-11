@@ -2,7 +2,7 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const state = { photos: [], visible: [], current: null, map: null, clusters: null, markers: new Map(), view: 'map', scouts: [], plan: null, planLayer: null, planMarkers: new Map() };
+const state = { photos: [], visible: [], current: null, map: null, clusters: null, markers: new Map(), view: 'map', scouts: [], plans: [], plan: null, planLayer: null, planMarkers: new Map() };
 const captions = {
   street: 'A free day. No set destination. Just a camera and a city to walk through.',
   landscape: 'A little space to breathe, with the city just beyond the frame.',
@@ -168,9 +168,9 @@ function setView(view,{writeHash=true}={}) {
   $('overview').hidden=view!=='map';$('place-filter').hidden=view==='scout'||view==='plan';document.querySelector('.filter-label').hidden=view==='scout'||view==='plan';$('archive').hidden=view==='scout'||view==='plan';
   $('collection-count').hidden=view==='scout'||view==='plan';
   const planLabels=view==='plan';
-  $('map-region').setAttribute('aria-label',planLabels?'Proposed filming stop locations':'Photograph locations');
-  $('map').setAttribute('aria-label',planLabels?'Map of numbered proposed filming stops':'Interactive map of Santiago photograph locations');
-  $('map-footer-note').textContent=planLabels?'Proposed stops; photo GPS, venue maps and geocoded place locations.':'Pins follow the original photo geotags.';
+  $('map-region').setAttribute('aria-label',planLabels?'Filming stop locations':'Photograph locations');
+  $('map').setAttribute('aria-label',planLabels?'Map of numbered filming stops':'Interactive map of Santiago photograph locations');
+  $('map-footer-note').textContent=planLabels?'Filming stops; photo GPS, venue maps and geocoded place locations.':'Pins follow the original photo geotags.';
   if(state.map) {
     const planMode=view==='plan';
     if(state.clusters&&state.map.hasLayer(state.clusters)) state.map.removeLayer(state.clusters);
@@ -185,7 +185,7 @@ function setView(view,{writeHash=true}={}) {
   }
   if(view==='plan'&&writeHash&&!location.hash.startsWith('#plan')) history.replaceState(null,'',`${location.pathname}${location.search}#plan`);
   if(view==='map'&&!wasPlan&&!wasScout&&location.hash.startsWith('#scout')) history.replaceState(null,'',`${location.pathname}${location.search}`);
-  if(view==='plan') {$('map-note-title').textContent='SHOOT PLAN';$('map-note-copy').textContent=state.plan?.summary||'Numbered planned stops; open directions for the route.';}
+  if(view==='plan') {$('map-note-title').textContent='FILMING PLAN';$('map-note-copy').textContent=state.plan?.summary||'Numbered filming stops; directions open the road or walking route.';}
   else {$('map-note-title').textContent='SANTIAGO, CHILE';$('map-note-copy').textContent='Choose a photograph to explore a moment.';}
 }
 function externalLink(text,url,className='') {
@@ -198,6 +198,7 @@ function showScout(id) {
   if(id){const card=$('scout-cards').querySelector(`[data-scout="${id}"]`);card?.scrollIntoView({block:'start',behavior:'instant'});card?.focus({preventScroll:true});}
 }
 function planDestination(stop) {
+  if(stop.privateLocation) return '';
   const isPlaceholder=value=>!value||/\b(pending|unknown|tbc|tbd|unlocated|to be confirmed|confirm|not set|not provided)\b/i.test(value);
   if (typeof stop.mapQuery==='string'&&stop.mapQuery.trim()&&!isPlaceholder(stop.mapQuery)) return stop.mapQuery.trim();
   if (Number.isFinite(stop.lat)&&Number.isFinite(stop.lng)) return `${stop.lat},${stop.lng}`;
@@ -206,6 +207,7 @@ function planDestination(stop) {
   return address;
 }
 function routeLegUrl(leg) {
+  if(leg.privateLocation) return '';
   const origin=String(leg.origin||'').trim(),destination=String(leg.destination||'').trim();
   const isPlaceholder=value=>!value||/\b(pending|unknown|tbc|tbd|unlocated|to be confirmed|confirm|not set|not provided)\b/i.test(value);
   if (isPlaceholder(origin)||isPlaceholder(destination)) return '';
@@ -218,6 +220,23 @@ function readShotDone(stop, shot) {
 function writeShotDone(stop, shot, done) {
   try {localStorage.setItem(shotStorageKey(stop,shot),done?'1':'0');return true;} catch {return false;}
 }
+function latestPlan() {return state.plans.at(-1)||null;}
+function findPlan(date) {return state.plans.find(plan=>plan.date===date)||null;}
+function planHash(id, date=state.plan?.date) {
+  const latest=latestPlan();
+  const includeDay=Boolean(date&&(id||date!==latest?.date));
+  return `#plan${id?`=${encodeURIComponent(id)}`:''}${includeDay?`&day=${encodeURIComponent(date)}`:''}`;
+}
+function planContainingStop(id) {return state.plans.find(plan=>(plan.stops||[]).some(stop=>stop.id===id))||null;}
+function activatePlan(date,{focusId,writeHash=false,pushHistory=false}={}) {
+  const plan=findPlan(date)||latestPlan();
+  if(!plan)return false;
+  state.plan=plan;
+  renderPlan();
+  if(writeHash) history[pushHistory?'pushState':'replaceState'](null,'',`${location.pathname}${location.search}${planHash(focusId,plan.date)}`);
+  if(state.view==='plan') requestAnimationFrame(()=>{if(state.view==='plan'&&state.plan===plan){state.map?.invalidateSize({pan:false});fitPlanStops();if(focusId)focusPlanStop(focusId,{writeHash:false});}});
+  return true;
+}
 function renderPlan() {
   const content=$('plan-content');
   state.planMarkers.clear();
@@ -226,6 +245,13 @@ function renderPlan() {
   const plan=state.plan;
   const header=element('header','plan-header');
   header.append(element('p','section-label',plan.status||'Provisional plan'));
+  if(state.plans.length>1){
+    const dayLabel=element('label','plan-day-label','Plan day');dayLabel.htmlFor='plan-day-select';
+    const daySelect=document.createElement('select');daySelect.id='plan-day-select';daySelect.className='plan-day-select';daySelect.setAttribute('aria-label','Choose shoot plan day');
+    state.plans.forEach((item,index)=>{const titleDay=Number(item.title?.match(/\bday\s*(\d+)\b/i)?.[1]);const dayNumber=Number(item.dayNumber)||titleDay||index+1;const option=element('option','',`Day ${dayNumber} · ${new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric'}).format(new Date(`${item.date}T12:00:00`))}`);option.value=item.date;daySelect.append(option);});
+    daySelect.value=plan.date;daySelect.addEventListener('change',()=>activatePlan(daySelect.value,{writeHash:true,pushHistory:true}));
+    const dayControl=element('div','plan-day-control');dayControl.append(dayLabel,daySelect);header.append(dayControl);
+  }
   if(plan.date){const date=new Date(`${plan.date}T12:00:00`);header.append(element('p','plan-date',new Intl.DateTimeFormat('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}).format(date)));}
   const planTitle=element('h2','',plan.title||'Shoot plan');planTitle.id='plan-title';header.append(planTitle);
   if(plan.subtitle) header.append(element('p','plan-subtitle',plan.subtitle));
@@ -239,10 +265,10 @@ function renderPlan() {
     const heading=element('div','plan-stop-heading');heading.append(element('span','plan-stop-number',String(index+1)),element('div','plan-stop-title-wrap',undefined));
     const titleWrap=heading.lastElementChild;titleWrap.append(element('p','section-label',stop.time||'Time pending'),element('h4','',stop.title||`Stop ${index+1}`));
     if(stop.status)titleWrap.append(element('span','plan-status',stop.status));card.append(heading);
-    if(stop.address)card.append(element('p','plan-address',stop.address));
+    if(stop.address&&!stop.privateLocation)card.append(element('p','plan-address',stop.address));
     const destination=planDestination(stop);
     if(destination)card.append(externalLink('Directions to this stop ↗',mapsDirectionsUrl(destination),'button plan-directions'));
-    else card.append(element('p','plan-pending','Location pending — no map pin or directions yet.'));
+    else card.append(element('p','plan-pending',stop.privateLocation?'Private location · use the crew call sheet':'Location pending — no map pin or directions yet.'));
     const photo=state.photos.find(item=>item.id===stop.photoId);
     if(photo){const reference=element('button','plan-reference');reference.type='button';const img=element('img');img.src=photo.thumb;img.alt='';img.loading='lazy';reference.append(img,element('span','',`Photo reference · ${photo.title}`));reference.addEventListener('click',()=>{setView('map');$('place-filter').value='all';renderCollection();selectPhoto(photo.id,{pan:true});if(window.matchMedia('(max-width: 620px)').matches)requestAnimationFrame(()=>$('open-photo').scrollIntoView({block:'center',behavior:'instant'}));});card.append(reference);}
     if(Array.isArray(stop.shots)&&stop.shots.length){const checklist=element('fieldset','plan-checklist');const legend=element('legend','','Shots to get');checklist.append(legend);
@@ -250,7 +276,7 @@ function renderPlan() {
     const notes=[['Light',stop.light],['Travel',stop.transfer],['Access / notes',stop.notes]].filter(([,value])=>value);
     if(notes.length){const dl=element('dl','plan-notes');notes.forEach(([label,value])=>{const row=element('div');row.append(element('dt','',label),element('dd','',value));dl.append(row);});card.append(dl);}
     cards.append(card);
-    if(Number.isFinite(stop.lat)&&Number.isFinite(stop.lng)&&state.planLayer){
+    if(!stop.privateLocation&&Number.isFinite(stop.lat)&&Number.isFinite(stop.lng)&&state.planLayer){
       const badge=element('span','plan-pin-number',String(index+1));
       const icon=L.divIcon({html:badge,className:'plan-pin-icon',iconSize:[38,44],iconAnchor:[19,40]});
       const marker=L.marker([stop.lat,stop.lng],{icon,title:stop.title||`Stop ${index+1}`,alt:stop.title||`Stop ${index+1}`,keyboard:true,riseOnHover:true});
@@ -265,29 +291,33 @@ function renderPlan() {
   });
   if(lightRows.length){const section=element('details','plan-details');section.append(element('summary','','Light & timing'));const body=element('div','plan-details-body');body.append(...lightRows);section.append(body);layout.append(section);}
   if(Array.isArray(plan.legs)&&plan.legs.length){const section=element('details','plan-details');section.append(element('summary','','Route legs'));const body=element('div','plan-details-body');
-    plan.legs.forEach(leg=>{const row=element('article','plan-leg');row.append(element('p','section-label',leg.title||'Transfer'),element('p','plan-leg-route',`${leg.origin||'Origin pending'} → ${leg.destination||'Destination pending'}`));if(leg.note)row.append(element('p','plan-leg-note',leg.note));const url=routeLegUrl(leg);if(url)row.append(externalLink(`${leg.mode==='walking'?'Walking':'Driving'} directions ↗`,url,'button plan-directions'));body.append(row);});section.append(body);layout.append(section);}
+    plan.legs.forEach(leg=>{const row=element('article','plan-leg');row.append(element('p','section-label',leg.title||'Transfer'),element('p','plan-leg-route',`${leg.origin||'Origin pending'} → ${leg.destination||'Destination pending'}`));if(leg.note)row.append(element('p','plan-leg-note',leg.note));const url=routeLegUrl(leg);if(url)row.append(externalLink(`${leg.mode==='walking'?'Walking':'Driving'} directions ↗`,url,'button plan-directions'));else if(leg.privateLocation)row.append(element('p','plan-pending','Private destination · use the crew call sheet; directions are not linked.'));body.append(row);});section.append(body);layout.append(section);}
   if(Array.isArray(plan.deferred)&&plan.deferred.length){const section=element('section','plan-section');section.append(element('h3','','Deferred / outside the route'));plan.deferred.forEach(item=>{const row=element('article','plan-deferred');row.append(element('h4','',item.title||''));if(item.notes)row.append(element('p','',item.notes));section.append(row);});layout.append(section);}
   if(Array.isArray(plan.sources)&&plan.sources.length){const section=element('section','plan-sources');section.append(element('h3','','Sources'));plan.sources.forEach(source=>section.append(externalLink(`${source.title||'Source'} ↗`,source.url)));layout.append(section);}
   content.replaceChildren(header,layout);
-  if(state.view==='plan'){$('map-note-title').textContent='SHOOT PLAN';$('map-note-copy').textContent=plan.summary||'Numbered planned stops; directions open the road or walking route.';}
+  if(state.view==='plan'){$('map-note-title').textContent='FILMING PLAN';$('map-note-copy').textContent=plan.summary||'Numbered filming stops; directions open the road or walking route.';}
 }
 function fitPlanStops() {
   if(!state.map||!state.plan) return;
-  const points=(state.plan.stops||[]).filter(stop=>Number.isFinite(stop.lat)&&Number.isFinite(stop.lng)).map(stop=>[stop.lat,stop.lng]);
+  const points=(state.plan.stops||[]).filter(stop=>!stop.privateLocation&&Number.isFinite(stop.lat)&&Number.isFinite(stop.lng)).map(stop=>[stop.lat,stop.lng]);
   if(points.length===1) state.map.setView(points[0],15,{animate:false});
   else if(points.length>1) state.map.fitBounds(points,{padding:[54,64],maxZoom:15,animate:false});
 }
-function focusPlanStop(id,{center=false}={}) {
+function focusPlanStop(id,{center=false,writeHash=true}={}) {
   const stop=(state.plan?.stops||[]).find(item=>item.id===id);if(!stop)return;
-  history.replaceState(null,'',`#plan=${encodeURIComponent(id)}`);
+  if(writeHash)history.replaceState(null,'',`${location.pathname}${location.search}${planHash(id,state.plan.date)}`);
   const card=[...$('plan').querySelectorAll('[data-plan-stop]')].find(node=>node.dataset.planStop===id);card?.scrollIntoView({block:'nearest',behavior:'instant'});
-  if(center&&Number.isFinite(stop.lat)&&Number.isFinite(stop.lng)&&state.map)state.map.setView([stop.lat,stop.lng],Math.max(state.map.getZoom(),15),{animate:false});
+  if(center&&!stop.privateLocation&&Number.isFinite(stop.lat)&&Number.isFinite(stop.lng)&&state.map)state.map.setView([stop.lat,stop.lng],Math.max(state.map.getZoom(),15),{animate:false});
   announce(`${stop.title||'Stop'} selected.`);
 }
-function showPlan(id,{writeHash=true}={}) {
+function showPlan(id,{date,writeHash=true}={}) {
+  if(!date&&id){const latest=latestPlan();date=(latest?.stops||[]).some(stop=>stop.id===id)?latest.date:planContainingStop(id)?.date||state.plan?.date;}
+  if(!date&&!id)date=latestPlan()?.date;
+  if(date&&findPlan(date))activatePlan(date);
+  if(!state.plan)state.plan=latestPlan();
   setView('plan',{writeHash:false});
-  if(writeHash)history.replaceState(null,'',id?`#plan=${encodeURIComponent(id)}`:'#plan');
-  if(id)focusPlanStop(id);
+  if(writeHash)history.replaceState(null,'',`${location.pathname}${location.search}${id||date?planHash(id,state.plan?.date):'#plan'}`);
+  if(id)focusPlanStop(id,{writeHash:false});
 }
 function renderScouting() {
   const filter=$('scout-filter').value;
@@ -323,10 +353,11 @@ function updateLightbox() {
 }
 function openLightbox() {if(!state.current) return;updateLightbox();if(!$('lightbox').open)$('lightbox').showModal();}
 function selectHash() {
-  if(location.hash==='#plan'){showPlan(undefined,{writeHash:false});return true;}
-  if(location.hash.startsWith('#plan=')){
-    const id=new URLSearchParams(location.hash.slice(1)).get('plan');
-    showPlan(id||undefined,{writeHash:false});return true;
+  if(location.hash==='#plan'||location.hash.startsWith('#plan=')||location.hash.startsWith('#plan&')){
+    const params=new URLSearchParams(location.hash.slice(1));
+    let id=params.get('plan')||'';let date=params.get('day')||'';
+    if(!date&&id&&!state.plan?.stops?.some(stop=>stop.id===id))date=planContainingStop(id)?.date||'';
+    showPlan(id||undefined,{date:date||undefined,writeHash:false});return true;
   }
   if(location.hash==='#scout'){setView('scout');return true;}
   const scoutId=new URLSearchParams(location.hash.slice(1)).get('scout');
@@ -350,7 +381,10 @@ async function start() {
     state.photos=photos.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng)).sort((a,b)=>a.capturedAt.localeCompare(b.capturedAt));
     if(!state.photos.length)throw new Error('Empty photo list');
     try {const scoutResponse=await fetch('scouting.json');if(!scoutResponse.ok)throw new Error('Scouting guide unavailable');state.scouts=(await scoutResponse.json()).locations;renderScouting();}catch(error){$('scout-cards').textContent='The filming guide could not load. Reload the page to try again.';console.error(error);}
-    try {const planResponse=await fetch('shoot-plan.json?v=20261110-pins1');if(!planResponse.ok)throw new Error('Shoot plan unavailable');state.plan=await planResponse.json();}catch(error){state.plan=null;console.error(error);}
+    const planFiles=['shoot-plan.json?v=20261111-day3a','shoot-plan-day3.json?v=20261111-day3a'];
+    const loadedPlans=await Promise.all(planFiles.map(async path=>{try{const response=await fetch(path);if(!response.ok)throw new Error(`Plan unavailable: ${path}`);return await response.json();}catch(error){console.error(error);return null;}}));
+    state.plans=loadedPlans.filter(plan=>plan&&typeof plan.date==='string'&&Array.isArray(plan.stops)).sort((a,b)=>a.date.localeCompare(b.date));
+    state.plan=latestPlan();
     [...new Set(state.photos.map(p=>p.locationLabel))].forEach(place=>{const option=element('option','',place);option.value=place;$('place-filter').append(option);});
     initMap();renderCollection();renderPlan();
     if(!selectHash()) {const hero=state.photos.find(p=>p.id==='A48')||state.photos[0];selectPhoto(hero.id,{pan:false,hash:false});}
@@ -364,7 +398,7 @@ async function start() {
     $('scout-tab').addEventListener('click',()=>showScout());$('scout-filter').addEventListener('change',renderScouting);
     $('plan-tab').addEventListener('click',()=>showPlan());
     $('photo-scout').addEventListener('click',()=>showScout(state.scouts.find(place=>place.photoIds?.includes(state.current.id))?.id));
-    $('share-photo').addEventListener('click',copyMemory);window.addEventListener('hashchange',selectHash);
+    $('share-photo').addEventListener('click',copyMemory);window.addEventListener('hashchange',selectHash);window.addEventListener('popstate',selectHash);
     document.addEventListener('keydown',event=>{if(!$('lightbox').open)return;if(event.key==='ArrowLeft'){event.preventDefault();stepPhoto(-1);}if(event.key==='ArrowRight'){event.preventDefault();stepPhoto(1);}});
   }catch(error){$('load-error').hidden=false;$('collection-count').textContent='Photographs unavailable';console.error(error);}
 }

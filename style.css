@@ -18,6 +18,7 @@
 .plan-mode .selection{display:none}
 .shoot-plan{grid-column:2;grid-row:1;min-width:0;min-height:0;overflow:auto;border:1px solid var(--pix-border-subtle);border-radius:3px;background:var(--pix-surface-panel);scrollbar-color:var(--pix-border-strong) transparent;scrollbar-width:thin}
 .plan-header{padding:16px;border-bottom:1px solid var(--pix-border-subtle);background:var(--pix-surface-raised)}
+.plan-day-control{display:flex;align-items:center;gap:8px;margin:8px 0}.plan-day-label{font:10px var(--pix-font-technical);letter-spacing:.04em;text-transform:uppercase;color:var(--pix-text-secondary)}.plan-day-select{min-width:0;max-width:100%;font-size:11px;padding:7px 28px 7px 9px}
 .plan-date{font:10px var(--pix-font-technical);letter-spacing:.04em;color:var(--pix-metadata);margin:6px 0 2px}
 .plan-details{border-bottom:1px solid var(--pix-border-subtle);padding:12px 0}
 .plan-preflight{border:1px solid var(--pix-warning);background:var(--pix-surface-raised);padding:10px 12px;margin:0 0 10px}

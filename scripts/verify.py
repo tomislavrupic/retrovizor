@@ -75,7 +75,36 @@ for leg in plan['legs']:
     assert leg['origin'] and leg['destination']
     assert len(leg.get('waypoints', [])) <= 3  # Google Maps mobile web limit
 assert all(s['title'] and s['url'].startswith('https://') for s in plan['sources'])
-public_text = '\n'.join((root / name).read_text() for name in ('shoot-plan.json', 'README.md', 'AGENTS.md', 'index.html', 'app.js'))
+day3 = json.loads((root / 'shoot-plan-day3.json').read_text())
+assert day3['date'] == '2026-11-11' and day3['dayNumber'] == 3
+assert 'Interviews only' in day3['summary']
+assert 'los-leones-pickups' not in {stop['id'] for stop in day3['stops']}
+assert len({s['id'] for s in day3['stops']}) == len(day3['stops'])
+day3_shots = []
+for stop in day3['stops']:
+    for field in ('time', 'title', 'status', 'address', 'notes'):
+        assert stop[field].strip(), (stop['id'], field)
+    assert ('lat' in stop) == ('lng' in stop)
+    if 'lat' in stop:
+        assert -33.6 < stop['lat'] < -33.3 and -70.8 < stop['lng'] < -70.5
+    if stop.get('privateLocation'):
+        assert not ({'lat', 'lng', 'mapQuery', 'coordinateSource'} & set(stop))
+    day3_shots.extend(shot['id'] for shot in stop['shots'] if shot['text'].strip())
+assert len(day3_shots) == len(set(day3_shots))
+assert len([s for s in day3['stops'] if 'lat' in s]) == 2
+assert next(s for s in day3['stops'] if s['id'] == 'davor-interview')['privateLocation']
+for venue in ('estadio-croata',):
+    stop = next(s for s in day3['stops'] if s['id'] == venue)
+    assert stop['coordinateSource']['url'].startswith('https://www.openstreetmap.org/')
+for leg in day3['legs']:
+    assert leg['mode'] in {'driving', 'walking'}
+    assert leg['origin'] and leg['destination']
+    assert len(leg.get('waypoints', [])) <= 3
+assert sum(bool(leg.get('privateLocation')) for leg in day3['legs']) == 2
+assert all(s['title'] and s['url'].startswith('https://') for s in day3['sources'])
+public_text = '\n'.join((root / name).read_text() for name in ('shoot-plan.json', 'shoot-plan-day3.json', 'README.md', 'AGENTS.md', 'index.html', 'app.js'))
 assert '/Users/' not in public_text
+assert not re.search(r'\b(?:Apt|Apartment|Depto)\.?\s*\d', public_text, re.I), 'Private apartment details must not be published'
 assert not list(root.glob('*.pdf')), 'Production source PDFs must remain outside public site'
 print(f'PASS: {len(photos)} photos, exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
+print(f'PASS: Day 3 has {len(day3["stops"])} entries, {len(day3_shots)} tasks, 2 public pins, and private-address/route checks.')
