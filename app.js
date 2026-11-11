@@ -19,7 +19,9 @@ const captions = {
   plaza: 'The day opens out into the square.',
   'food-drink': 'A pause at the table, and another small memory of the city.',
   'restaurant-street': 'Tables, conversation, and the street moving around them.',
-  'street-art': 'Color and everyday life sharing the same corner.'
+  'street-art': 'Color and everyday life sharing the same corner.',
+  interior: 'A small look inside one of the city’s everyday spaces.',
+  'behind-the-scenes': 'A glimpse of the work happening around the story.'
 };
 
 function element(tag, className, text) {
@@ -28,10 +30,17 @@ function element(tag, className, text) {
   if (text !== undefined) node.textContent = text;
   return node;
 }
-function photoTime(photo) {
-  const value = new Date(photo.capturedAt.replace(' ', 'T'));
-  return new Intl.DateTimeFormat('en-GB', {timeZone:'America/Santiago', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}).format(value);
+function photoCaptureTime(photo) {
+  if(typeof photo?.capturedAt!=='string'||!photo.capturedAt.trim()) return null;
+  const timestamp=Date.parse(photo.capturedAt.includes('T')?photo.capturedAt:photo.capturedAt.replace(' ','T'));
+  return Number.isFinite(timestamp)?timestamp:null;
 }
+function photoTime(photo) {
+  const timestamp=photoCaptureTime(photo);
+  if(timestamp===null)return 'Date not recorded';
+  return new Intl.DateTimeFormat('en-GB', {timeZone:'America/Santiago', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}).format(timestamp);
+}
+function hasPhotoLocation(photo) {return Number.isFinite(photo?.lat)&&Number.isFinite(photo?.lng);}
 function mapsDirectionsUrl(destination, {origin, waypoints, mode} = {}) {
   const url = new URL('https://www.google.com/maps/dir/');
   url.searchParams.set('api', '1');
@@ -51,12 +60,12 @@ function announce(text) { $('announcement').textContent = text; }
 function buildPhotoButton(photo, gallery = false) {
   const button = element('button', gallery ? 'gallery-card' : 'frame');
   button.dataset.id = photo.id;
-  button.setAttribute('aria-label', `${photo.title}, ${photo.locationLabel}, ${photoTime(photo)}`);
+  button.setAttribute('aria-label', `${photo.title}, ${photo.locationLabel||'Location not recorded'}, ${photoTime(photo)}`);
   const img = element('img'); img.src = gallery ? photo.image : photo.thumb; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
   button.append(img);
   if (gallery) {
     const body = element('span', 'card-body');
-    body.append(element('span', 'section-label', photo.locationLabel), element('strong', '', photo.title), element('span','technical',photoTime(photo)));
+    body.append(element('span', 'section-label', photo.locationLabel||'Location not recorded'), element('strong', '', photo.title), element('span','technical',photoTime(photo)));
     button.append(body);
   } else button.append(element('span','',photo.title));
   button.addEventListener('click', () => { selectPhoto(photo.id, {pan:true}); if (gallery) openLightbox(); });
@@ -90,7 +99,7 @@ function initMap() {
       return L.divIcon({html:content,className:'plan-stop-cluster-icon',iconSize:[88,36],iconAnchor:[44,18]});
     }
   });
-  state.photos.forEach(photo => {
+  state.photos.filter(hasPhotoLocation).forEach(photo => {
     const marker = L.marker([photo.lat,photo.lng], {icon:makeIcon(photo,false),title:photo.title,alt:photo.title,photoThumb:photo.thumb,keyboard:true,riseOnHover:true});
     marker.bindTooltip(photo.title, {direction:'top',offset:[0,-44]});
     marker.on('click',()=>selectPhoto(photo.id,{pan:false}));
@@ -100,16 +109,18 @@ function initMap() {
 }
 function showMapError(text) { $('map-message').hidden=false; $('map-message').textContent=text; }
 function overview() {
-  if (!state.map || !state.visible.length) return;
-  state.map.fitBounds(state.visible.map(p=>[p.lat,p.lng]),{padding:[64,76],maxZoom:16,animate:false});
+  const mapped=state.visible.filter(hasPhotoLocation);
+  if (!state.map || !mapped.length) return;
+  state.map.fitBounds(mapped.map(p=>[p.lat,p.lng]),{padding:[64,76],maxZoom:16,animate:false});
 }
 function renderCollection() {
   const filter=$('place-filter').value;
   state.visible=state.photos.filter(p=>filter==='all'||p.locationLabel===filter);
   $('filmstrip').replaceChildren(...state.visible.map(p=>buildPhotoButton(p)));
   $('gallery').replaceChildren(...state.visible.map(p=>buildPhotoButton(p,true)));
-  $('collection-count').textContent=`${state.visible.length} photographs · 7 NOV 2026`;
-  if (state.clusters) {state.clusters.clearLayers();state.clusters.addLayers(state.visible.map(p=>state.markers.get(p.id)));overview();}
+  const mappedCount=state.visible.filter(hasPhotoLocation).length;
+  $('collection-count').textContent=`${state.visible.length} photographs · ${mappedCount} mapped`;
+  if (state.clusters) {state.clusters.clearLayers();state.clusters.addLayers(state.visible.map(p=>state.markers.get(p.id)).filter(Boolean));overview();}
   const selected=state.visible.find(p=>p.id===state.current?.id)||state.visible[0];
   if (selected) selectPhoto(selected.id,{pan:false,hash:false});
   announce(`${state.visible.length} photographs shown.`);
@@ -120,12 +131,18 @@ function selectPhoto(id, {pan=false,hash=true}={}) {
   state.current=photo;
   const index=state.visible.findIndex(p=>p.id===id);
   $('selected-image').src=photo.image; $('selected-image').alt=photo.title;
-  $('photo-title').textContent=photo.title; $('photo-place').textContent=photo.locationLabel;
+  $('photo-title').textContent=photo.title; $('photo-place').textContent=photo.locationLabel||'Location not recorded';
   $('photo-caption').textContent=captions[photo.category]||'A moment from a day in Santiago.';
   $('photo-time').textContent=photoTime(photo);
-  $('photo-coordinates').textContent=`${Math.abs(photo.lat).toFixed(4)}° S · ${Math.abs(photo.lng).toFixed(4)}° W`;
-  $('photo-directions').href=photoDirectionsUrl(photo);
-  $('photo-directions').setAttribute('aria-label',`Get directions to ${photo.locationLabel}`);
+  const hasLocation=hasPhotoLocation(photo);
+  $('photo-coordinates').textContent=hasLocation?`${Math.abs(photo.lat).toFixed(4)}° S · ${Math.abs(photo.lng).toFixed(4)}° W`:'Location not recorded';
+  const directions=$('photo-directions');directions.hidden=!hasLocation;
+  if(hasLocation){directions.href=photoDirectionsUrl(photo);directions.setAttribute('aria-label',`Get directions to ${photo.locationLabel||'this photo location'}`);}
+  else directions.removeAttribute('href');
+  if(state.view==='map'){
+    $('map-note-title').textContent=hasLocation?'SANTIAGO, CHILE':'LOCATION NOT RECORDED';
+    $('map-note-copy').textContent=hasLocation?'Choose a photograph to explore a moment.':`${photo.title} is in the library without a map pin.`;
+  }
   $('photo-scout').hidden=!state.scouts.some(place=>place.photoIds?.includes(id));
   $('photo-index').textContent=`${String(index+1).padStart(2,'0')} / ${state.visible.length}`;
   $('previous').disabled=index<=0; $('next').disabled=index===state.visible.length-1;
@@ -136,7 +153,9 @@ function selectPhoto(id, {pan=false,hash=true}={}) {
   if(marker) {
     marker.setIcon(makeIcon(photo,true));
     marker.setZIndexOffset(1000);
-    if(pan&&state.map) state.clusters.zoomToShowLayer(marker,()=>{state.map.panTo(marker.getLatLng(),{animate:!reduceMotion,duration:.16});});
+    if(pan&&state.view==='map'&&state.map&&state.clusters?.hasLayer(marker)) {
+      state.map.setView(marker.getLatLng(),Math.max(state.map.getZoom(),16),{animate:false});
+    }
   }
   if(hash) history.replaceState(null,'',`#photo=${encodeURIComponent(id)}`);
   if($('lightbox').open) updateLightbox();
@@ -186,6 +205,7 @@ function setView(view,{writeHash=true}={}) {
   if(view==='plan'&&writeHash&&!location.hash.startsWith('#plan')) history.replaceState(null,'',`${location.pathname}${location.search}#plan`);
   if(view==='map'&&!wasPlan&&!wasScout&&location.hash.startsWith('#scout')) history.replaceState(null,'',`${location.pathname}${location.search}`);
   if(view==='plan') {$('map-note-title').textContent='FILMING PLAN';$('map-note-copy').textContent=state.plan?.summary||'Numbered filming stops; directions open the road or walking route.';}
+  else if(view==='map'&&state.current&&!hasPhotoLocation(state.current)) {$('map-note-title').textContent='LOCATION NOT RECORDED';$('map-note-copy').textContent=`${state.current.title} is in the library without a map pin.`;}
   else {$('map-note-title').textContent='SANTIAGO, CHILE';$('map-note-copy').textContent='Choose a photograph to explore a moment.';}
 }
 function externalLink(text,url,className='') {
@@ -346,10 +366,11 @@ function renderScouting() {
 function updateLightbox() {
   const photo=state.current;
   $('lightbox-image').src=photo.image;$('lightbox-image').alt=photo.title;
-  $('lightbox-title').textContent=`${photo.title} · ${photo.locationLabel}`;
+  $('lightbox-title').textContent=`${photo.title} · ${photo.locationLabel||'Location not recorded'}`;
   $('lightbox-index').textContent=$('photo-index').textContent;
-  $('lightbox-directions').href=photoDirectionsUrl(photo);
-  $('lightbox-directions').setAttribute('aria-label',`Get directions to ${photo.locationLabel}`);
+  const directions=$('lightbox-directions');directions.hidden=!hasPhotoLocation(photo);
+  if(hasPhotoLocation(photo)){directions.href=photoDirectionsUrl(photo);directions.setAttribute('aria-label',`Get directions to ${photo.locationLabel||'this photo location'}`);}
+  else directions.removeAttribute('href');
 }
 function openLightbox() {if(!state.current) return;updateLightbox();if(!$('lightbox').open)$('lightbox').showModal();}
 function selectHash() {
@@ -376,9 +397,14 @@ async function copyMemory() {
 }
 async function start() {
   try {
-    const response=await fetch('photos.json');if(!response.ok)throw new Error('Photo list unavailable');
+    const response=await fetch('photos.json?v=20261111-library1');if(!response.ok)throw new Error('Photo list unavailable');
     const photos=await response.json();
-    state.photos=photos.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng)).sort((a,b)=>a.capturedAt.localeCompare(b.capturedAt));
+    state.photos=photos.map((photo,index)=>({photo,index,timestamp:photoCaptureTime(photo)})).sort((a,b)=>{
+      if(a.timestamp===null&&b.timestamp!==null)return 1;
+      if(a.timestamp!==null&&b.timestamp===null)return -1;
+      if(a.timestamp!==null&&b.timestamp!==null&&a.timestamp!==b.timestamp)return a.timestamp-b.timestamp;
+      return a.index-b.index;
+    }).map(item=>item.photo);
     if(!state.photos.length)throw new Error('Empty photo list');
     try {const scoutResponse=await fetch('scouting.json');if(!scoutResponse.ok)throw new Error('Scouting guide unavailable');state.scouts=(await scoutResponse.json()).locations;renderScouting();}catch(error){$('scout-cards').textContent='The filming guide could not load. Reload the page to try again.';console.error(error);}
     const planFiles=['shoot-plan.json?v=20261111-day3a','shoot-plan-day3.json?v=20261111-day3a'];

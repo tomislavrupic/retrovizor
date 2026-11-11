@@ -5,20 +5,28 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
 photos = json.loads((root / 'photos.json').read_text())
-assert len(photos) == 48
+assert len(photos) == 58
 assert len({photo['id'] for photo in photos}) == len(photos)
 assert not ({'A03', 'A04', 'A10', 'A22', 'A30', 'A42'} & {p['id'] for p in photos})
 allowed = {'id', 'title', 'lat', 'lng', 'capturedAt', 'locationLabel', 'category', 'image', 'thumb'}
 for photo in photos:
     assert set(photo) == allowed
-    assert -33.6 < photo['lat'] < -33.3 and -70.8 < photo['lng'] < -70.5
-    assert photo['capturedAt'].startswith('2026-11-07')
+    assert (photo['lat'] is None) == (photo['lng'] is None)
+    if photo['lat'] is not None:
+        assert -33.6 < photo['lat'] < -33.3 and -70.8 < photo['lng'] < -70.5
+    if photo['capturedAt'] is not None:
+        assert photo['capturedAt'].startswith('2026-11-07')
     for field in ('image', 'thumb'):
         path = photo[field]
         assert not path.startswith('/') and '..' not in path
         data = (root / path).read_bytes()
         assert data[:2] == b'\xff\xd8' and data[-2:] == b'\xff\xd9'
         assert b'Exif\x00\x00' not in data, path
+additions = [p for p in photos if re.fullmatch(r'N\d{2}', p['id'])]
+assert {p['id'] for p in additions} == {f'N{i:02}' for i in range(1, 11)}
+assert all(p['lat'] is None and p['lng'] is None and p['capturedAt'] is None for p in additions)
+assert all(p['locationLabel'] == 'Location not recorded' for p in additions)
+assert sum(p['lat'] is not None for p in photos) == 48, 'Only source-backed GPS belongs on the photo map'
 for reference in re.findall(r'(?:src|href)="([^"#]+)"', (root / 'index.html').read_text()):
     if not reference.startswith(('https:', 'http:')):
         assert (root / reference.split('?', 1)[0]).exists(), reference

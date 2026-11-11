@@ -16,10 +16,10 @@
   <link rel="stylesheet" href="assets/vendor/leaflet.css">
   <link rel="stylesheet" href="assets/vendor/MarkerCluster.css">
   <link rel="stylesheet" href="assets/pix7-tokens.css">
-  <link rel="stylesheet" href="style.css?v=20261111-day3a">
+  <link rel="stylesheet" href="style.css?v=20261111-library1">
   <script defer src="assets/vendor/leaflet.js"></script>
   <script defer src="assets/vendor/leaflet.markercluster.js"></script>
-  <script defer src="app.js?v=20261111-day3a"></script>
+  <script defer src="app.js?v=20261111-library1"></script>
 </head>
 <body>
   <a class="skip-link" href="#archive">Skip to photographs</a>
@@ -50,7 +50,7 @@
           <p id="photo-place" class="section-label"></p><h2 id="photo-title">A walk through Santiago</h2>
           <p id="photo-caption" class="photo-caption">The streets, the hills, and the little moments in between.</p>
           <dl class="metadata"><div><dt>Captured</dt><dd id="photo-time">—</dd></div><div><dt>Location</dt><dd id="photo-coordinates">—</dd></div></dl>
-          <a id="photo-directions" class="button photo-directions" href="https://www.google.com/maps/dir/?api=1" target="_blank" rel="noopener">Google Maps directions ↗</a>
+          <a id="photo-directions" class="button photo-directions" target="_blank" rel="noopener" hidden>Google Maps directions ↗</a>
           <div class="photo-navigation"><button id="previous" aria-label="Previous photograph">← <span>Previous</span></button><button id="next" aria-label="Next photograph"><span>Next</span> →</button></div>
           <button id="share-photo" class="quiet-button share-photo">Copy link to this memory ↗</button>
           <button id="photo-scout" class="quiet-button share-photo" hidden>Filming notes for this place ↗</button>
@@ -68,8 +68,8 @@
       </section>
     </div>
 
-    <section id="archive" class="archive" aria-label="Photographs in capture order">
-      <div class="archive-heading"><h2 class="section-label">The day's memories</h2><span class="technical">Select a frame · explore its place</span></div>
+    <section id="archive" class="archive" aria-label="Photograph library">
+      <div class="archive-heading"><h2 class="section-label">Photograph library</h2><span class="technical">Select a frame · explore its place</span></div>
       <div id="filmstrip" class="filmstrip"></div>
     </section>
     <p id="load-error" class="load-error" hidden>Photographs could not be loaded. <button onclick="location.reload()">Try again</button></p>
@@ -80,7 +80,7 @@
   <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
   <dialog id="lightbox" aria-label="Photograph viewer">
     <div class="lightbox-header"><span id="lightbox-title"></span><button id="close-lightbox" aria-label="Close photograph viewer">Close ×</button></div>
-    <img id="lightbox-image" alt=""><div class="lightbox-footer"><button id="lightbox-prev" aria-label="Previous photograph">← Previous</button><span id="lightbox-index" class="technical"></span><a id="lightbox-directions" class="button" href="https://www.google.com/maps/dir/?api=1" target="_blank" rel="noopener">Directions ↗</a><button id="lightbox-next" aria-label="Next photograph">Next →</button></div>
+    <img id="lightbox-image" alt=""><div class="lightbox-footer"><button id="lightbox-prev" aria-label="Previous photograph">← Previous</button><span id="lightbox-index" class="technical"></span><a id="lightbox-directions" class="button" target="_blank" rel="noopener" hidden>Directions ↗</a><button id="lightbox-next" aria-label="Next photograph">Next →</button></div>
   </dialog>
 </body>
 </html>

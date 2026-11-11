@@ -526,5 +526,115 @@
     "category": "cityscape",
     "image": "assets/photos/A39.jpg",
     "thumb": "assets/thumbs/A39.jpg"
+  },
+  {
+    "id": "N01",
+    "title": "Orange sky over the city",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "cityscape",
+    "image": "assets/photos/N01.jpg",
+    "thumb": "assets/thumbs/N01.jpg"
+  },
+  {
+    "id": "N02",
+    "title": "Portraits around the courtyard",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "mural",
+    "image": "assets/photos/N02.jpg",
+    "thumb": "assets/thumbs/N02.jpg"
+  },
+  {
+    "id": "N03",
+    "title": "Reflections in the square",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "plaza",
+    "image": "assets/photos/N03.jpg",
+    "thumb": "assets/thumbs/N03.jpg"
+  },
+  {
+    "id": "N04",
+    "title": "A cyclist between the columns",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "street-life",
+    "image": "assets/photos/N04.jpg",
+    "thumb": "assets/thumbs/N04.jpg"
+  },
+  {
+    "id": "N05",
+    "title": "The carved wooden disc",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "art",
+    "image": "assets/photos/N05.jpg",
+    "thumb": "assets/thumbs/N05.jpg"
+  },
+  {
+    "id": "N06",
+    "title": "Friends by the fountain",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "people",
+    "image": "assets/photos/N06.jpg",
+    "thumb": "assets/thumbs/N06.jpg"
+  },
+  {
+    "id": "N07",
+    "title": "Color at Barcito",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "food-drink",
+    "image": "assets/photos/N07.jpg",
+    "thumb": "assets/thumbs/N07.jpg"
+  },
+  {
+    "id": "N08",
+    "title": "A quiet terrace above the city",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "interior",
+    "image": "assets/photos/N08.jpg",
+    "thumb": "assets/thumbs/N08.jpg"
+  },
+  {
+    "id": "N09",
+    "title": "Between takes, an open book",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "behind-the-scenes",
+    "image": "assets/photos/N09.jpg",
+    "thumb": "assets/thumbs/N09.jpg"
+  },
+  {
+    "id": "N10",
+    "title": "Waiting beneath the stairs",
+    "lat": null,
+    "lng": null,
+    "capturedAt": null,
+    "locationLabel": "Location not recorded",
+    "category": "street-life",
+    "image": "assets/photos/N10.jpg",
+    "thumb": "assets/thumbs/N10.jpg"
   }
 ]
