@@ -530,10 +530,10 @@
   {
     "id": "N01",
     "title": "Orange sky over the city",
-    "lat": null,
-    "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "lat": -33.48918611111111,
+    "lng": -70.51634166666666,
+    "capturedAt": "2026-11-10 20:20:50-03:00",
+    "locationLabel": "Santiago, Chile",
     "category": "cityscape",
     "image": "assets/photos/N01.jpg",
     "thumb": "assets/thumbs/N01.jpg"
@@ -541,10 +541,10 @@
   {
     "id": "N02",
     "title": "Portraits around the courtyard",
-    "lat": null,
-    "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "lat": -33.43728333333333,
+    "lng": -70.64091388888889,
+    "capturedAt": "2026-11-10 13:46:43-03:00",
+    "locationLabel": "Barrio Lastarria, Santiago",
     "category": "mural",
     "image": "assets/photos/N02.jpg",
     "thumb": "assets/thumbs/N02.jpg"
@@ -552,10 +552,10 @@
   {
     "id": "N03",
     "title": "Reflections in the square",
-    "lat": null,
-    "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "lat": -33.43879999999999,
+    "lng": -70.65255833333335,
+    "capturedAt": "2026-11-10 12:19:51-03:00",
+    "locationLabel": "Santiago Centro",
     "category": "plaza",
     "image": "assets/photos/N03.jpg",
     "thumb": "assets/thumbs/N03.jpg"
@@ -563,10 +563,10 @@
   {
     "id": "N04",
     "title": "A cyclist between the columns",
-    "lat": null,
-    "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "lat": -33.43924722222222,
+    "lng": -70.65236666666667,
+    "capturedAt": "2026-11-10 12:14:47-03:00",
+    "locationLabel": "Santiago Centro",
     "category": "street-life",
     "image": "assets/photos/N04.jpg",
     "thumb": "assets/thumbs/N04.jpg"
@@ -574,10 +574,10 @@
   {
     "id": "N05",
     "title": "The carved wooden disc",
-    "lat": null,
-    "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "lat": -33.43673333333333,
+    "lng": -70.64992500000001,
+    "capturedAt": "2026-11-10 11:11:41-03:00",
+    "locationLabel": "Santiago Centro",
     "category": "art",
     "image": "assets/photos/N05.jpg",
     "thumb": "assets/thumbs/N05.jpg"
@@ -585,10 +585,10 @@
   {
     "id": "N06",
     "title": "Friends by the fountain",
-    "lat": null,
-    "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "lat": -33.43767222222222,
+    "lng": -70.6504888888889,
+    "capturedAt": "2026-11-10 10:21:37-03:00",
+    "locationLabel": "Santiago Centro",
     "category": "people",
     "image": "assets/photos/N06.jpg",
     "thumb": "assets/thumbs/N06.jpg"
@@ -596,10 +596,10 @@
   {
     "id": "N07",
     "title": "Color at Barcito",
-    "lat": null,
-    "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "lat": -33.40295833333333,
+    "lng": -70.59082777777778,
+    "capturedAt": "2026-11-09 14:09:34-03:00",
+    "locationLabel": "Santiago, Chile",
     "category": "food-drink",
     "image": "assets/photos/N07.jpg",
     "thumb": "assets/thumbs/N07.jpg"
@@ -609,8 +609,8 @@
     "title": "A quiet terrace above the city",
     "lat": null,
     "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "capturedAt": "2026-11-09 13:05:06-03:00",
+    "locationLabel": "Private location",
     "category": "interior",
     "image": "assets/photos/N08.jpg",
     "thumb": "assets/thumbs/N08.jpg"
@@ -620,8 +620,8 @@
     "title": "Between takes, an open book",
     "lat": null,
     "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "capturedAt": "2026-11-09 13:03:56-03:00",
+    "locationLabel": "Private location",
     "category": "behind-the-scenes",
     "image": "assets/photos/N09.jpg",
     "thumb": "assets/thumbs/N09.jpg"
@@ -629,12 +629,89 @@
   {
     "id": "N10",
     "title": "Waiting beneath the stairs",
-    "lat": null,
-    "lng": null,
-    "capturedAt": null,
-    "locationLabel": "Location not recorded",
+    "lat": -33.44271111111111,
+    "lng": -70.63230833333333,
+    "capturedAt": "2026-11-08 17:58:02-03:00",
+    "locationLabel": "Metro Parque Bustamante, Santiago",
     "category": "street-life",
     "image": "assets/photos/N10.jpg",
     "thumb": "assets/thumbs/N10.jpg"
+  },
+  {
+    "id": "N11",
+    "title": "Murals at Parque Bustamante",
+    "lat": -33.44270833333333,
+    "lng": -70.63231666666665,
+    "capturedAt": "2026-11-08 17:57:25-03:00",
+    "locationLabel": "Metro Parque Bustamante, Santiago",
+    "category": "public-art",
+    "image": "assets/photos/N11.jpg",
+    "thumb": "assets/thumbs/N11.jpg"
+  },
+  {
+    "id": "N12",
+    "title": "A flower-crowned figure",
+    "lat": -33.445297222222216,
+    "lng": -70.62533611111111,
+    "capturedAt": "2026-11-08 15:27:53-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "sculpture",
+    "image": "assets/photos/N12.jpg",
+    "thumb": "assets/thumbs/N12.jpg"
+  },
+  {
+    "id": "N13",
+    "title": "Faces around the corner",
+    "lat": -33.44628611111111,
+    "lng": -70.62503055555555,
+    "capturedAt": "2026-11-08 15:25:40-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "mural",
+    "image": "assets/photos/N13.jpg",
+    "thumb": "assets/thumbs/N13.jpg"
+  },
+  {
+    "id": "N14",
+    "title": "The blue car behind the fence",
+    "lat": -33.44224166666666,
+    "lng": -70.62865555555555,
+    "capturedAt": "2026-11-08 13:04:45-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "street",
+    "image": "assets/photos/N14.jpg",
+    "thumb": "assets/thumbs/N14.jpg"
+  },
+  {
+    "id": "N15",
+    "title": "Crescent above the city lights",
+    "lat": -33.48916944444444,
+    "lng": -70.51632777777778,
+    "capturedAt": "2026-11-10 21:12:30-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "cityscape",
+    "image": "assets/photos/N15.jpg",
+    "thumb": "assets/thumbs/N15.jpg"
+  },
+  {
+    "id": "N16",
+    "title": "Silhouette at dusk",
+    "lat": -33.489125,
+    "lng": -70.51635,
+    "capturedAt": "2026-11-10 21:00:32-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "people",
+    "image": "assets/photos/N16.jpg",
+    "thumb": "assets/thumbs/N16.jpg"
+  },
+  {
+    "id": "N17",
+    "title": "Golden light over Santiago",
+    "lat": -33.48920833333334,
+    "lng": -70.51629722222222,
+    "capturedAt": "2026-11-10 19:56:50-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "cityscape",
+    "image": "assets/photos/N17.jpg",
+    "thumb": "assets/thumbs/N17.jpg"
   }
 ]

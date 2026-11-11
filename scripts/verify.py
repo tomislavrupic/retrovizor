@@ -1,11 +1,12 @@
 """Validate the public photo collection and deployment asset references."""
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
 photos = json.loads((root / 'photos.json').read_text())
-assert len(photos) == 58
+assert len(photos) == 65
 assert len({photo['id'] for photo in photos}) == len(photos)
 assert not ({'A03', 'A04', 'A10', 'A22', 'A30', 'A42'} & {p['id'] for p in photos})
 allowed = {'id', 'title', 'lat', 'lng', 'capturedAt', 'locationLabel', 'category', 'image', 'thumb'}
@@ -14,8 +15,10 @@ for photo in photos:
     assert (photo['lat'] is None) == (photo['lng'] is None)
     if photo['lat'] is not None:
         assert -33.6 < photo['lat'] < -33.3 and -70.8 < photo['lng'] < -70.5
-    if photo['capturedAt'] is not None:
-        assert photo['capturedAt'].startswith('2026-11-07')
+    assert isinstance(photo['capturedAt'], str) and photo['capturedAt'].strip()
+    captured = datetime.fromisoformat(photo['capturedAt'].replace(' ', 'T'))
+    assert captured.date().isoformat() >= '2026-11-07'
+    assert captured.date().isoformat() <= '2026-11-10'
     for field in ('image', 'thumb'):
         path = photo[field]
         assert not path.startswith('/') and '..' not in path
@@ -23,10 +26,18 @@ for photo in photos:
         assert data[:2] == b'\xff\xd8' and data[-2:] == b'\xff\xd9'
         assert b'Exif\x00\x00' not in data, path
 additions = [p for p in photos if re.fullmatch(r'N\d{2}', p['id'])]
-assert {p['id'] for p in additions} == {f'N{i:02}' for i in range(1, 11)}
-assert all(p['lat'] is None and p['lng'] is None and p['capturedAt'] is None for p in additions)
-assert all(p['locationLabel'] == 'Location not recorded' for p in additions)
-assert sum(p['lat'] is not None for p in photos) == 48, 'Only source-backed GPS belongs on the photo map'
+assert {p['id'] for p in additions} == {f'N{i:02}' for i in range(1, 18)}
+assert all(isinstance(p['capturedAt'], str) and p['capturedAt'].strip() for p in additions)
+assert all(datetime.fromisoformat(p['capturedAt'].replace(' ', 'T')).date().isoformat() in {'2026-11-08', '2026-11-09', '2026-11-10'} for p in additions)
+# N08 and N09 have source GPS in the private audit, but are deliberately unpinned because they show private homes.
+unmapped_additions = {p['id'] for p in additions if p['lat'] is None}
+assert unmapped_additions == {'N08', 'N09'}
+assert all(p['lat'] is not None and p['lng'] is not None for p in additions if p['id'] not in {'N08', 'N09'})
+assert all(p['locationLabel'] == 'Private location' for p in additions if p['id'] in {'N08', 'N09'})
+mapped_count = sum(p['lat'] is not None for p in photos)
+assert mapped_count == 63, 'Only source-backed, cleared GPS belongs on the photo map'
+# N10 and N11 are explicitly supplied Metro exceptions in the new library batch.
+assert {'N10', 'N11'} <= {p['id'] for p in additions}
 for reference in re.findall(r'(?:src|href)="([^"#]+)"', (root / 'index.html').read_text()):
     if not reference.startswith(('https:', 'http:')):
         assert (root / reference.split('?', 1)[0]).exists(), reference
@@ -114,5 +125,5 @@ public_text = '\n'.join((root / name).read_text() for name in ('shoot-plan.json'
 assert '/Users/' not in public_text
 assert not re.search(r'\b(?:Apt|Apartment|Depto)\.?\s*\d', public_text, re.I), 'Private apartment details must not be published'
 assert not list(root.glob('*.pdf')), 'Production source PDFs must remain outside public site'
-print(f'PASS: {len(photos)} photos, exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
+print(f'PASS: {len(photos)} photos ({len(photos)-len(additions)} original selections + {len(additions)} additions; {mapped_count} mapped), exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
 print(f'PASS: Day 3 has {len(day3["stops"])} entries, {len(day3_shots)} tasks, 2 public pins, and private-address/route checks.')

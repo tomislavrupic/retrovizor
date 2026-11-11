@@ -135,12 +135,13 @@ function selectPhoto(id, {pan=false,hash=true}={}) {
   $('photo-caption').textContent=captions[photo.category]||'A moment from a day in Santiago.';
   $('photo-time').textContent=photoTime(photo);
   const hasLocation=hasPhotoLocation(photo);
-  $('photo-coordinates').textContent=hasLocation?`${Math.abs(photo.lat).toFixed(4)}° S · ${Math.abs(photo.lng).toFixed(4)}° W`:'Location not recorded';
+  const privateLocation=photo.locationLabel==='Private location';
+  $('photo-coordinates').textContent=hasLocation?`${Math.abs(photo.lat).toFixed(4)}° S · ${Math.abs(photo.lng).toFixed(4)}° W`:privateLocation?'Location kept private':'Location not recorded';
   const directions=$('photo-directions');directions.hidden=!hasLocation;
   if(hasLocation){directions.href=photoDirectionsUrl(photo);directions.setAttribute('aria-label',`Get directions to ${photo.locationLabel||'this photo location'}`);}
   else directions.removeAttribute('href');
   if(state.view==='map'){
-    $('map-note-title').textContent=hasLocation?'SANTIAGO, CHILE':'LOCATION NOT RECORDED';
+    $('map-note-title').textContent=hasLocation?'SANTIAGO, CHILE':privateLocation?'PRIVATE LOCATION':'LOCATION NOT RECORDED';
     $('map-note-copy').textContent=hasLocation?'Choose a photograph to explore a moment.':`${photo.title} is in the library without a map pin.`;
   }
   $('photo-scout').hidden=!state.scouts.some(place=>place.photoIds?.includes(id));
@@ -397,7 +398,7 @@ async function copyMemory() {
 }
 async function start() {
   try {
-    const response=await fetch('photos.json?v=20261111-library1');if(!response.ok)throw new Error('Photo list unavailable');
+    const response=await fetch('photos.json?v=20261111-library2');if(!response.ok)throw new Error('Photo list unavailable');
     const photos=await response.json();
     state.photos=photos.map((photo,index)=>({photo,index,timestamp:photoCaptureTime(photo)})).sort((a,b)=>{
       if(a.timestamp===null&&b.timestamp!==null)return 1;
