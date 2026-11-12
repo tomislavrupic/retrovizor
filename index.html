@@ -16,10 +16,10 @@
   <link rel="stylesheet" href="assets/vendor/leaflet.css">
   <link rel="stylesheet" href="assets/vendor/MarkerCluster.css">
   <link rel="stylesheet" href="assets/pix7-tokens.css">
-  <link rel="stylesheet" href="style.css?v=20261112-day4-sound1">
+  <link rel="stylesheet" href="style.css?v=20261112-sound2">
   <script defer src="assets/vendor/leaflet.js"></script>
   <script defer src="assets/vendor/leaflet.markercluster.js"></script>
-  <script defer src="app.js?v=20261112-day4-sound1"></script>
+  <script defer src="app.js?v=20261112-sound2"></script>
 </head>
 <body>
   <a class="skip-link" href="#archive">Skip to photographs</a>
@@ -38,9 +38,10 @@
     </div>
 
     <section class="soundscape" aria-labelledby="soundscape-title">
-      <div class="soundscape-caption"><h2 id="soundscape-title">Sunset atmosphere</h2><p>Field recording by Tomislav Rupić · 30 sec</p></div>
-      <audio controls preload="none" aria-label="Play the Santiago sunset atmosphere" src="assets/audio/santiago-sunset.mp3">Listen to the <a href="assets/audio/santiago-sunset.mp3">sunset recording</a>.</audio>
-      <a class="soundscape-photo" href="#photo=N01">See the sunset ↗</a>
+      <div class="soundscape-caption"><h2 id="soundscape-title">Sounds of Santiago</h2><p id="soundscape-credit">Field recording by Tomislav Rupić · 30 sec</p><p id="soundscape-note">Recorded at the sunset viewpoint.</p></div>
+      <select id="sound-select" aria-label="Choose a field recording" hidden></select>
+      <audio id="sound-player" controls preload="none" aria-label="Play the Santiago sunset atmosphere" aria-describedby="soundscape-note" src="assets/audio/santiago-sunset.mp3">Listen to the <a id="sound-download" href="assets/audio/santiago-sunset.mp3">field recording</a>.</audio>
+      <a id="sound-photo" class="soundscape-photo" href="#photo=N01">See photograph ↗</a>
     </section>
 
     <div id="explorer" class="explorer">
@@ -60,6 +61,7 @@
           <div class="photo-navigation"><button id="previous" aria-label="Previous photograph">← <span>Previous</span></button><button id="next" aria-label="Next photograph"><span>Next</span> →</button></div>
           <button id="share-photo" class="quiet-button share-photo">Copy link to this memory ↗</button>
           <button id="photo-scout" class="quiet-button share-photo" hidden>Filming notes for this place ↗</button>
+          <button id="photo-sound" class="quiet-button share-photo" hidden>Play matching field recording ▶</button>
         </div>
       </aside>
       <section id="gallery" class="gallery" aria-label="Photograph archive" hidden></section>

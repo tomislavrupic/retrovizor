@@ -4,6 +4,8 @@ const $ = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const state = { photos: [], visible: [], current: null, map: null, clusters: null, markers: new Map(), view: 'map', scouts: [], scoutGuide: {}, plans: [], plan: null, planLayer: null, planMarkers: new Map() };
 const brollStorageScope = 'retrovizor-broll:chile-2026';
+let soundRecordings = [];
+let currentSound = 'sunset';
 const captions = {
   street: 'A free day. No set destination. Just a camera and a city to walk through.',
   landscape: 'A little space to breathe, with the city just beyond the frame.',
@@ -58,6 +60,38 @@ function scoutDirectionsUrl(place) {
   return mapsDirectionsUrl(destination);
 }
 function announce(text) { $('announcement').textContent = text; }
+function soundForPhoto(id) { return soundRecordings.find(sound=>sound.photoIds.includes(id)); }
+function updatePhotoSound() {
+  const sound=soundForPhoto(state.current?.id);
+  $('photo-sound').hidden=!sound;
+  $('photo-sound').textContent=sound?.match==='provisional'?'Play time-matched recording ▶':'Play sunset atmosphere ▶';
+}
+function selectSound(id, {play=false}={}) {
+  const sound=soundRecordings.find(item=>item.id===id);if(!sound)return;
+  const player=$('sound-player');
+  if(currentSound!==id){player.pause();player.src=sound.src;player.load();currentSound=id;}
+  $('sound-select').value=id;
+  player.setAttribute('aria-label',`Play field recording: ${sound.title}`);
+  $('soundscape-credit').textContent=`Field recording by Tomislav Rupić · ${sound.durationLabel}`;
+  $('soundscape-note').textContent=sound.note;
+  $('sound-photo').href=`#photo=${sound.photoIds[0]}`;
+  $('sound-download').href=sound.src;
+  if(play){
+    if(player.ended)player.currentTime=0;
+    player.play().catch(()=>announce('Press play in Sounds of Santiago to listen.'));
+  }
+}
+async function initSounds() {
+  try {
+    const response=await fetch('sounds.json?v=20261112-sound2');if(!response.ok)throw new Error('Field recordings unavailable');
+    soundRecordings=await response.json();
+    $('sound-select').replaceChildren(...soundRecordings.map(sound=>{const option=element('option','',sound.title);option.value=sound.id;return option;}));
+    $('sound-select').hidden=false;
+    selectSound(currentSound);updatePhotoSound();
+    $('sound-select').addEventListener('change',()=>selectSound($('sound-select').value));
+    $('photo-sound').addEventListener('click',()=>{const sound=soundForPhoto(state.current?.id);if(sound){selectSound(sound.id,{play:true});$('sound-player').focus();}});
+  }catch(error){console.error(error);}
+}
 function buildPhotoButton(photo, gallery = false) {
   const button = element('button', gallery ? 'gallery-card' : 'frame');
   button.dataset.id = photo.id;
@@ -146,6 +180,7 @@ function selectPhoto(id, {pan=false,hash=true}={}) {
     $('map-note-copy').textContent=hasLocation?'Choose a photograph to explore a moment.':`${photo.title} is in the library without a map pin.`;
   }
   $('photo-scout').hidden=!state.scouts.some(place=>place.photoIds?.includes(id));
+  updatePhotoSound();
   $('photo-index').textContent=`${String(index+1).padStart(2,'0')} / ${state.visible.length}`;
   $('previous').disabled=index<=0; $('next').disabled=index===state.visible.length-1;
   $('lightbox-prev').disabled=index<=0; $('lightbox-next').disabled=index===state.visible.length-1;
@@ -471,4 +506,5 @@ async function start() {
     document.addEventListener('keydown',event=>{if(!$('lightbox').open)return;if(event.key==='ArrowLeft'){event.preventDefault();stepPhoto(-1);}if(event.key==='ArrowRight'){event.preventDefault();stepPhoto(1);}});
   }catch(error){$('load-error').hidden=false;$('collection-count').textContent='Photographs unavailable';console.error(error);}
 }
+initSounds();
 start();

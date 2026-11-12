@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sunset",
+    "title": "Sunset atmosphere",
+    "src": "assets/audio/santiago-sunset.mp3",
+    "durationLabel": "30 sec",
+    "photoIds": ["N01", "N15", "N16", "N17"],
+    "match": "confirmed",
+    "note": "Recorded at the sunset viewpoint."
+  },
+  {
+    "id": "fountain",
+    "title": "Friends by the fountain",
+    "src": "assets/audio/santiago-fountain.mp3",
+    "durationLabel": "1 min 31 sec",
+    "photoIds": ["N06"],
+    "match": "provisional",
+    "note": "Matched by capture time · recording location unconfirmed."
+  },
+  {
+    "id": "street",
+    "title": "A cyclist between the columns",
+    "src": "assets/audio/santiago-street.mp3",
+    "durationLabel": "1 min 24 sec",
+    "photoIds": ["N04"],
+    "match": "provisional",
+    "note": "Matched by capture time · recording location unconfirmed."
+  }
+]

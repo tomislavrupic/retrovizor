@@ -36,6 +36,22 @@ assert all(p['lat'] is not None and p['lng'] is not None for p in additions if p
 assert all(p['locationLabel'] == 'Private location' for p in additions if p['id'] in {'N08', 'N09'})
 mapped_count = sum(p['lat'] is not None for p in photos)
 assert mapped_count == 63, 'Only source-backed, cleared GPS belongs on the photo map'
+sounds = json.loads((root / 'sounds.json').read_text())
+assert {sound['id'] for sound in sounds} == {'sunset', 'fountain', 'street'}
+assert len(sounds) == 3
+public_photo_ids = {p['id'] for p in photos if p['lat'] is not None}
+for sound in sounds:
+    assert set(sound) == {'id', 'title', 'src', 'durationLabel', 'photoIds', 'match', 'note'}
+    assert sound['photoIds'] and set(sound['photoIds']) <= public_photo_ids
+    assert sound['src'].startswith('assets/audio/') and '..' not in sound['src']
+    assert (root / sound['src']).stat().st_size > 1000
+    assert sound['title'] and sound['durationLabel'] and sound['note']
+    if sound['match'] == 'provisional':
+        assert 'unconfirmed' in sound['note']
+    else:
+        assert sound['id'] == 'sunset' and sound['match'] == 'confirmed'
+assert next(s for s in sounds if s['id'] == 'fountain')['photoIds'] == ['N06']
+assert next(s for s in sounds if s['id'] == 'street')['photoIds'] == ['N04']
 # N10 and N11 are explicitly supplied Metro exceptions in the new library batch.
 assert {'N10', 'N11'} <= {p['id'] for p in additions}
 for reference in re.findall(r'(?:src|href)="([^"#]+)"', (root / 'index.html').read_text()):
