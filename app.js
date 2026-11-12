@@ -475,7 +475,7 @@ async function copyMemory() {
 }
 async function start() {
   try {
-    const response=await fetch('photos.json?v=20261111-library2');if(!response.ok)throw new Error('Photo list unavailable');
+    const response=await fetch('photos.json?v=20261112-market1');if(!response.ok)throw new Error('Photo list unavailable');
     const photos=await response.json();
     state.photos=photos.map((photo,index)=>({photo,index,timestamp:photoCaptureTime(photo)})).sort((a,b)=>{
       if(a.timestamp===null&&b.timestamp!==null)return 1;
