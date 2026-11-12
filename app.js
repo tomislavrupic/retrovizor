@@ -2,7 +2,8 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const state = { photos: [], visible: [], current: null, map: null, clusters: null, markers: new Map(), view: 'map', scouts: [], plans: [], plan: null, planLayer: null, planMarkers: new Map() };
+const state = { photos: [], visible: [], current: null, map: null, clusters: null, markers: new Map(), view: 'map', scouts: [], scoutGuide: {}, plans: [], plan: null, planLayer: null, planMarkers: new Map() };
+const brollStorageScope = 'retrovizor-broll:chile-2026';
 const captions = {
   street: 'A free day. No set destination. Just a camera and a city to walk through.',
   landscape: 'A little space to breathe, with the city just beyond the frame.',
@@ -214,7 +215,7 @@ function externalLink(text,url,className='') {
 }
 function showScout(id) {
   setView('scout');
-  $('scout-filter').value='all';renderScouting();
+  $('scout-filter').value='all';$('scout-group').value='all';renderScouting();
   history.replaceState(null,'',id?`#scout=${encodeURIComponent(id)}`:'#scout');
   if(id){const card=$('scout-cards').querySelector(`[data-scout="${id}"]`);card?.scrollIntoView({block:'start',behavior:'instant'});card?.focus({preventScroll:true});}
 }
@@ -234,12 +235,23 @@ function routeLegUrl(leg) {
   if (isPlaceholder(origin)||isPlaceholder(destination)) return '';
   return mapsDirectionsUrl(destination,{origin,waypoints:leg.waypoints,mode:leg.mode});
 }
-function shotStorageKey(stop, shot) {return `retrovizor-shoot-plan:${state.plan?.date||'undated'}:${stop.id}:${shot.id}`;}
-function readShotDone(stop, shot) {
-  try {return localStorage.getItem(shotStorageKey(stop,shot))==='1';} catch {return false;}
+function shotStorageKey(stop, shot, scope) {return `${scope||`retrovizor-shoot-plan:${state.plan?.date||'undated'}`}:${stop.id}:${shot.id}`;}
+function readShotDone(stop, shot, scope) {
+  try {return localStorage.getItem(shotStorageKey(stop,shot,scope))==='1';} catch {return false;}
 }
-function writeShotDone(stop, shot, done) {
-  try {localStorage.setItem(shotStorageKey(stop,shot),done?'1':'0');return true;} catch {return false;}
+function writeShotDone(stop, shot, done, scope) {
+  try {localStorage.setItem(shotStorageKey(stop,shot,scope),done?'1':'0');return true;} catch {return false;}
+}
+function shotChecklist(stop, {scope, title='Shots to get', onChange}={}) {
+  const checklist=element('fieldset','plan-checklist');checklist.append(element('legend','',title));
+  (stop.shots||[]).forEach(shot=>{
+    const label=element('label','plan-shot');const input=document.createElement('input');input.type='checkbox';input.checked=readShotDone(stop,shot,scope);
+    input.addEventListener('change',()=>{
+      if(!writeShotDone(stop,shot,input.checked,scope)){announce('Checklist state could not be saved on this device.');}
+      if(onChange)onChange();
+    });
+    label.append(input,element('span','',shot.text||''));checklist.append(label);
+  });return checklist;
 }
 function latestPlan() {return state.plans.at(-1)||null;}
 function findPlan(date) {return state.plans.find(plan=>plan.date===date)||null;}
@@ -292,8 +304,7 @@ function renderPlan() {
     else card.append(element('p','plan-pending',stop.privateLocation?'Private location · use the crew call sheet':'Location pending — no map pin or directions yet.'));
     const photo=state.photos.find(item=>item.id===stop.photoId);
     if(photo){const reference=element('button','plan-reference');reference.type='button';const img=element('img');img.src=photo.thumb;img.alt='';img.loading='lazy';reference.append(img,element('span','',`Photo reference · ${photo.title}`));reference.addEventListener('click',()=>{setView('map');$('place-filter').value='all';renderCollection();selectPhoto(photo.id,{pan:true});if(window.matchMedia('(max-width: 620px)').matches)requestAnimationFrame(()=>$('open-photo').scrollIntoView({block:'center',behavior:'instant'}));});card.append(reference);}
-    if(Array.isArray(stop.shots)&&stop.shots.length){const checklist=element('fieldset','plan-checklist');const legend=element('legend','','Shots to get');checklist.append(legend);
-      stop.shots.forEach(shot=>{const label=element('label','plan-shot');const input=document.createElement('input');input.type='checkbox';input.checked=readShotDone(stop,shot);input.addEventListener('change',()=>{if(!writeShotDone(stop,shot,input.checked)){announce('Checklist state could not be saved on this device.');}});label.append(input,element('span','',shot.text||''));checklist.append(label);});card.append(checklist);}
+    if(Array.isArray(stop.shots)&&stop.shots.length)card.append(shotChecklist(stop));
     const notes=[['Light',stop.light],['Travel',stop.transfer],['Access / notes',stop.notes]].filter(([,value])=>value);
     if(notes.length){const dl=element('dl','plan-notes');notes.forEach(([label,value])=>{const row=element('div');row.append(element('dt','',label),element('dd','',value));dl.append(row);});card.append(dl);}
     cards.append(card);
@@ -340,29 +351,60 @@ function showPlan(id,{date,writeHash=true}={}) {
   if(writeHash)history.replaceState(null,'',`${location.pathname}${location.search}${id||date?planHash(id,state.plan?.date):'#plan'}`);
   if(id)focusPlanStop(id,{writeHash:false});
 }
+function updateScoutProgress() {
+  const lists=[...state.scouts,{id:'general',shots:state.scoutGuide.generalShots||[]}];
+  let done=0,total=0;
+  lists.forEach(place=>(place.shots||[]).forEach(shot=>{total++;if(readShotDone(place,shot,brollStorageScope))done++;}));
+  $('scout-progress').textContent=`Snimljeno ${done} / ${total} · oznake se čuvaju samo na ovom uređaju`;
+}
+function initScouting() {
+  const groupSelect=$('scout-group');
+  (state.scoutGuide.groups||[]).forEach(group=>{const option=element('option','',group.title);option.value=group.id;groupSelect.append(option);});
+  const general=$('scout-general');general.replaceChildren(element('summary','','Usput i Goran · zajednički popis kadrova'));
+  general.append(shotChecklist({id:'general',shots:state.scoutGuide.generalShots||[]},{scope:brollStorageScope,title:'Kadrovi kroz preostale dane',onChange:updateScoutProgress}));
+  renderScouting();
+}
+function renderScoutRoutes(groupId) {
+  const routes=(state.scoutGuide.routes||[]).filter(route=>groupId==='all'||route.group===groupId);
+  $('scout-routes-body').replaceChildren(...routes.map(route=>{
+    const places=route.placeIds.map(id=>state.scouts.find(place=>place.id===id)).filter(Boolean);
+    const row=element('article','scout-route');row.append(element('h3','',route.title));
+    const list=element('ol','scout-route-stops');places.forEach(place=>{const item=element('li');const link=element('a','',place.name);link.href=`#scout=${encodeURIComponent(place.id)}`;item.append(link);list.append(item);});row.append(list);
+    row.append(element('p','',route.note));
+    if(places.length>=2&&places.length===route.placeIds.length){const destinations=places.map(place=>new URL(scoutDirectionsUrl(place)).searchParams.get('destination'));
+      const url=routeLegUrl({origin:destinations[0],destination:destinations.at(-1),waypoints:destinations.slice(1,-1),mode:route.mode});
+      if(url)row.append(externalLink(`${route.mode==='walking'?'Pješice':'Kombijem'} · Google Maps ↗`,url,'button plan-directions'));
+    }return row;
+  }));
+}
 function renderScouting() {
-  const filter=$('scout-filter').value;
-  const places=state.scouts.filter(p=>filter==='all'||(filter==='photographed')===Boolean(p.photoIds?.length));
-  $('scout-count').textContent=`${places.length} locations`;
+  const filter=$('scout-filter').value,groupId=$('scout-group').value;
+  const group=(state.scoutGuide.groups||[]).find(item=>item.id===groupId);
+  const places=state.scouts.filter(p=>(groupId==='all'||p.group===groupId)&&(filter==='all'||(filter==='photographed')===Boolean(p.photoIds?.length)));
+  $('scout-count').textContent=`${places.length} lokacija`;
+  $('scout-group-note').textContent=group?.description||'Odaberi područje za lokacije koje je praktično povezati. Rute su prijedlozi redoslijeda, a ne raspored za jedan dan; promet i pristup provjeriti prije polaska.';
+  renderScoutRoutes(groupId);updateScoutProgress();
   $('scout-cards').replaceChildren(...places.map(place=>{
     const card=element('article','scout-card');card.dataset.scout=place.id;card.tabIndex=-1;
     const photo=state.photos.find(p=>p.id===place.heroId);
     if(photo){const img=element('img','scout-image');img.src=photo.image;img.alt=photo.title;img.loading='lazy';card.append(img);}
-    else {const blank=element('div','scout-unphotographed');blank.append(element('span','section-label','NEXT STOP'),element('strong','',place.area),element('span','technical','Not yet photographed'));card.append(blank);}
-    const body=element('div','scout-body');body.append(element('p','section-label',`${photo?'Photographed':'To scout'} / ${place.kind}`),element('h3','',place.name),element('p','scout-address',place.address));
+    else {const blank=element('div','scout-unphotographed');blank.append(element('span','section-label','ZA IZVID'),element('strong','',place.area),element('span','technical','Još nema fotografije'));card.append(blank);}
+    const body=element('div','scout-body');body.append(element('p','section-label',`${photo?'Fotografirano':'Za izvid'} / ${place.kind}`),element('h3','',place.name),element('p','scout-address',place.address));
     body.append(element('p','scout-pitch',place.idea));
+    if(place.shots?.length)body.append(shotChecklist(place,{scope:brollStorageScope,title:'Kadrovi za snimiti',onChange:updateScoutProgress}));
     const details=element('dl','scout-details');
-    for(const [label,value] of [['Light / timing',place.light],['Sound / setup',place.sound],['Visit',place.hours],['Access',place.access]]){const row=element('div');row.append(element('dt','',label),element('dd','',value));details.append(row);}
+    for(const [label,value] of [['Svjetlo / vrijeme',place.light],['Zvuk / postava',place.sound],['Posjet',place.hours],['Pristup',place.access]]){const row=element('div');row.append(element('dt','',label),element('dd','',value));details.append(row);}
     body.append(details);
     if(place.dates)body.append(element('p','scout-dates',place.dates));
     const actions=element('div','scout-actions');
-    if(photo){const mapButton=element('button','','View on photo map');mapButton.addEventListener('click',()=>{$('place-filter').value='all';renderCollection();setView('map');selectPhoto(photo.id,{pan:true});$('map-tab').scrollIntoView({block:'start',behavior:'instant'});});actions.append(mapButton);}
-    actions.append(externalLink('Directions ↗',scoutDirectionsUrl(place),'button'));
+    if(photo){const mapButton=element('button','','Fotografija na karti');mapButton.addEventListener('click',()=>{$('place-filter').value='all';renderCollection();setView('map');selectPhoto(photo.id,{pan:true});$('map-tab').scrollIntoView({block:'start',behavior:'instant'});});actions.append(mapButton);}
+    actions.append(externalLink('Google Maps upute ↗',scoutDirectionsUrl(place),'button'));
     body.insertBefore(actions,body.querySelector('.scout-pitch'));
-    const sources=element('div','scout-sources');sources.append(element('span','technical','Official information: '));place.sources.forEach((source,index)=>{if(index)sources.append(document.createTextNode(' · '));sources.append(externalLink(source.title+' ↗',source.url));});body.append(sources);
+    const sources=element('div','scout-sources');sources.append(element('span','technical','Službene informacije: '));place.sources.forEach((source,index)=>{if(index)sources.append(document.createTextNode(' · '));sources.append(externalLink(source.title+' ↗',source.url));});body.append(sources);
     if(place.contact)body.append(element('p','scout-contact',place.contact));
     card.append(body);return card;
   }));
+  if(!places.length)$('scout-cards').append(element('p','scout-group-note','Nema lokacija za odabranu kombinaciju. Promijeni područje ili odaberi sve lokacije.'));
 }
 function updateLightbox() {
   const photo=state.current;
@@ -407,7 +449,7 @@ async function start() {
       return a.index-b.index;
     }).map(item=>item.photo);
     if(!state.photos.length)throw new Error('Empty photo list');
-    try {const scoutResponse=await fetch('scouting.json');if(!scoutResponse.ok)throw new Error('Scouting guide unavailable');state.scouts=(await scoutResponse.json()).locations;renderScouting();}catch(error){$('scout-cards').textContent='The filming guide could not load. Reload the page to try again.';console.error(error);}
+    try {const scoutResponse=await fetch('scouting.json?v=20261112-broll1');if(!scoutResponse.ok)throw new Error('Scouting guide unavailable');state.scoutGuide=await scoutResponse.json();state.scouts=state.scoutGuide.locations;initScouting();}catch(error){$('scout-cards').textContent='The filming guide could not load. Reload the page to try again.';console.error(error);}
     const planFiles=['shoot-plan.json?v=20261111-day3a','shoot-plan-day3.json?v=20261111-day3a'];
     const loadedPlans=await Promise.all(planFiles.map(async path=>{try{const response=await fetch(path);if(!response.ok)throw new Error(`Plan unavailable: ${path}`);return await response.json();}catch(error){console.error(error);return null;}}));
     state.plans=loadedPlans.filter(plan=>plan&&typeof plan.date==='string'&&Array.isArray(plan.stops)).sort((a,b)=>a.date.localeCompare(b.date));
@@ -422,7 +464,7 @@ async function start() {
     $('open-photo').addEventListener('click',openLightbox);$('close-lightbox').addEventListener('click',()=>$('lightbox').close());
     $('lightbox').addEventListener('click',event=>{if(event.target===$('lightbox'))$('lightbox').close();});
     $('map-tab').addEventListener('click',()=>setView('map'));$('gallery-tab').addEventListener('click',()=>setView('gallery'));
-    $('scout-tab').addEventListener('click',()=>showScout());$('scout-filter').addEventListener('change',renderScouting);
+    $('scout-tab').addEventListener('click',()=>showScout());$('scout-filter').addEventListener('change',renderScouting);$('scout-group').addEventListener('change',renderScouting);
     $('plan-tab').addEventListener('click',()=>showPlan());
     $('photo-scout').addEventListener('click',()=>showScout(state.scouts.find(place=>place.photoIds?.includes(state.current.id))?.id));
     $('share-photo').addEventListener('click',copyMemory);window.addEventListener('hashchange',selectHash);window.addEventListener('popstate',selectHash);

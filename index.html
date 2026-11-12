@@ -16,10 +16,10 @@
   <link rel="stylesheet" href="assets/vendor/leaflet.css">
   <link rel="stylesheet" href="assets/vendor/MarkerCluster.css">
   <link rel="stylesheet" href="assets/pix7-tokens.css">
-  <link rel="stylesheet" href="style.css?v=20261111-library2">
+  <link rel="stylesheet" href="style.css?v=20261112-broll1">
   <script defer src="assets/vendor/leaflet.js"></script>
   <script defer src="assets/vendor/leaflet.markercluster.js"></script>
-  <script defer src="app.js?v=20261111-library2"></script>
+  <script defer src="app.js?v=20261112-broll1"></script>
 </head>
 <body>
   <a class="skip-link" href="#archive">Skip to photographs</a>
@@ -57,11 +57,14 @@
         </div>
       </aside>
       <section id="gallery" class="gallery" aria-label="Photograph archive" hidden></section>
-      <section id="scout" class="scout" aria-labelledby="scout-title" hidden>
-        <div class="scout-intro"><div><p class="section-label">Small-crew documentary / 8–22 November 2026</p><h2 id="scout-title">Places to return to. Stories to look for.</h2><p>Photo-backed locations from the walk, plus a few next stops. Light and scene ideas are scouting suggestions; venue access still needs to be arranged.</p></div><a class="button" href="#scout" id="share-guide">Link to this guide ↗</a></div>
-        <div class="scout-toolbar"><label for="scout-filter">Show</label><select id="scout-filter"><option value="all">All filming locations</option><option value="photographed">Places photographed</option><option value="new">New places to scout</option></select><span id="scout-count" class="technical"></span></div>
+      <section id="scout" class="scout" aria-labelledby="scout-title" lang="hr" hidden>
+        <div class="scout-intro"><div><p class="section-label">Čile / mala dokumentarna ekipa / studeni 2026.</p><h2 id="scout-title">Santiago · B-roll za preostale dane</h2><p>Zbirni popis kadrova, lokacija i mogućih ruta. Biramo područje prema intervjuima, svjetlu i dostupnosti; ovo nije raspored za pojedini dan.</p><p id="scout-progress" class="technical" aria-live="polite"></p></div><a class="button" href="#scout" id="share-guide">Poveznica na vodič ↗</a></div>
+        <div class="scout-toolbar"><label for="scout-group">Područje</label><select id="scout-group"><option value="all">Svih šest područja</option></select><label for="scout-filter">Prikaži</label><select id="scout-filter"><option value="all">Sve lokacije</option><option value="photographed">Fotografirane lokacije</option><option value="new">Nove lokacije za izvid</option></select><span id="scout-count" class="technical" aria-live="polite"></span></div>
+        <p id="scout-group-note" class="scout-group-note"></p>
+        <details id="scout-routes" class="scout-section"><summary>Predložene rute · otvori u Google Maps</summary><div id="scout-routes-body" class="scout-route-grid"></div></details>
+        <details id="scout-general" class="scout-section"></details>
         <div id="scout-cards" class="scout-cards"></div>
-        <div class="scout-footnote"><p>Opening information checked 8 November 2026. Confirm with the venue before travelling; published visitor hours do not grant filming access. This is a scouting shortlist, not a booked shooting schedule.</p><p>For planned use of streets or pavements: <a href="https://www.munistgo.cl/via-publica/" target="_blank" rel="noopener">Santiago public-space office ↗</a> · <a href="https://transparencia.providencia.cl/Carpeta/VerTabla/23493" target="_blank" rel="noopener">Providencia filming / public-space process ↗</a></p></div>
+        <div class="scout-footnote"><p>B-roll popis dopunjen 12. studenoga 2026. Novi termini i pristup provjereni su u službenim izvorima navedenima uz lokacije; prije dolaska ponovno potvrditi. Posjetiteljsko radno vrijeme ne znači dopuštenje za snimanje. Svjetlo i redoslijed ruta su prijedlozi za izvid.</p><p>Za planirano korištenje ulica i nogostupa: <a href="https://www.munistgo.cl/via-publica/" target="_blank" rel="noopener">Santiago · javne površine ↗</a> · <a href="https://transparencia.providencia.cl/Carpeta/VerTabla/23493" target="_blank" rel="noopener">Providencia · postupak za snimanje ↗</a></p></div>
       </section>
       <section id="plan" class="shoot-plan" aria-labelledby="plan-title" hidden>
         <div id="plan-content"></div>

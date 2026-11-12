@@ -44,7 +44,20 @@ for reference in re.findall(r'(?:src|href)="([^"#]+)"', (root / 'index.html').re
 scouting = json.loads((root / 'scouting.json').read_text())
 assert scouting['window'] == {'start': '2026-11-08', 'end': '2026-11-22'}
 places = scouting['locations']
-assert len(places) == 13 and len({p['id'] for p in places}) == len(places)
+place_ids = {p['id'] for p in places}
+assert len(place_ids) == len(places)
+assert {'bocanariz', 'lastarria', 'bellavista', 'san-cristobal', 'plaza-de-armas', 'casa-colorada', 'divina-providencia', 'palacio-schacht', 'puente-purisima', 'la-merced', 'vega-central', 'persa-victor-manuel', 'yungay'} <= place_ids
+assert scouting['checkedAt'] == '2026-11-12'
+groups = scouting['groups']
+group_ids = {group['id'] for group in groups}
+assert len(groups) == len(group_ids) == 6
+assert group_ids == {'providencia', 'east', 'centre', 'north', 'west', 'southeast'}
+assert all(group['title'].strip() and group['description'].strip() for group in groups)
+def verify_shots(shots):
+    assert shots and len({shot['id'] for shot in shots}) == len(shots)
+    assert all(re.fullmatch(r'[a-z0-9-]+', shot['id']) and shot['text'].strip() for shot in shots)
+
+verify_shots(scouting['generalShots'])
 photo_ids = {p['id'] for p in photos}
 for place in places:
     assert re.fullmatch(r'[a-z0-9-]+', place['id'])
@@ -56,8 +69,23 @@ for place in places:
     for field in ('name', 'area', 'kind', 'address', 'idea', 'light', 'sound', 'hours', 'access'):
         assert isinstance(place[field], str) and place[field].strip(), (place['id'], field)
     assert place['sources'] and all(s['url'].startswith('https://') and s['title'] for s in place['sources'])
-assert sum(bool(p['photoIds']) for p in places) == 10
+    assert place['group'] in group_ids
+    assert not place.get('privateLocation'), 'Private homes are excluded from the public filming guide'
+    assert not ({'lat', 'lng'} & set(place)), 'New guide candidates use verified names, not invented GPS pins'
+    verify_shots(place['shots'])
+assert sum(bool(p['photoIds']) for p in places) >= 10
 assert {'P7897', 'P7900'} <= set(next(p for p in places if p['id'] == 'bocanariz')['photoIds'])
+routes = scouting['routes']
+assert len({route['id'] for route in routes}) == len(routes)
+assert {route['group'] for route in routes} == group_ids
+for route in routes:
+    assert re.fullmatch(r'[a-z0-9-]+', route['id']) and route['group'] in group_ids
+    assert route['mode'] in {'walking', 'driving'}
+    assert route['title'].strip() and route['note'].strip()
+    assert 2 <= len(route['placeIds']) <= 5  # Google Maps mobile web: at most three waypoints.
+    assert len(set(route['placeIds'])) == len(route['placeIds'])
+    assert set(route['placeIds']) <= place_ids
+    assert all(next(p for p in places if p['id'] == id)['group'] == route['group'] for id in route['placeIds'])
 plan = json.loads((root / 'shoot-plan.json').read_text())
 assert plan['date'] == '2026-11-10'
 stops = plan['stops']
@@ -121,9 +149,10 @@ for leg in day3['legs']:
     assert len(leg.get('waypoints', [])) <= 3
 assert sum(bool(leg.get('privateLocation')) for leg in day3['legs']) == 2
 assert all(s['title'] and s['url'].startswith('https://') for s in day3['sources'])
-public_text = '\n'.join((root / name).read_text() for name in ('shoot-plan.json', 'shoot-plan-day3.json', 'README.md', 'AGENTS.md', 'index.html', 'app.js'))
+public_text = '\n'.join((root / name).read_text() for name in ('shoot-plan.json', 'shoot-plan-day3.json', 'scouting.json', 'README.md', 'AGENTS.md', 'index.html', 'app.js'))
 assert '/Users/' not in public_text
 assert not re.search(r'\b(?:Apt|Apartment|Depto)\.?\s*\d', public_text, re.I), 'Private apartment details must not be published'
 assert not list(root.glob('*.pdf')), 'Production source PDFs must remain outside public site'
 print(f'PASS: {len(photos)} photos ({len(photos)-len(additions)} original selections + {len(additions)} additions; {mapped_count} mapped), exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
 print(f'PASS: Day 3 has {len(day3["stops"])} entries, {len(day3_shots)} tasks, 2 public pins, and private-address/route checks.')
+print(f'PASS: Master B-roll guide has {len(groups)} zones, {len(routes)} public route links and {sum(len(p["shots"]) for p in places) + len(scouting["generalShots"])} stable checklist tasks.')

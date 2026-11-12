@@ -1,6 +1,214 @@
 {
-  "checkedAt": "2026-11-08",
-  "window": {"start": "2026-11-08", "end": "2026-11-22"},
+  "checkedAt": "2026-11-12",
+  "window": {
+    "start": "2026-11-08",
+    "end": "2026-11-22"
+  },
+  "groups": [
+    {
+      "id": "providencia",
+      "title": "Providencia & San Cristóbal",
+      "description": "Zeleni rub centra, Mapocho, moderne četvrti i vidikovci prema Andama."
+    },
+    {
+      "id": "east",
+      "title": "Istočni rub centra",
+      "description": "Baquedano, Bellavista, Lastarria i ulice oko Parque Forestal."
+    },
+    {
+      "id": "centre",
+      "title": "Povijesni centar",
+      "description": "La Moneda, Plaza de Armas, crkve, gradske ulice i mjesta sjećanja."
+    },
+    {
+      "id": "north",
+      "title": "Sjeverno preko Mapocha",
+      "description": "Tržnice i sjećanje na groblju u Recoleti."
+    },
+    {
+      "id": "west",
+      "title": "Zapadni Santiago",
+      "description": "Quinta Normal, Estación Central i mjesta povezana s poviješću diktature."
+    },
+    {
+      "id": "southeast",
+      "title": "Jug i jugoistok",
+      "description": "Ñuñoa i Peñalolén: stadionsko sjećanje, kvartovski život i podnožje Anda."
+    }
+  ],
+  "routes": [
+    {
+      "id": "providencia-loop",
+      "group": "providencia",
+      "title": "Providencia: Ande, stakleni grad i rijeka",
+      "placeIds": [
+        "san-cristobal",
+        "costanera-sanhattan",
+        "palacio-schacht",
+        "divina-providencia",
+        "rio-mapocho-balmaceda"
+      ],
+      "mode": "walking",
+      "note": "Za Ande birati vedro jutro. Navigacija vodi do ulaza Pedro de Valdivia, ne do vidikovca: za uspon i povratak ostaviti zaseban blok. Žičara kreće tek u 10:00; raniji uspon dogovoriti s Parquemetom. Zatim toranj i ulice prema parku."
+    },
+    {
+      "id": "east-culture",
+      "group": "east",
+      "title": "Istočni rub: ulica i kultura",
+      "placeIds": [
+        "bellavista",
+        "baquedano-dignidad",
+        "cerro-santa-lucia",
+        "lastarria",
+        "parque-forestal-bellas-artes"
+      ],
+      "mode": "walking",
+      "note": "Bellavista i La Chascona prijepodne; Lastarria i Forestal kasnije za kafiće, parove i ulični život. La Chascona je zasebna kartica. Kod Baquedana provjeriti radove i preostale murale."
+    },
+    {
+      "id": "centre-core",
+      "group": "centre",
+      "title": "Povijesni centar",
+      "placeIds": [
+        "la-moneda",
+        "mujeres-memoria",
+        "londres-38",
+        "plaza-de-armas",
+        "mercado-central"
+      ],
+      "mode": "walking",
+      "note": "Smjena straže, ako se održava, određuje početak u 10:00. Katedrala je uz Plaza de Armas. Ako je cilj življa tržnica, Mercado snimiti zasebno rano ujutro. Londres 38 uklopiti prema potvrđenom posjetu."
+    },
+    {
+      "id": "north-markets-memory",
+      "group": "north",
+      "title": "Sjeverno od Mapocha",
+      "placeIds": [
+        "vega-central",
+        "cementerio-general"
+      ],
+      "mode": "driving",
+      "note": "Predloženi slijed s vozilom između područja. La Vega traži prethodni dogovor za reportažu/snimanje; raspored i pristup groblju provjeriti prije odlaska."
+    },
+    {
+      "id": "west-memory",
+      "group": "west",
+      "title": "Zapad: grad i sjećanje",
+      "placeIds": [
+        "museo-memoria",
+        "estadio-victor-jara",
+        "estacion-central"
+      ],
+      "mode": "driving",
+      "note": "Kombi između područja; kratke dionice snimati pješice. Barrio Yungay može se spojiti s muzejem. Posjete muzeju i stadionu dogovoriti prije izbora dana; vrijeme vožnje ovisi o prometu."
+    },
+    {
+      "id": "southeast-memory",
+      "group": "southeast",
+      "title": "Ñuñoa i Peñalolén",
+      "placeIds": [
+        "jose-domingo-canas",
+        "estadio-nacional",
+        "villa-grimaldi"
+      ],
+      "mode": "driving",
+      "note": "Tri odvojena mjesta sjećanja; redoslijed prilagoditi dogovorenim terminima. Estadio Nacional objavljuje vođenje subotom u 11:00. José Domingo Cañas ne dopušta audio/video tijekom redovnog obilaska; zatražiti zaseban termin snimanja."
+    }
+  ],
+  "generalShots": [
+    {
+      "id": "metro-rush",
+      "text": "Metro u špici: dolazak vlaka, peron, ulazi i izlazi putnika. Za snimanje unutar sustava unaprijed dogovoriti Metro; vanjski ulazi su alternativa."
+    },
+    {
+      "id": "street-performers",
+      "text": "Žongleri dok je crveno, ulični izvođači i prodavači u autobusima; široki kadar raskrižja, izvedba i reakcije."
+    },
+    {
+      "id": "street-food",
+      "text": "Sopaipillas, mote con huesillo, completo i empanade: priprema, posluživanje, kolica i kupnja."
+    },
+    {
+      "id": "daily-commerce",
+      "text": "Mjenjačnice, banka ili AFP: natpis, red i ulaz; bez čitljivih osobnih podataka klijenata."
+    },
+    {
+      "id": "pension-everyday",
+      "text": "Stariji ljudi na klupama, šahisti i umirovljenici koji rade na štandovima; uz razgovor potvrditi njihovu priču."
+    },
+    {
+      "id": "immigration-life",
+      "text": "Arepere, venezuelanske trgovine, dostavljači na biciklima i pakiranje pošiljaka za obitelj. Nacionalnost potvrditi razgovorom."
+    },
+    {
+      "id": "market-details",
+      "text": "Vaganje, računanje sitnog novca, cjenkanje, voće i povrće; široki kadar, ruke i razmjena pogleda."
+    },
+    {
+      "id": "goran-moving",
+      "text": "Goran u vožnji: pogled kroz prozor, profil, ruke i grad iz vozila; kamera pričvršćena ili njome upravlja drugi član ekipe."
+    },
+    {
+      "id": "goran-cafe",
+      "text": "Goran sjedi u kafiću i gleda ljude: kava, pogled, prolaznici i širi kadar prostora."
+    },
+    {
+      "id": "street-dogs",
+      "text": "Psi lutalice u odnosu na prolaznike, promet i gradski prostor."
+    },
+    {
+      "id": "jacaranda-season",
+      "text": "Jacarande: cvjetovi ako su u cvatu, sjene i prolaznici pod krošnjama."
+    },
+    {
+      "id": "rural-resources",
+      "text": "Zaseban izlet: poljoprivreda, nafta, solarna energija, vjetrenjače, desalinizacija, podatkovni centri i nestašica vode. Konkretne lokacije tek dogovoriti s produkcijom."
+    },
+    {
+      "id": "city-transport",
+      "text": "Automobili, autobusi, kamioni, kineske marke, parkirališta, autoceste i žute autobusne trake; GoPro skretanja iz sigurno postavljene kamere."
+    },
+    {
+      "id": "public-services",
+      "text": "Benzinske postaje, banke, javna poduzeća i električni kabeli: vanjski kadrovi, natpisi i njihov odnos prema ulici."
+    },
+    {
+      "id": "cafe-con-piernas",
+      "text": "Café con piernas: pult, stajaća kava, posluživanje i odnos prema ulici; snimanje dogovoriti s lokalom i osobljem."
+    },
+    {
+      "id": "fruit-cherries",
+      "text": "TREŠNJE: gomila plodova, cijena, biranje, vaganje i vrećica u rukama kupca."
+    },
+    {
+      "id": "working-class-feria",
+      "text": "Feria libre u radničkoj komuni: lokalna produkcija potvrđuje sajam i dan. Providencijske ferije su dodatne opcije za voće i trgovinu."
+    },
+    {
+      "id": "memory-sites",
+      "text": "Mjesta diktature: povezati vanjski prostor, tragove prošlosti i svjedočanstvo. Interijere i razgovore dogovoriti s ustanovama."
+    },
+    {
+      "id": "goran-standup",
+      "text": "GORAN STAND-UP: grad ili Ande iza njega; izvidjeti tih kut i smjer svjetla."
+    },
+    {
+      "id": "newspapers-kiosks",
+      "text": "Novine i kiosci: naslovnice, ruke koje listaju, prodaja i gradski kontekst za temu slobode tiska."
+    },
+    {
+      "id": "international-brands",
+      "text": "Strani brendovi na ulici: Wendy’s, Starbucks, McDonald’s, Krispy Kreme — snimiti ono na što naiđemo."
+    },
+    {
+      "id": "goran-book",
+      "text": "Goran s knjigom: naslovnica, listanje, pogled i širi kadar."
+    },
+    {
+      "id": "jorge-exterior",
+      "text": "Eksterijer zgrade Jorgea Clara Mimice i čisti kadrovi susjedne ulice; točnu adresu potvrditi privatno s produkcijom."
+    }
+  ],
   "locations": [
     {
       "id": "bocanariz",
@@ -9,15 +217,38 @@
       "kind": "Restaurant / wine",
       "address": "José Victorino Lastarria 276, Santiago",
       "mapQuery": "Bocanáriz, José Victorino Lastarria 276, Santiago, Chile",
-      "photoIds": ["P7897", "P7900"],
+      "photoIds": [
+        "P7897",
+        "P7900"
+      ],
       "heroId": "P7897",
-      "idea": "Return to the restaurant from the walk: wine being poured, hands preparing a table, food details, and a conversation about the people behind Chilean wine.",
-      "light": "Scout a window table before the busy service; arrange a quiet slot with the manager.",
-      "sound": "Glasses, kitchen activity and room conversation. Check background music before recording an interview.",
-      "hours": "Published hours: Mon–Fri 12:30–23:00; Sat 13:00–00:00; Sun 17:30–22:30.",
-      "access": "Ask the restaurant to arrange interior filming, staff participation and a suitable table. Access is not booked.",
-      "sources": [{"title": "Venue / hours", "url": "https://www.tienda.bocanariz.cl/"}, {"title": "Contact", "url": "https://www.tienda.bocanariz.cl/pages/contacto"}],
-      "contact": "contacto@bocanariz.cl · +56 2 2638 9893"
+      "idea": "Povratak u restoran iz šetnje: točenje vina, priprema stola i razgovor o ljudima iza čileanskog vina.",
+      "light": "Prije gužve provjeriti može li se dogovoriti miran termin i stol uz prozor.",
+      "sound": "Čaše, kuhinja i razgovor u prostoru; prije intervjua provjeriti pozadinsku glazbu.",
+      "hours": "Objavljeno radno vrijeme: pon–pet 12:30–23:00; sub 13:00–00:00; ned 17:30–22:30.",
+      "access": "Unutarnje snimanje, osoblje i prikladan stol dogovoriti s restoranom. Termin nije rezerviran.",
+      "sources": [
+        {
+          "title": "Venue / hours",
+          "url": "https://www.tienda.bocanariz.cl/"
+        },
+        {
+          "title": "Contact",
+          "url": "https://www.tienda.bocanariz.cl/pages/contacto"
+        }
+      ],
+      "contact": "contacto@bocanariz.cl · +56 2 2638 9893",
+      "group": "east",
+      "shots": [
+        {
+          "id": "establishing",
+          "text": "Vanjski kadar i ulaz restorana; zatim, uz dopuštenje, vino i ruke za stolom."
+        },
+        {
+          "id": "people",
+          "text": "Razgovor s osobljem ili vinarom samo uz prethodni dogovor; snimiti i čisti zvuk prostora."
+        }
+      ]
     },
     {
       "id": "lastarria",
@@ -25,15 +256,37 @@
       "area": "Lastarria / Bellas Artes",
       "kind": "Street life / food",
       "address": "José Victorino Lastarria, around Rosal and Merced, Santiago",
-      "mapQuery": "José Victorino Lastarria 276, Santiago, Chile",
-      "photoIds": ["A29", "A44", "A31", "A32", "P7904"],
+      "mapQuery": "Barrio Lastarria, José Victorino Lastarria, Santiago, Chile",
+      "photoIds": [
+        "A29",
+        "A44",
+        "A31",
+        "A32",
+        "P7904"
+      ],
       "heroId": "P7904",
-      "idea": "A compact walking scene: vendors, restaurant tables, painted façades, flowering trees and people moving between them. Pair it with the Bocanáriz visit.",
-      "light": "Compare morning shade with late-afternoon façades; the existing photographs give a useful afternoon reference.",
-      "sound": "Footsteps, conversation and passing traffic. Keep interviews away from loud terraces.",
-      "hours": "Neighborhood streets; each restaurant, shop and stall keeps its own schedule.",
-      "access": "Coordinate business interiors with each owner. Check municipal requirements if a setup occupies the pavement.",
-      "sources": [{"title": "Santiago Turismo", "url": "https://www.santiagoturismo.cl/es/barrio-lastarria-bellas-artes/"}]
+      "idea": "Kratka šetnja među prodavačima, terasama, fasadama i ljudima. Upariti s posjetom Bocanárizu.",
+      "light": "Usporediti jutarnju sjenu i kasnopopodnevno svjetlo na fasadama.",
+      "sound": "Koraci, razgovor i promet; intervjue odvojiti od glasnih terasa.",
+      "hours": "Ulice su javne; restorani, trgovine i štandovi imaju zasebna radna vremena.",
+      "access": "Interijere dogovoriti s vlasnicima; za opremu na pločniku provjeriti općinske uvjete.",
+      "sources": [
+        {
+          "title": "Santiago Turismo",
+          "url": "https://www.santiagoturismo.cl/es/barrio-lastarria-bellas-artes/"
+        }
+      ],
+      "group": "east",
+      "shots": [
+        {
+          "id": "street",
+          "text": "Široki kadar ulice s terasama i prolaznicima, pa detalji fasada, cvijeća i hrane."
+        },
+        {
+          "id": "human-moment",
+          "text": "Pratiti dobrovoljnog sudionika kratkom šetnjom; razgovor snimiti u mirnijem kutu."
+        }
+      ]
     },
     {
       "id": "bellavista",
@@ -42,31 +295,102 @@
       "kind": "Street art / people",
       "address": "Pío Nono, Constitución and the streets around Bellavista, Santiago",
       "mapQuery": "Pío Nono and Constitución, Providencia, Santiago, Chile",
-      "photoIds": ["A07", "A09", "A23", "A24", "A25", "A26", "A27", "A28", "P7890", "P7892", "P7893"],
+      "photoIds": [
+        "A07",
+        "A09",
+        "A23",
+        "A24",
+        "A25",
+        "A26",
+        "A27",
+        "A28",
+        "P7890",
+        "P7892",
+        "P7893"
+      ],
       "heroId": "P7893",
-      "idea": "Follow a person through murals, mosaic details and colorful corners. Let the neighborhood's ordinary activity connect the art to the people who use these streets.",
-      "light": "Scout in daylight, then pick one short block with consistent shade for a walking conversation.",
-      "sound": "Compare quieter side streets with the music and traffic on Pío Nono.",
-      "hours": "Public neighborhood streets; galleries, patios and restaurants have separate hours.",
-      "access": "Keep footpaths open. Arrange access to patios and interiors with owners; check the relevant municipality for any occupied street setup.",
-      "sources": [{"title": "Providencia tourism", "url": "https://providencia.cl/provi/explora/turismo/conocenos/barrio-bellavista"}]
+      "idea": "Pratiti dobrovoljnog sudionika uz murale, mozaike i svakodnevne kutke kvarta.",
+      "light": "Snimati danju; odabrati mirniju ulicu za šetnju i razgovor.",
+      "sound": "Usporediti tiše sporedne ulice s glazbom i prometom na Pío Nono.",
+      "hours": "Javne ulice; galerije, dvorišta i restorani imaju zasebna radna vremena.",
+      "access": "Ostaviti nogostupe prohodnima. Dvorišta i interijere dogovoriti s vlasnicima.",
+      "sources": [
+        {
+          "title": "Providencia tourism",
+          "url": "https://providencia.cl/provi/explora/turismo/conocenos/barrio-bellavista"
+        }
+      ],
+      "group": "east",
+      "shots": [
+        {
+          "id": "murals",
+          "text": "Murali i mozaici u kontekstu ulice; detalje umjetničkog rada snimati bez ometanja prolaza."
+        },
+        {
+          "id": "daily-life",
+          "text": "Kratki ljudski trenutci na Pío Nono i sporednim ulicama; pitati za portrete i razgovore."
+        }
+      ]
     },
     {
       "id": "san-cristobal",
       "name": "Cerro San Cristóbal",
       "area": "Parquemet",
       "kind": "Viewpoints / human moments",
-      "address": "Pío Nono access, Pío Nono 450, Recoleta",
-      "mapQuery": "Funicular Santiago, Pío Nono 450, Recoleta, Chile",
-      "photoIds": ["A49", "A50", "A13", "A14", "A51", "A16", "A17", "A18", "A19", "A20"],
+      "address": "Ulaz Pedro de Valdivia Norte, kod Avenida El Cerro, Providencia",
+      "mapQuery": "Acceso Pedro de Valdivia Norte Parque Metropolitano, Santiago, Chile",
+      "photoIds": [
+        "A49",
+        "A50",
+        "A13",
+        "A14",
+        "A51",
+        "A16",
+        "A17",
+        "A18",
+        "A19",
+        "A20"
+      ],
       "heroId": "A51",
-      "idea": "Visitors making their own memories against the Andes: photographs, small conversations, the climb and the pause at the top. Use the wide overlook as the scene's anchor.",
-      "light": "Choose a clear morning for mountain visibility, then scout shaded paths for faces. Weather and haze will decide the best day.",
-      "sound": "Wind protection matters at overlooks. Walk the route with a small kit before choosing an interview position.",
-      "hours": "Park listing: daily 06:00–19:00. Funicular: Mon 13:00–19:45; Tue–Sun 10:00–19:45. Confirm access and return times with each operator.",
-      "access": "Confirm filming arrangements with Parquemet. Platforms and filming aboard the funicular need separate operator coordination.",
-      "sources": [{"title": "Park visitor information", "url": "https://www.chileatiende.gob.cl/fichas/60851/1/pdf"}, {"title": "Funicular", "url": "https://funicularsantiago.cl/"}, {"title": "Park map", "url": "https://mapas.parquemet.cl/doc/MapaParque.pdf"}],
-      "contact": "Parquemet: info@parquemet.cl · +56 2 2730 1404"
+      "idea": "Posjetitelji i vlastite uspomene pred Andama: fotografiranje, uspon i predah na vrhu.",
+      "light": "Za vidljive planine birati vedro jutro; vrijeme i smog određuju dan.",
+      "sound": "Vidikovci su vjetroviti; prije razgovora izvidjeti mirnu poziciju.",
+      "hours": "Žičara Pedro de Valdivia: uto–ned 10:00–19:45. Rani ulazak u park i sezonsko zatvaranje potvrditi s Parquemetom prije polaska.",
+      "access": "Za produkciju i pristup prije otvaranja žičare dogovoriti Parquemet. Pío Nono 450 je drugi, bellavistski ulaz s uspinjačom.",
+      "sources": [
+        {
+          "title": "Park visitor information",
+          "url": "https://www.chileatiende.gob.cl/fichas/60851/1/pdf"
+        },
+        {
+          "title": "Funicular",
+          "url": "https://funicularsantiago.cl/"
+        },
+        {
+          "title": "Park map",
+          "url": "https://mapas.parquemet.cl/doc/MapaParque.pdf"
+        },
+        {
+          "title": "Žičara Pedro de Valdivia",
+          "url": "https://telefericosantiago.cl/linea-pedro-de-valdivia/"
+        }
+      ],
+      "contact": "Parquemet: info@parquemet.cl · +56 2 2730 1404",
+      "group": "providencia",
+      "shots": [
+        {
+          "id": "andes",
+          "text": "Jutarnji široki kadar Anda i grada kad je vidljivost dobra."
+        },
+        {
+          "id": "viewpoint-people",
+          "text": "Posjetitelji fotografiraju pogled; snimati samo uz pristanak za izdvojene portrete."
+        },
+        {
+          "id": "ascent",
+          "text": "Ulaz, uspon i pauza na vidikovcu; vožnju uspinjačom snimati samo uz odobrenje operatora."
+        }
+      ]
     },
     {
       "id": "plaza-de-armas",
@@ -75,14 +399,48 @@
       "kind": "Street scenes / portraits",
       "address": "Plaza de Armas, Santiago",
       "mapQuery": "Plaza de Armas, Santiago, Chile",
-      "photoIds": ["A33", "A34", "A35", "A36", "A37", "A38", "A39", "A47", "A48"],
+      "photoIds": [
+        "A33",
+        "A34",
+        "A35",
+        "A36",
+        "A37",
+        "A38",
+        "A39",
+        "A47",
+        "A48"
+      ],
       "heroId": "A48",
-      "idea": "Build a scene around one painter, performer or conversation, then open out to the square and its architecture. The photographed evening street gives a natural closing image.",
-      "light": "Compare shaded faces with late-afternoon architectural light; scout the same corner at the intended filming time.",
-      "sound": "Layered crowds and performers. Find a quieter edge for speech and record separate square ambience.",
-      "hours": "Outdoor square. The tourism kiosk lists Mon–Fri 09:30–17:00; weekends 10:00–16:00. Those are kiosk hours, not plaza hours.",
-      "access": "Arrange participation directly with featured people. Check with Santiago municipality before reserving space or setting up stands and lights.",
-      "sources": [{"title": "Plaza information", "url": "https://www.santiagoturismo.cl/es/plaza-de-armas/"}, {"title": "Tourism office", "url": "https://www.santiagoturismo.cl/es/oficina-de-informacion-turistica/"}]
+      "idea": "Izgraditi scenu oko slikara, izvođača ili razgovora pa otvoriti kadar prema trgu.",
+      "light": "Usporediti sjenovita lica s kasnopopodnevnim svjetlom na arhitekturi.",
+      "sound": "Mnoštvo i izvođači; pronaći mirniji rub za govor i snimiti zaseban ambijent.",
+      "hours": "Trg je otvoren. Objavljeno radno vrijeme turističkog kioska nije radno vrijeme trga.",
+      "access": "Sudjelovanje dogovoriti izravno. Za zauzimanje prostora ili stalke provjeriti pravila grada.",
+      "sources": [
+        {
+          "title": "Plaza information",
+          "url": "https://www.santiagoturismo.cl/es/plaza-de-armas/"
+        },
+        {
+          "title": "Tourism office",
+          "url": "https://www.santiagoturismo.cl/es/oficina-de-informacion-turistica/"
+        }
+      ],
+      "group": "centre",
+      "shots": [
+        {
+          "id": "square-wide",
+          "text": "Arhitektura i ritam trga u širokom kadru."
+        },
+        {
+          "id": "chess",
+          "text": "Šahisti i razgovori uz izričit pristanak sudionika."
+        },
+        {
+          "id": "everyday",
+          "text": "Stariji ljudi, propovjednici i uličari samo uz pristanak za prepoznatljive krupne kadrove."
+        }
+      ]
     },
     {
       "id": "casa-colorada",
@@ -91,7 +449,9 @@
       "kind": "Heritage / possible interior",
       "address": "Merced 860, Santiago",
       "mapQuery": "Museo de Santiago Casa Colorada, Merced 860, Santiago, Chile",
-      "photoIds": ["A43"],
+      "photoIds": [
+        "A43"
+      ],
       "heroId": "A43",
       "idea": "The doorway and passing city outside; a quieter history or craft conversation inside if the museum agrees. Combine it with nearby Plaza de Armas.",
       "light": "Scout the doorway for the change between bright street and interior shade.",
@@ -99,8 +459,24 @@
       "hours": "Published hours: Tue–Fri 10:00–18:00; Sat 10:00–16:00. No Sunday or Monday opening listed.",
       "access": "Interior filming requires advance confirmation from the museum. A visitor ticket or opening time is not a production booking.",
       "dates": "Within this window: consider 10–14 or 17–21 November, subject to museum confirmation.",
-      "sources": [{"title": "Museum / municipality", "url": "https://www.munistgo.cl/casacolorada/"}],
-      "contact": "museocasacolorada@munistgo.cl"
+      "sources": [
+        {
+          "title": "Museum / municipality",
+          "url": "https://www.munistgo.cl/casacolorada/"
+        }
+      ],
+      "contact": "museocasacolorada@munistgo.cl",
+      "group": "centre",
+      "shots": [
+        {
+          "id": "facade",
+          "text": "Fasada i gradski prolaz uz ulaz."
+        },
+        {
+          "id": "heritage",
+          "text": "Muzejski detalj ili razgovor o povijesti samo ako muzej odobri pristup i snimanje."
+        }
+      ]
     },
     {
       "id": "divina-providencia",
@@ -109,14 +485,34 @@
       "kind": "Architecture / street context",
       "address": "Nueva Providencia 1619, Providencia",
       "mapQuery": "Iglesia de la Divina Providencia, Nueva Providencia 1619, Chile",
-      "photoIds": ["A45", "A02", "A46"],
+      "photoIds": [
+        "A45",
+        "A02",
+        "A46"
+      ],
       "heroId": "A45",
       "idea": "The palm-framed dome, contemporary city towers and people passing beneath them. A short architectural passage between street-level scenes.",
       "light": "Return to the original camera positions to compare palm shadows and the dome's contrast against the sky.",
       "sound": "A busy avenue: treat this primarily as visual coverage unless a quieter position works on the scout.",
       "hours": "The official tourism page does not list visitor hours. Confirm any interior visit with the parish.",
       "access": "Arrange church/property filming directly with the parish and avoid services. Check municipal requirements for any pavement occupation.",
-      "sources": [{"title": "Providencia tourism", "url": "https://providencia.cl/provi/explora/turismo/conocenos/iglesia-y-casa-parroquial-de-la-divina-providencia"}]
+      "sources": [
+        {
+          "title": "Providencia tourism",
+          "url": "https://providencia.cl/provi/explora/turismo/conocenos/iglesia-y-casa-parroquial-de-la-divina-providencia"
+        }
+      ],
+      "group": "providencia",
+      "shots": [
+        {
+          "id": "dome",
+          "text": "Palme, kupola i suvremeni tornjevi u istom kompozicijskom slijedu."
+        },
+        {
+          "id": "street",
+          "text": "Promet i pješaci na aveniji; interijer samo uz dopuštenje župe."
+        }
+      ]
     },
     {
       "id": "palacio-schacht",
@@ -125,14 +521,32 @@
       "kind": "Heritage / architecture",
       "address": "Nueva Providencia 1995, Providencia",
       "mapQuery": "Palacio Schacht, Nueva Providencia 1995, Providencia, Chile",
-      "photoIds": ["P7584"],
+      "photoIds": [
+        "P7584"
+      ],
       "heroId": "P7584",
       "idea": "White arches, balustrades and the glass city behind them. A useful contrast between Santiago's older buildings and contemporary scale.",
       "light": "The original morning photograph is a starting reference; check the arch and façade shadows on the scout.",
       "sound": "Avenue noise outside. Ask whether a quieter courtyard or room is available before planning dialogue.",
       "hours": "Now used by Fundación Cultural de Providencia; confirm current public access and activities directly.",
       "access": "Exterior views are photographed. Courtyard and interior filming are unconfirmed and need the foundation's agreement.",
-      "sources": [{"title": "Cultural foundation / heritage", "url": "https://providencia.cl/provi/explora/turismo/conocenos/fundacion-cultural-providencia"}]
+      "sources": [
+        {
+          "title": "Cultural foundation / heritage",
+          "url": "https://providencia.cl/provi/explora/turismo/conocenos/fundacion-cultural-providencia"
+        }
+      ],
+      "group": "providencia",
+      "shots": [
+        {
+          "id": "contrast",
+          "text": "Arhitektonski detalji palače u kontrastu sa staklenim zgradama."
+        },
+        {
+          "id": "public-life",
+          "text": "Prolaznici i gradski ritam izvana; dvorište ili interijer samo uz dogovor."
+        }
+      ]
     },
     {
       "id": "puente-purisima",
@@ -141,14 +555,32 @@
       "kind": "City geometry / movement",
       "address": "Puente Purísima, between Santa María and Cardenal José María Caro, Santiago",
       "mapQuery": "Puente Purísima, Santiago, Chile",
-      "photoIds": ["P7894"],
+      "photoIds": [
+        "P7894"
+      ],
       "heroId": "P7894",
       "idea": "Steel geometry framing the river, city and distant mountains. A brief walking connection from Bellavista toward Lastarria.",
       "light": "Scout side light on the steelwork; mountain visibility depends on the day's haze.",
       "sound": "Expect wind and traffic. Use it for movement and atmosphere rather than a stationary interview.",
       "hours": "Street crossing; check the actual pedestrian access and any works on the day.",
       "access": "Keep the crossing clear. Confirm any fixed setup with the responsible municipality; no controlled access is arranged.",
-      "sources": [{"title": "Official river-bridge heritage record", "url": "https://www.monumentos.gob.cl/sites/default/files/articles-55873_documento_01.pdf"}]
+      "sources": [
+        {
+          "title": "Official river-bridge heritage record",
+          "url": "https://www.monumentos.gob.cl/sites/default/files/articles-55873_documento_01.pdf"
+        }
+      ],
+      "group": "east",
+      "shots": [
+        {
+          "id": "bridge",
+          "text": "Linije mosta vode pogled preko rijeke prema gradu i planinama."
+        },
+        {
+          "id": "river",
+          "text": "Mapocho, obala i ljudi u prolazu; zaštititi zvuk od vjetra i prometa."
+        }
+      ]
     },
     {
       "id": "la-merced",
@@ -157,15 +589,33 @@
       "kind": "Architecture / local life",
       "address": "Mac Iver 341, corner of Merced, Santiago",
       "mapQuery": "Basílica de la Merced, Mac Iver 341, Santiago, Chile",
-      "photoIds": ["P7919"],
+      "photoIds": [
+        "P7919"
+      ],
       "heroId": "P7919",
       "idea": "The red-and-yellow façade, carved details and people passing the entrance. Pair a brief exterior scene with the nearby central streets.",
       "light": "Use the late-afternoon photograph as a reference, then check façade light at the planned call time.",
       "sound": "Traffic at the corner; avoid mixing an interview with services or entrance congestion.",
       "hours": "The tourism page lists worship times rather than visitor hours. Confirm a suitable filming or visiting slot directly.",
       "access": "Ask the church about interiors and any participants; keep worship separate from the production plan.",
-      "sources": [{"title": "Santiago Turismo / church", "url": "https://www.santiagoturismo.cl/es/basilica-de-la-merced/"}],
-      "contact": "+56 2 2633 0691"
+      "sources": [
+        {
+          "title": "Santiago Turismo / church",
+          "url": "https://www.santiagoturismo.cl/es/basilica-de-la-merced/"
+        }
+      ],
+      "contact": "+56 2 2633 0691",
+      "group": "centre",
+      "shots": [
+        {
+          "id": "facade",
+          "text": "Crveno-žuta fasada i detalji crkve u odnosu na prometni ugao."
+        },
+        {
+          "id": "church",
+          "text": "Provjeriti termin posjeta s crkvom; snimanje za vrijeme mise izostaviti bez izričitog pristanka."
+        }
+      ]
     },
     {
       "id": "vega-central",
@@ -180,8 +630,28 @@
       "sound": "Voices, trolleys and deliveries. Keep the crew compact and choose speech positions out of the trading flow.",
       "hours": "Published hours: Mon–Sat 07:00–17:00; Sun/holidays 07:00–16:00, except mandatory closure holidays.",
       "access": "The official site asks filming/reportage crews to coordinate through Contact → Grabación o entrevista. Confirm accessible sectors with administration during reconstruction.",
-      "sources": [{"title": "Market / hours / filming contact", "url": "https://www.vegacentral.cl/"}],
-      "contact": "+56 2 2737 6161"
+      "sources": [
+        {
+          "title": "Market / hours / filming contact",
+          "url": "https://www.vegacentral.cl/"
+        }
+      ],
+      "contact": "+56 2 2737 6161",
+      "group": "north",
+      "shots": [
+        {
+          "id": "market-wide",
+          "text": "Jutarnji široki kadar dolaska robe i ritma prolaza."
+        },
+        {
+          "id": "trade-detail",
+          "text": "Vaga, voće, trešnje, sitan novac i cjenkanje uz dopuštenje trgovca."
+        },
+        {
+          "id": "vendor-story",
+          "text": "Pratiti jednog trgovca kroz radni dan samo uz prethodni dogovor i pristanak."
+        }
+      ]
     },
     {
       "id": "persa-victor-manuel",
@@ -197,8 +667,28 @@
       "hours": "Operator's published hours: Saturdays, Sundays and holidays 10:00–18:00.",
       "access": "Coordinate filming with the operator and featured traders; workshops and private spaces need their own agreement.",
       "dates": "Weekend options in this window: 8, 14–15 and 21–22 November.",
-      "sources": [{"title": "Operator / hours / contact", "url": "https://www.persavictormanuel.cl/contacts/"}, {"title": "Santiago Turismo", "url": "https://www.santiagoturismo.cl/es/persa-victor-manuel/"}],
-      "contact": "contacto@persavictormanuel.cl"
+      "sources": [
+        {
+          "title": "Operator / hours / contact",
+          "url": "https://www.persavictormanuel.cl/contacts/"
+        },
+        {
+          "title": "Santiago Turismo",
+          "url": "https://www.santiagoturismo.cl/es/persa-victor-manuel/"
+        }
+      ],
+      "contact": "contacto@persavictormanuel.cl",
+      "group": "southeast",
+      "shots": [
+        {
+          "id": "market",
+          "text": "Predmeti, radionice i prolazi na vikend-sajmu."
+        },
+        {
+          "id": "trader",
+          "text": "Razgovor s trgovcem ili majstorom uz dogovor s operatorom i osobom."
+        }
+      ]
     },
     {
       "id": "yungay",
@@ -213,7 +703,749 @@
       "sound": "Check individual streets for traffic and construction before choosing an interview spot.",
       "hours": "Outdoor square and neighborhood streets; individual businesses and cultural venues set their own hours.",
       "access": "Arrange participation locally. Private passages, homes and courtyards need the residents' agreement; confirm any occupied public-space setup with the municipality.",
-      "sources": [{"title": "Plaza / official location", "url": "https://www.santiagoturismo.cl/es/plaza-yungay/"}, {"title": "Neighborhood", "url": "https://www.santiagoturismo.cl/es/barrio-yungay/"}]
+      "sources": [
+        {
+          "title": "Plaza / official location",
+          "url": "https://www.santiagoturismo.cl/es/plaza-yungay/"
+        },
+        {
+          "title": "Neighborhood",
+          "url": "https://www.santiagoturismo.cl/es/barrio-yungay/"
+        }
+      ],
+      "group": "west",
+      "shots": [
+        {
+          "id": "square",
+          "text": "Plaza Yungay kao susretište i širi kontekst kvarta."
+        },
+        {
+          "id": "resident-story",
+          "text": "Kvartovska priča kroz javne ulice; domove i dvorišta snimati samo uz dozvolu stanara."
+        }
+      ]
+    },
+    {
+      "id": "jacarandas-providencia",
+      "name": "Providencia: jacarande i ulice",
+      "area": "Providencia",
+      "kind": "Ulični život / sezonski detalji",
+      "address": "Avenida Providencia i okolne ulice, Providencia",
+      "mapQuery": "Avenida Providencia, Providencia, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Krošnje jacarandi, avenije i svakodnevni ritam; odabrati blok koji je trenutačno u cvatu.",
+      "light": "Provjeriti cvat i kvalitetu jutarnjeg svjetla na licu mjesta.",
+      "sound": "Ambijent avenije; potražiti mirniji blok za govor.",
+      "hours": "Javne ulice; pristup pojedinim posjedima i objektima ima zasebna pravila.",
+      "access": "Za stalke i veće zauzimanje pločnika provjeriti općinske uvjete.",
+      "sources": [
+        {
+          "title": "Turizam Providencia",
+          "url": "https://providencia.cl/provi/explora/turismo"
+        }
+      ],
+      "shots": [
+        {
+          "id": "canopy",
+          "text": "Krošnje, cvjetovi ako su prisutni, sjene na pločniku i ljudi koji prolaze."
+        },
+        {
+          "id": "goran-walk",
+          "text": "Goran u šetnji ili kratki stand-up na javnoj lokaciji bez blokiranja prolaza."
+        }
+      ],
+      "group": "providencia"
+    },
+    {
+      "id": "rio-mapocho-balmaceda",
+      "name": "Río Mapocho i Parque Balmaceda",
+      "area": "Providencia",
+      "kind": "Rijeka / park / svakodnevica",
+      "address": "Parque Balmaceda and Río Mapocho, Providencia, Santiago",
+      "mapQuery": "Parque Balmaceda, Providencia, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Smeđa planinska rijeka koja prolazi gradom, park i gradski život uz obalu. Potražiti parove i ljude koji koriste park.",
+      "light": "Jutarnje ili kasnopopodnevno bočno svjetlo; nakon kiše provjeriti stanje staza.",
+      "sound": "Voda, promet i ptice; mostovi su bučni i vjetroviti.",
+      "hours": "Javni park; pristup može biti privremeno ograničen zbog održavanja ili radova.",
+      "access": "Široke kadrove snimati iz javnog prostora; za krupne kadrove ljudi tražiti pristanak.",
+      "sources": [
+        {
+          "title": "Općina Providencia",
+          "url": "https://providencia.cl/provi/explora"
+        }
+      ],
+      "shots": [
+        {
+          "id": "river-context",
+          "text": "Rijeka, obale, mostovi i grad u jednom širokom kadru."
+        },
+        {
+          "id": "park-couples",
+          "text": "Parovi i susreti u parku uz pristanak za prepoznatljive kadrove."
+        }
+      ],
+      "group": "providencia"
+    },
+    {
+      "id": "costanera-sanhattan",
+      "name": "Gran Torre Costanera i Sanhattan",
+      "area": "Providencia / Las Condes",
+      "kind": "Suvremeni grad / kontrast četvrti",
+      "address": "Avenida Andrés Bello 2425, Providencia",
+      "mapQuery": "Sky Costanera, Avenida Andrés Bello 2425, Providencia, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Stakleni tornjevi i poslovna četvrt u kontrastu s nižim, starijim gradskim blokovima.",
+      "light": "Snimiti fasade u jutarnjem ili kasnom svjetlu; vidljivost Anda provjeriti taj dan.",
+      "sound": "Promet i gradski ambijent; izdvojeni razgovor snimiti dalje od avenije.",
+      "hours": "Sky Costanera objavljuje svaki dan 10:00–22:00, zadnji ulaz 21:00; potvrditi prije posjeta.",
+      "access": "Javni vanjski kadrovi su odvojeni od ulaznice i odobrenja za snimanje unutar tornja. Dogovoriti komercijalno snimanje s operatorom.",
+      "sources": [
+        {
+          "title": "Sky Costanera",
+          "url": "https://www.skycostanera.cl/es"
+        },
+        {
+          "title": "Cenco Costanera: lokacija i sati",
+          "url": "https://www.cencomalls.cl/costanera/tiendas/sky-costanera"
+        }
+      ],
+      "shots": [
+        {
+          "id": "tower-wide",
+          "text": "Toranj iz javnog prostora, s ljudima i susjednim zgradama za mjerilo."
+        },
+        {
+          "id": "glass-lowrise",
+          "text": "Rezati između staklenih fasada i nižih ulica, bez tvrdnje da su kadrovi iz istog bloka."
+        },
+        {
+          "id": "view-andes",
+          "text": "Ako se posjeti vidikovac: panorama grada i Anda uz provjeru dozvola za kameru."
+        }
+      ],
+      "group": "providencia"
+    },
+    {
+      "id": "baquedano-dignidad",
+      "name": "Plaza Baquedano / Plaza Dignidad",
+      "area": "Istočni rub centra",
+      "kind": "Javni prostor / grafiti / promjene grada",
+      "address": "Plaza Baquedano, Santiago",
+      "mapQuery": "Plaza Baquedano, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Dokumentirati promjene prostora i političke tragove bez pretpostavke da su murali iz 2019. ostali.",
+      "light": "Najprije izvidjeti aktualne ograde i pristup; ulične fasade najbolje čitljive po dnevnom svjetlu.",
+      "sound": "Promet i radovi mogu dominirati; odvojiti ambijent od intervjua.",
+      "hours": "Općina Providencia navodi radove s očekivanim završetkom u prosincu 2026.; status provjeriti na dan snimanja.",
+      "access": "Pristup može biti preusmjeren zbog radova. Ne ulaziti u ograđena područja; dozvolu za produkciju zatražiti od nadležnih.",
+      "sources": [
+        {
+          "title": "Općina Providencia: radovi na novoj Providenciji",
+          "url": "https://providencia.cl/provi/explora/noticias/municipalidad/aqui-se-construye-una-nueva-providencia"
+        }
+      ],
+      "shots": [
+        {
+          "id": "works-now",
+          "text": "Snimiti kako prostor izgleda sada, uključujući javne radove i privremene prolaze."
+        },
+        {
+          "id": "murals-check",
+          "text": "Prije planiranja političkih murala provjeriti koji su radovi stvarno dostupni i vidljivi."
+        }
+      ],
+      "group": "east"
+    },
+    {
+      "id": "cerro-santa-lucia",
+      "name": "Cerro Santa Lucía",
+      "area": "Povijesni centar",
+      "kind": "Vidikovac / javni park",
+      "address": "Alameda, između Santa Lucía, Victoria Subercaseaux i Merced, Santiago",
+      "mapQuery": "Cerro Santa Lucía, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Stepenice, kamene terase i pogledi na centar kao prijelaz između ulice i panorame.",
+      "light": "Jutarnje svjetlo ili kasno poslijepodne; nakon kiše park može biti zatvoren.",
+      "sound": "U vrhu provjeriti vjetar; stube stvaraju jasan ritam koraka.",
+      "hours": "Sezonski sati objavljeni su na turističkoj stranici; park je zatvoren za kišnih dana. Provjeriti isti dan.",
+      "access": "Poštovati pravila parka i privremena zatvaranja; produkcijsko snimanje potvrditi s upraviteljem.",
+      "sources": [
+        {
+          "title": "Santiago Turismo: Cerro Santa Lucía",
+          "url": "https://www.santiagoturismo.cl/es/cerro-santa-lucia/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "stairs",
+          "text": "Penjanje, stube i prijelazi kroz kamene prolaze."
+        },
+        {
+          "id": "city-view",
+          "text": "Pogled preko krovova prema centru; ne obećavati vidljivost Anda."
+        }
+      ],
+      "group": "east"
+    },
+    {
+      "id": "parque-forestal-bellas-artes",
+      "name": "Parque Forestal i Museo Nacional de Bellas Artes",
+      "area": "Bellas Artes / centar",
+      "kind": "Park / umjetnost / svakodnevica",
+      "address": "Museo Nacional de Bellas Artes, José Miguel de la Barra 650, Santiago",
+      "mapQuery": "Museo Nacional de Bellas Artes, José Miguel de la Barra 650, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Zeleni koridor, ljudi u parku i povijesna zgrada muzeja uz Mapocho.",
+      "light": "U parku iskoristiti krošnje za meko svjetlo; fasadu provjeriti u odnosu na sunce.",
+      "sound": "Parkovni ambijent i promet; unutar muzeja provjeriti pravila snimanja.",
+      "hours": "Muzej objavljuje uto–ned 10:00–17:30; provjeriti promjene i pravila prije dolaska.",
+      "access": "Javni park ne znači automatsko dopuštenje za snimanje u muzeju ili s rasvjetom.",
+      "sources": [
+        {
+          "title": "Santiago Turismo: Museo Nacional de Bellas Artes",
+          "url": "https://www.santiagoturismo.cl/es/museo-nacional-de-bellas-artes/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "park-life",
+          "text": "Ljudi na klupama, parovi i šetnja u parku; portrete snimati uz pristanak."
+        },
+        {
+          "id": "museum-exterior",
+          "text": "Muzejska fasada, ulaz i park u istom prostornom slijedu."
+        }
+      ],
+      "group": "east"
+    },
+    {
+      "id": "catedral-metropolitana",
+      "name": "Catedral Metropolitana de Santiago",
+      "area": "Plaza de Armas",
+      "kind": "Crkva / vjerski život / arhitektura",
+      "address": "Calle Plaza de Armas 444, Santiago",
+      "mapQuery": "Catedral Metropolitana de Santiago, Plaza de Armas 444, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Katedrala kao živo središte trga: arhitektura, svijeće i dolasci vjernika uz poštovanje obreda.",
+      "light": "Interijer je taman u odnosu na trg; prvo izvidjeti bez opreme.",
+      "sound": "Ambijent crkve i misa snimati samo uz odobrenje; ne ometati molitvu.",
+      "hours": "Službene objave: posjet radnim danom 10:00–18:00, vikendom 09:00–13:30; mise pon–sub 12:30, ned 09:45 i 12:00. Provjeriti aktualne obavijesti.",
+      "access": "Posjetiteljski sati nisu dozvola za produkcijsko snimanje. Za interijer, misu ili svijeće zatražiti odobrenje katedrale.",
+      "sources": [
+        {
+          "title": "Katedrala: posjetitelji",
+          "url": "https://www.catedraldesantiago.cl/peregrinos_visitantes.php"
+        },
+        {
+          "title": "Katedrala: liturgija",
+          "url": "https://catedraldesantiago.cl/liturgia_pastoral.php"
+        }
+      ],
+      "shots": [
+        {
+          "id": "exterior",
+          "text": "Fasada i odnos katedrale prema Plaza de Armas."
+        },
+        {
+          "id": "interior",
+          "text": "Svijeće ili misa samo uz izričito dopuštenje; bez ometanja vjernika."
+        }
+      ],
+      "group": "centre"
+    },
+    {
+      "id": "la-moneda",
+      "name": "La Moneda i Plaza de la Constitución",
+      "area": "Povijesni centar",
+      "kind": "Država / sjećanje / javni prostor",
+      "address": "Plaza de la Constitución, Santiago",
+      "mapQuery": "Palacio de La Moneda, Plaza de la Constitución, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Palača, Plaza de la Constitución i spomen na 1973. godinu; snimiti javni prostor bez pretpostavke ulaza unutra.",
+      "light": "Jutarnja ceremonija ako se održava; provjeriti datum i sigurnosne ograde.",
+      "sound": "Ceremonija, promet i plaza; nagrađuje se odvojeni čisti ambijent.",
+      "hours": "Turistička stranica navodi smjenu straže u 10:00, oko 30 min, svaki drugi dan; za studeni 2026. navodi neparne datume. Može se promijeniti bez najave; potvrditi isti dan.",
+      "access": "Vanjski javni kadrovi ne uključuju posjet palači ni pravo snimanja ceremonije. Provjeriti sigurnosne upute i tražiti odobrenje za postavu.",
+      "sources": [
+        {
+          "title": "Santiago Turismo: La Moneda",
+          "url": "https://www.santiagoturismo.cl/es/palacio-de-la-moneda/"
+        },
+        {
+          "title": "Santiago Turismo: raspored smjene straže",
+          "url": "https://www.santiagoturismo.cl/es/events/cambio-de-guardia-en-el-palacio-de-la-moneda/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "palace-plaza",
+          "text": "Palača, javni trg i ljudi u prolazu."
+        },
+        {
+          "id": "guard-change",
+          "text": "Smjenu straže snimati samo ako se održava tog dana; provjeriti pristup i pravila."
+        },
+        {
+          "id": "allende-memory",
+          "text": "Kadar kipa Allendea i prostora s povijesnim kontekstom, bez izmišljanja pristupa unutrašnjosti."
+        }
+      ],
+      "group": "centre"
+    },
+    {
+      "id": "londres-38",
+      "name": "Londres 38, espacio de memorias",
+      "area": "Povijesni centar",
+      "kind": "Mjesto sjećanja / diktatura",
+      "address": "Londres 38, Santiago",
+      "mapQuery": "Londres 38, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Mjesto sjećanja u ulici Londres; kratka, dostojanstvena priča o prostoru i njegovim svjedočanstvima.",
+      "light": "Izvidjeti ulicu i fasadu danju; ne postavljati rasvjetu bez dogovora.",
+      "sound": "Ulica je bučna; razgovor i ambijent snimati odvojeno uz dopuštenje.",
+      "hours": "Službena stranica trenutačno objavljuje srijedom 10:00–14:00 i prvu subotu u mjesecu 10:00–14:00. Potvrditi prije dolaska.",
+      "access": "Grupni posjet i razgovor dogovoriti unaprijed na visitas@londres38.cl. Posjet ne znači odobrenje za snimanje.",
+      "sources": [
+        {
+          "title": "Londres 38: posjetioci",
+          "url": "https://londres38.cl/1937/w3-channel.html"
+        },
+        {
+          "title": "Londres 38: grupni posjeti",
+          "url": "https://www.londres38.cl/1937/w3-propertyvalue-37494.html"
+        }
+      ],
+      "shots": [
+        {
+          "id": "street-context",
+          "text": "Fasada i javna ulica u širem kontekstu; poštovati posjetitelje."
+        },
+        {
+          "id": "memory-interview",
+          "text": "Razgovor s osobljem ili svjedokom samo po prethodnom dogovoru."
+        }
+      ],
+      "group": "centre"
+    },
+    {
+      "id": "mercado-central",
+      "name": "Mercado Central",
+      "area": "Povijesni centar",
+      "kind": "Tržnica / hrana / trgovina",
+      "address": "Between Puente, Ismael Valdés Vergara, 21 de Mayo and San Pablo, Santiago",
+      "mapQuery": "Mercado Central de Santiago, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Tržnica kao presjek svakodnevne trgovine, hrane i gradskog turizma.",
+      "light": "Jutro za radni ritam; unutarnje osvjetljenje provjeriti prije intervjua.",
+      "sound": "Glasovi, posuđe i gužva; intervju dogovoriti sa štandom u mirnijem terminu.",
+      "hours": "Turistički imenik navodi ned–čet 07:30–17:00, pet 07:30–20:00 i sub 07:30–19:00. Provjeriti s upravom na dan snimanja.",
+      "access": "Unutarnje snimanje dogovoriti s upravom i trgovcima; javna dostupnost nije produkcijsko odobrenje.",
+      "sources": [
+        {
+          "title": "Santiago Turismo: Mercado Central",
+          "url": "https://www.santiagoturismo.cl/es/mercado-central-de-santiago/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "market-context",
+          "text": "Ulazi, prolazi i vanjski arhitektonski detalji."
+        },
+        {
+          "id": "food-trade",
+          "text": "Hrana, priprema i transakcije uz pristanak prodavača."
+        }
+      ],
+      "group": "centre"
+    },
+    {
+      "id": "feria-santa-maria",
+      "name": "Feria libre Santa María",
+      "area": "Providencia",
+      "kind": "Kvartovski sajam / hrana",
+      "address": "Avenida Santa María, Providencia, Santiago",
+      "mapQuery": "Feria libre Avenida Santa María, Providencia, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Kvartovska feria u Providenciji: povrće, voće, trgovci i susjedski ritam. Za temu radničke komune odabrati drugi sajam s lokalnom produkcijom.",
+      "light": "Objavljeno četvrtkom i nedjeljom ujutro do 15:00; doći ranije za postavljanje štandova.",
+      "sound": "Snimiti odvojeno atmosferu i razgovor s prodavačima uz pristanak.",
+      "hours": "Općina navodi četvrtak i nedjelju 08:00–15:00; lokaciju i raspored potvrditi jer se mogu mijenjati.",
+      "access": "Dogovoriti snimanje s općinom/prodavačima. Za sajam u radničkoj komuni pitati lokalno koji je dan i lokacija.",
+      "sources": [
+        {
+          "title": "Općina Providencia: sajmovi",
+          "url": "https://biblioteca.providencia.cl/provi/explora/noticias/municipalidad/entre-sabores-y-aromas-conoce-y-apoya-las-ferias-libres-de-providencia"
+        }
+      ],
+      "shots": [
+        {
+          "id": "produce",
+          "text": "Voće, povrće, vaga i cjenkanje uz dopuštenje prodavača."
+        },
+        {
+          "id": "people",
+          "text": "Susjedi i stariji prodavači samo uz pristanak za prepoznatljive kadrove."
+        }
+      ],
+      "group": "providencia"
+    },
+    {
+      "id": "feria-santa-isabel",
+      "name": "Feria libre Santa Isabel",
+      "area": "Providencia",
+      "kind": "Kvartovski sajam / hrana",
+      "address": "Avenida Santa Isabel at Caupolicán, Providencia, Santiago",
+      "mapQuery": "Feria libre Santa Isabel y Caupolicán, Providencia, Chile",
+      "photoIds": [],
+      "idea": "Subotnji kvartovski sajam za detalje tržnice i svakodnevne kupovine.",
+      "light": "Općina objavljuje subotu 08:00–15:00; za življi početak stići ujutro.",
+      "sound": "Glasovi prodavača, vaganje i vrećice; dogovoriti razgovore bez blokiranja prolaza.",
+      "hours": "Općina navodi subotu 08:00–15:00; raspored provjeriti prije snimanja.",
+      "access": "Javni sajam ne podrazumijeva pristanak prodavača ni dopuštenje za veću filmsku postavu.",
+      "sources": [
+        {
+          "title": "Općina Providencia: sajmovi",
+          "url": "https://biblioteca.providencia.cl/provi/explora/noticias/municipalidad/entre-sabores-y-aromas-conoce-y-apoya-las-ferias-libres-de-providencia"
+        }
+      ],
+      "shots": [
+        {
+          "id": "market-details",
+          "text": "Vage, proizvodi i novac uz dopuštenje trgovca."
+        },
+        {
+          "id": "vendor-portrait",
+          "text": "Kratki portret prodavača samo ako pristane."
+        }
+      ],
+      "group": "providencia"
+    },
+    {
+      "id": "feria-los-concilios",
+      "name": "Feria libre Los Concilios",
+      "area": "Providencia",
+      "kind": "Kvartovski sajam / hrana",
+      "address": "Sector Los Concilios, Providencia, Santiago",
+      "mapQuery": "Feria libre Los Concilios, Providencia, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Još jedna službeno navedena feria u Providenciji; upotrijebiti kao praktičnu alternativu za snimanje tržnice.",
+      "light": "Općina navodi petak 08:00–15:00; točan blok potvrditi na dan.",
+      "sound": "Jutarnja trgovina i razgovor; snimati kompaktno i nenametljivo.",
+      "hours": "Općina navodi petak 08:00–15:00; provjeriti aktualnu lokaciju i održavanje.",
+      "access": "Za snimanje trgovaca i kupaca pitati izravno; radnička feria izvan Providencije ostaje zadatak za lokalni scout.",
+      "sources": [
+        {
+          "title": "Općina Providencia: sajmovi",
+          "url": "https://biblioteca.providencia.cl/provi/explora/noticias/municipalidad/entre-sabores-y-aromas-conoce-y-apoya-las-ferias-libres-de-providencia"
+        }
+      ],
+      "shots": [
+        {
+          "id": "stall-rhythm",
+          "text": "Postavljanje štandova, susjedska kupnja i proizvodi uz pristanak."
+        }
+      ],
+      "group": "providencia"
+    },
+    {
+      "id": "museo-memoria",
+      "name": "Museo de la Memoria y los Derechos Humanos",
+      "area": "Quinta Normal / zapad",
+      "kind": "Muzej / sjećanje na diktaturu",
+      "address": "Matucana 501, Santiago",
+      "mapQuery": "Museo de la Memoria y los Derechos Humanos, Matucana 501, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Muzej i svjedočanstva o kršenju ljudskih prava; planirati posjet koji daje prostor osobama i povijesti.",
+      "light": "Za vanjske kadrove birati svjetlo na pročelju; izložbeni prostori su kontrolirano osvijetljeni.",
+      "sound": "Intervjue dogovoriti unaprijed; u izložbi poštovati tišinu i pravila snimanja.",
+      "hours": "Službeno: uto–ned 10:00–18:00, zadnji ulaz 17:30. Potvrditi promjene.",
+      "access": "Za vođene posjete i snimanje kontaktirati muzej. Radno vrijeme posjeta nije odobrenje za kameru ili komercijalnu produkciju.",
+      "sources": [
+        {
+          "title": "Muzej: posjetitelji",
+          "url": "https://mmdh.cl/visitanos/"
+        },
+        {
+          "title": "Muzej: vođeni posjeti",
+          "url": "https://educamemoria.museodelamemoria.cl/visitas/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "exterior",
+          "text": "Zgrada u odnosu na Matucanu i okolni kvart."
+        },
+        {
+          "id": "exhibition",
+          "text": "Zidovi s fotografijama nestalih ili izložba samo uz posebno dopuštenje; postupati dostojanstveno."
+        }
+      ],
+      "group": "west"
+    },
+    {
+      "id": "estadio-victor-jara",
+      "name": "Estadio Víctor Jara",
+      "area": "Zapadni Santiago",
+      "kind": "Mjesto sjećanja / stadion",
+      "address": "Pasaje Arturo Godoy 2750, Santiago",
+      "mapQuery": "Estadio Víctor Jara, Pasaje Arturo Godoy 2750, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Stadion i mjesto sjećanja; tražiti lokalno vođenje koje povezuje arhitekturu s poviješću.",
+      "light": "Prvo provjeriti je li pristup moguć i koji su dijelovi otvoreni.",
+      "sound": "Snimiti atmosferu praznog prostora samo uz odobrenje; intervju planirati odvojeno.",
+      "hours": "Nema zajamčenog redovnog termina javnog posjeta navedenog za produkciju; posjet i vođenje zatražiti unaprijed.",
+      "access": "Kontaktirati Fundación Víctor Jara na estadio@fundacionvictorjara.org. Djelomična koncesija i upravljanje ne znače automatsko dopuštenje za snimanje.",
+      "sources": [
+        {
+          "title": "Estadio Víctor Jara: mjesto sjećanja",
+          "url": "https://estadiovictorjara.cl/sitio-de-memoria/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "site-context",
+          "text": "Vanjski kadar i ulaz samo ako je pristup dopušten."
+        },
+        {
+          "id": "guided-story",
+          "text": "Razgovor s vodičem ili zakladom uz prethodni dogovor."
+        }
+      ],
+      "group": "west"
+    },
+    {
+      "id": "estacion-central",
+      "name": "Estación Central i venezuelanski Santiago",
+      "area": "Zapadni Santiago",
+      "kind": "Željeznica / migracije / trgovina",
+      "address": "Estación Central, Avenida Libertador Bernardo O’Higgins 3170, Santiago",
+      "mapQuery": "Estación Central, Avenida Libertador Bernardo O’Higgins 3170, Santiago, Chile",
+      "photoIds": [],
+      "idea": "Željeznička stanica i trgovačko područje kao javni kontekst mobilnosti. Venezuelanske trgovine ili arepere locirati i potvrditi lokalno, bez izmišljanja fiksne adrese.",
+      "light": "Dnevno svjetlo za ulaz i javne ulice; špica za putnike samo ako je snimanje dopušteno.",
+      "sound": "Stanica i kolodvor su glasni; uprava može zahtijevati dopuštenje za snimanje.",
+      "hours": "Javni prostor stanice; raspored i pristup peronima ovise o operatoru i prometu.",
+      "access": "Za interijer/perone zatražiti dopuštenje operatora. Razgovore o migraciji voditi samo s osobama koje se same identificiraju i pristanu.",
+      "sources": [
+        {
+          "title": "EFE Trenes de Chile",
+          "url": "https://www.efe.cl/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "station-flow",
+          "text": "Putnici, peroni ili ulaz samo u skladu s pravilima operatora."
+        },
+        {
+          "id": "shops-scout",
+          "text": "Lokalno izviđanje arepera, trgovina i dostavljača; nikoga ne označavati kao Venezuelanca bez samoidentifikacije."
+        }
+      ],
+      "group": "west"
+    },
+    {
+      "id": "cementerio-general",
+      "name": "Cementerio General, Memorial i Patio 29",
+      "area": "Recoleta / sjeverno",
+      "kind": "Cementerio / memoria",
+      "address": "Acceso peatonal principal: Profesor Zañartu 951, Recoleta",
+      "mapQuery": "Cementerio General de Santiago, Profesor Zañartu 951, Recoleta, Chile",
+      "photoIds": [],
+      "idea": "Memorial za nestale i pogubljene te Patio 29 kao dio rute sjećanja; snimati pažljivo i dostojanstveno.",
+      "light": "Jutro za čitljive detalje i manje tvrde sjene; provjeriti aktualne radove na memorialu.",
+      "sound": "Ambijent groblja držati diskretnim; razgovore dogovoriti s upravom i sudionicima.",
+      "hours": "Službeno objavljeno: svaki dan 08:00–17:00, besplatno; provjeriti ulaze i zatvaranja.",
+      "access": "Memorial i Patio 29 su unutar groblja. Poštovati obitelji i posjetitelje; za produkciju i osjetljiva mjesta tražiti dopuštenje uprave.",
+      "sources": [
+        {
+          "title": "Cementerio General: posjeti",
+          "url": "https://app.cementeriogeneral.cl/publica/index.html"
+        },
+        {
+          "title": "Memorial detenidos desaparecidos",
+          "url": "https://cementeriogeneral.cl/entradas_patrimonio/memorial-de-las-y-los-detenidos-desaparecidos-y-ejecutados-politicos/"
+        },
+        {
+          "title": "Cementerio General: ruta poética y memoria",
+          "url": "https://cementeriogeneral.cl/2025/09/15/ruta-poetica-feminista-memoria-de-mujeres-en-el-cementerio-general/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "memorial",
+          "text": "Memorialni prostor snimati s poštovanjem i tek nakon provjere pravila uprave."
+        },
+        {
+          "id": "patio-29",
+          "text": "Patio 29 samo uz dopuštenje i dostojanstven kontekst; ne snimati obitelji bez pristanka."
+        }
+      ],
+      "group": "north"
+    },
+    {
+      "id": "estadio-nacional",
+      "name": "Estadio Nacional / Escotilla 8",
+      "area": "Ñuñoa",
+      "kind": "Mjesto sjećanja / stadion",
+      "address": "Avenida Grecia 2001, Ñuñoa",
+      "mapQuery": "Estadio Nacional Memoria Nacional, Avenida Grecia 2001, Ñuñoa, Chile",
+      "photoIds": [],
+      "idea": "Stadion kao sportski prostor i mjesto represije 1973.; posjetiti memorijalne prostore uz vođeni kontekst.",
+      "light": "Potvrditi pristup prostoru i termin prije planiranja kadra.",
+      "sound": "Intervju i ambijent snimati samo gdje je odobreno.",
+      "hours": "Memorijalna stranica navodi besplatni vođeni posjet subotom u 11:00; potvrditi termin, prijavu i aktualnost.",
+      "access": "Grupe dogovoriti preko administracion@enmn.cl ili +56 9 4021 5136. Posjet ne podrazumijeva odobrenje za filmsku ekipu.",
+      "sources": [
+        {
+          "title": "Memoria Estadio Nacional: sitios",
+          "url": "https://www.memoriaestadionacional.cl/sitios/"
+        },
+        {
+          "title": "Registru muzeja Chile",
+          "url": "https://www.registromuseoschile.cl/663/w3-article-118509.html"
+        },
+        {
+          "title": "Memoria Estadio Nacional: kontakt",
+          "url": "https://www.memoriaestadionacional.cl/contacto/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "escotilla-8",
+          "text": "Escotilla 8 i sačuvani memorijalni tragovi uz vodiča i odobrenje."
+        },
+        {
+          "id": "stadium-context",
+          "text": "Širi kadar stadiona koji razdvaja sportsku i memorijalnu funkciju."
+        }
+      ],
+      "group": "southeast"
+    },
+    {
+      "id": "jose-domingo-canas",
+      "name": "Casa Memoria José Domingo Cañas",
+      "area": "Ñuñoa",
+      "kind": "Mjesto sjećanja / diktatura",
+      "address": "José Domingo Cañas 1367, Ñuñoa",
+      "mapQuery": "Casa Memoria José Domingo Cañas 1367, Ñuñoa, Chile",
+      "photoIds": [],
+      "idea": "Muzejsko mjesto sjećanja u nekadašnjem centru zatočenja; posjetiti u dogovoru i uz kontekst vodiča.",
+      "light": "Prije posjeta provjeriti raspored i pravila za snimanje.",
+      "sound": "Tijekom vođenog obilaska audio i video snimanje nije dopušteno; poštovati upute.",
+      "hours": "Službeno: pon–pet 09:00–17:00, besplatno. Vođeni obilasci radnim danom uz prethodni zahtjev.",
+      "access": "Tijekom vođenog obilaska zabranjeno je audio/video snimanje; fotografije bez bljeskalice su dopuštene. Provjeriti ograničenja prije produkcijskog dolaska.",
+      "sources": [
+        {
+          "title": "Casa Memoria: planirajte posjet",
+          "url": "https://www.josedomingocanas.org/visitanos/planifica-tu-visita/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "exterior",
+          "text": "Vanjski kadar samo ako je dopušten i bez uznemiravanja posjetitelja."
+        },
+        {
+          "id": "memory-context",
+          "text": "Ne snimati audio/video tijekom vođenog obilaska; zatražiti odvojeni produkcijski dogovor."
+        }
+      ],
+      "group": "southeast"
+    },
+    {
+      "id": "villa-grimaldi",
+      "name": "Villa Grimaldi / Parque por la Paz",
+      "area": "Peñalolén",
+      "kind": "Mjesto sjećanja / park",
+      "address": "Avenida José Arrieta 8401, Peñalolén",
+      "mapQuery": "Parque por la Paz Villa Grimaldi, Avenida José Arrieta 8401, Peñalolén, Chile",
+      "photoIds": [],
+      "idea": "Park mira i nekadašnji centar mučenja kao prostor sjećanja i svjedočanstva.",
+      "light": "Izvidjeti mirne staze i mjesto intervjua prije dolaska s ekipom.",
+      "sound": "Vjetar i gradski rub; intervjue organizirati s osobljem.",
+      "hours": "Službeno: svaki dan 10:00–18:00, besplatno; potvrditi blagdanske promjene.",
+      "access": "Za vođene posjete, intervjue i produkcijsko snimanje kontaktirati upravitelje; ulaz za posjet nije odobrenje za snimanje.",
+      "sources": [
+        {
+          "title": "Villa Grimaldi: kako doći i sati",
+          "url": "https://villagrimaldi.cl/como-llegar/"
+        }
+      ],
+      "shots": [
+        {
+          "id": "park-memory",
+          "text": "Staze, spomen-obilježja i vrt uz dostojanstven kontekst."
+        },
+        {
+          "id": "testimony",
+          "text": "Svjedočanstvo ili vođenje samo uz prethodni dogovor i pristanak."
+        }
+      ],
+      "group": "southeast"
+    },
+    {
+      "id": "mujeres-memoria",
+      "name": "Monumento Mujeres en la Memoria",
+      "area": "Centro / Paseo Bulnes",
+      "kind": "Javni spomenik / sjećanje",
+      "address": "Paseo Bulnes, uz Alonso de Ovalle, istočna strana, Santiago",
+      "mapQuery": "Monumento Mujeres en la Memoria, Paseo Bulnes, Santiago, Chile",
+      "photoIds": [],
+      "idea": "MOP vodi Mujeres en la Memoria na Paseu Bulnes: imena žena, metalne ploče i memorijalni vrt. Stari položaj kod Los Héroes nije odredište ovog vodiča.",
+      "light": "Dnevno bočno svjetlo za imena, metalne ploče, vrt i odnos prema prolaznicima.",
+      "sound": "Javni ambijent; razgovore s prolaznicima snimati uz pristanak.",
+      "hours": "Javni prostor Paseo Bulnes; nije pronađeno zasebno radno vrijeme za spomenik.",
+      "access": "MOP navodi novu lokaciju na Paseu Bulnes; provjeriti trenutačan pristup na terenu.",
+      "sources": [
+        {
+          "title": "MOP: Paseo Bulnes, Santiago",
+          "url": "https://cna.mop.gob.cl/project/paseo-bulnes-santiago/"
+        },
+        {
+          "title": "Consejo de Monumentos: zapisnik o premještanju",
+          "url": "https://www.monumentos.gob.cl/sites/default/files/2025-06/20240911_acta_sesion_ext_env_def_f.pdf"
+        }
+      ],
+      "shots": [
+        {
+          "id": "monument",
+          "text": "Cjelina spomenika, natpisi i odnos prema ljudima na Paseu Bulnes."
+        }
+      ],
+      "group": "centre"
+    },
+    {
+      "id": "la-chascona",
+      "name": "La Chascona · kuća Pabla Nerude",
+      "area": "Bellavista",
+      "kind": "Književnost / kuća muzej",
+      "address": "Fernando Márquez de la Plata 0192, Providencia",
+      "mapQuery": "La Chascona, Fernando Márquez de la Plata 0192, Santiago, Chile",
+      "photoIds": [],
+      "group": "east",
+      "idea": "Spoj Nerudine kuće s boemskim ulicama Bellaviste.",
+      "light": "Prijepodne za ulicu i fasadu; interijer prema dogovorenom terminu.",
+      "sound": "Za razgovor pronaći mirniji kut izvan glavnih ulica.",
+      "hours": "Fundación Pablo Neruda objavljuje uto–ned 10:00–18:00.",
+      "access": "Snimanje unutrašnjosti dogovoriti sa zakladom prije dolaska.",
+      "shots": [
+        {
+          "id": "house-street",
+          "text": "Fasada, ulaz i okolna ulica; povezati s muralima i kafićima Bellaviste."
+        },
+        {
+          "id": "neruda-details",
+          "text": "Knjige i predmeti iz kuće ako zaklada odobri unutarnje snimanje."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Fundación Pablo Neruda · La Chascona",
+          "url": "https://fundacionneruda.org/museos-casa-museo-la-chascona/"
+        }
+      ]
     }
   ]
 }
