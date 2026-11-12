@@ -149,10 +149,45 @@ for leg in day3['legs']:
     assert len(leg.get('waypoints', [])) <= 3
 assert sum(bool(leg.get('privateLocation')) for leg in day3['legs']) == 2
 assert all(s['title'] and s['url'].startswith('https://') for s in day3['sources'])
-public_text = '\n'.join((root / name).read_text() for name in ('shoot-plan.json', 'shoot-plan-day3.json', 'scouting.json', 'README.md', 'AGENTS.md', 'index.html', 'app.js'))
+day4 = json.loads((root / 'shoot-plan-day4.json').read_text())
+assert day4['date'] == '2026-11-12' and day4['dayNumber'] == 4
+day4_stops = {s['id']: s for s in day4['stops']}
+assert len(day4_stops) == len(day4['stops']) == 6
+day4_shots = []
+for stop in day4['stops']:
+    assert re.fullmatch(r'[a-z0-9-]+', stop['id'])
+    for field in ('time', 'title', 'status', 'address', 'notes'):
+        assert stop[field].strip(), (stop['id'], field)
+    assert ('lat' in stop) == ('lng' in stop)
+    if 'lat' in stop:
+        assert -33.6 < stop['lat'] < -33.3 and -70.8 < stop['lng'] < -70.5
+    if stop['shots']:
+        verify_shots(stop['shots'])
+    day4_shots.extend(shot['id'] for shot in stop['shots'])
+assert len(day4_shots) == len(set(day4_shots)) == 9
+assert {s['id'] for s in day4['stops'] if 'lat' in s} == {'hotel', 'david-interview'}
+for pending in ('morning-broll', 'lunch-providencia', 'hrvoj-interview'):
+    assert 'TBC' in day4_stops[pending]['address']
+    assert not ({'lat', 'lng', 'mapQuery', 'coordinateSource'} & set(day4_stops[pending])), pending
+david = day4_stops['david-interview']
+assert david['coordinateSource']['url'] == 'https://www.openstreetmap.org/way/13910379'
+assert david['coordinateSource']['checkedAt'] == '2026-11-12'
+assert david['mapQuery'] == 'Plaza Patricio Aylwin Azócar, Providencia, Santiago, Chile'
+assert david['time'] == '10:15 setup · 10:45–13:00 interview'
+assert day4_stops['hrvoj-interview']['time'] == '14:30 setup · 15:00–17:00 interview'
+assert day4_stops['morning-broll']['time'] == '08:15–10:00 · B-roll'
+assert any('Timing conflict' in note and 'including setup' in note for note in day4['notices'])
+assert len(day4['legs']) == 4
+for leg in day4['legs']:
+    assert leg['mode'] == 'driving' and not leg['waypoints']
+    assert 'TBC' in leg['origin'] or 'TBC' in leg['destination']
+assert day4['sources'] and all(s['title'] and s['url'].startswith('https://') for s in day4['sources'])
+public_text = '\n'.join((root / name).read_text() for name in ('shoot-plan.json', 'shoot-plan-day3.json', 'shoot-plan-day4.json', 'scouting.json', 'README.md', 'AGENTS.md', 'index.html', 'app.js'))
 assert '/Users/' not in public_text
 assert not re.search(r'\b(?:Apt|Apartment|Depto)\.?\s*\d', public_text, re.I), 'Private apartment details must not be published'
+assert not re.search(r'\+56\s*\d', (root / 'shoot-plan-day4.json').read_text()), 'Crew and source contact numbers stay in the private call sheet'
 assert not list(root.glob('*.pdf')), 'Production source PDFs must remain outside public site'
 print(f'PASS: {len(photos)} photos ({len(photos)-len(additions)} original selections + {len(additions)} additions; {mapped_count} mapped), exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
 print(f'PASS: Day 3 has {len(day3["stops"])} entries, {len(day3_shots)} tasks, 2 public pins, and private-address/route checks.')
+print(f'PASS: Day 4 has {len(day4["stops"])} entries, {len(day4_shots)} tasks, 2 public pins; TBC venues, transfer holds and source timing conflict are preserved.')
 print(f'PASS: Master B-roll guide has {len(groups)} zones, {len(routes)} public route links and {sum(len(p["shots"]) for p in places) + len(scouting["generalShots"])} stable checklist tasks.')

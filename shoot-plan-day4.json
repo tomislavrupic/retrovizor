@@ -1,0 +1,167 @@
+{
+  "date": "2026-11-12",
+  "dayNumber": 4,
+  "title": "Santiago · Day 4",
+  "subtitle": "Providencia · Kombinat produkcija / HRT · local production: Charita Films",
+  "summary": "08:00 hotel call → 08:15–10:00 B-roll (location TBC) → David De Luca at Plaza Patricio Aylwin 10:45–13:00 → lunch → Hrvoj Ostojić Perić 15:00–17:00 (location TBC) → wrap and hotel.",
+  "status": "Day 4 call sheet · Thursday 12 November · locations and interview duration to confirm",
+  "notices": [
+    "Follows the supplied Day 4 call sheet prepared by Charita Films on 11 November 2026. All times are Santiago time (UTC−3); the schedule is subject to change.",
+    "Morning B-roll and the afternoon interview location are TBC. Production must confirm both locations, access and van pickup before navigation can be added. Lunch is in Providencia; no restaurant is specified.",
+    "Timing conflict in the source: interviews are described as maximum two hours including setup, but David's 10:15–13:00 setup/interview window is 2 hours 45 minutes and Hrvoj's 14:30–17:00 window is 2 hours 30 minutes. The published time blocks are retained; production must confirm the actual interview lengths and end times.",
+    "Leave the B-roll location at 10:00 to target 10:15 at Plaza Patricio Aylwin. This is a 15-minute call-sheet allowance, not a verified drive time; the B-roll location must fit that transfer.",
+    "Lunch is 13:00–14:00. Depart at 14:00 for the 14:30 setup and 15:00 interview. The 30-minute transfer cannot be checked until the afternoon location is confirmed.",
+    "Goran works conversationally without a fixed questionnaire. David is a Venezuelan sound professor and director living in Chile; his documentary Inmarchitables draws on his experience and the reality of Venezuela. Hrvoj is Honorary Consul of Croatia in Iquique.",
+    "17:00 is estimated wrap, not hotel arrival. Allow packing and loading before the return. Crew contacts and emergency contact details stay in the crew call sheet.",
+    "Checklists save only on this device and remain separate from the master B-roll list and other shooting days."
+  ],
+  "light": [
+    {
+      "label": "Morning B-roll",
+      "value": "08:15–10:00",
+      "note": "Choose the location with production before departure. Use the softer morning light for streets, people and wider views; complete coverage in time for the 10:00 transfer. This is a lighting suggestion, not a weather forecast."
+    },
+    {
+      "label": "David · outdoor setup",
+      "value": "10:15–10:45",
+      "note": "Find stable open shade, protect microphones from wind and check traffic or maintenance noise. Check the sun's movement across both camera angles before rolling."
+    },
+    {
+      "label": "Hrvoj · setup",
+      "value": "14:30–15:00",
+      "note": "Location TBC. Check room or street noise, window light and background once production confirms the venue."
+    }
+  ],
+  "legs": [
+    {
+      "title": "08:00 departure · hotel to B-roll",
+      "mode": "driving",
+      "origin": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "destination": "B-roll location TBC",
+      "waypoints": [],
+      "note": "Target 08:15 arrival. Confirm the location before departure; no route is published while it is unknown."
+    },
+    {
+      "title": "10:00 departure · B-roll to David",
+      "mode": "driving",
+      "origin": "B-roll location TBC",
+      "destination": "Plaza Patricio Aylwin Azócar, Providencia, Santiago, Chile",
+      "waypoints": [],
+      "note": "Target 10:15 arrival and 10:45 interview. Use the plaza card for directions from your current position; the full leg needs the B-roll location."
+    },
+    {
+      "title": "14:00 departure · lunch to Hrvoj",
+      "mode": "driving",
+      "origin": "Lunch venue TBC, Providencia",
+      "destination": "Hrvoj interview location TBC",
+      "waypoints": [],
+      "note": "Target 14:30 arrival/setup, then 15:00 interview. Production confirms both endpoints and the driver checks traffic."
+    },
+    {
+      "title": "17:00 wrap · return to hotel",
+      "mode": "driving",
+      "origin": "Hrvoj interview location TBC",
+      "destination": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "waypoints": [],
+      "note": "Return after packing and loading. The hotel card provides directions from the crew's current position; no hotel arrival time is specified."
+    }
+  ],
+  "stops": [
+    {
+      "id": "hotel",
+      "time": "08:00 · crew call and departure",
+      "title": "Hotel lobby · ready to leave",
+      "status": "Call-sheet time",
+      "address": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia",
+      "mapQuery": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "lat": -33.4239845,
+      "lng": -70.6101074,
+      "shots": [
+        {"id": "gear-ready", "text": "Cameras, sound, batteries and media ready; confirm the B-roll location, afternoon venue and van pickup with production."}
+      ],
+      "transfer": "Depart at 08:00 for the 08:15 B-roll start. The location is still TBC, so the 15-minute travel allowance needs checking.",
+      "notes": "Existing hotel pin is approximate, from its published map. Have equipment ready to load at crew call."
+    },
+    {
+      "id": "morning-broll",
+      "time": "08:15–10:00 · B-roll",
+      "title": "Morning B-roll · location TBC",
+      "status": "Scheduled block · location to confirm",
+      "address": "Location TBC",
+      "shots": [
+        {"id": "broll-selects", "text": "Agree the morning location and priority shots from the master Filming guide with production."},
+        {"id": "broll-coverage", "text": "Capture wide, medium and detail coverage of the selected subject, plus clean atmosphere sound."},
+        {"id": "broll-pack", "text": "Check media and pack for the 10:00 departure to Plaza Patricio Aylwin."}
+      ],
+      "light": "Use morning light for the chosen streets or people; the exact orientation depends on the confirmed location.",
+      "transfer": "Leave at 10:00. The call sheet allows only 15 minutes to reach the plaza; avoid committing to a distant B-roll location.",
+      "notes": "Choose the morning location and priority shots with production before departure. Keep the 10:15 plaza arrival in mind."
+    },
+    {
+      "id": "david-interview",
+      "time": "10:15 setup · 10:45–13:00 interview",
+      "title": "David De Luca · Plaza Patricio Aylwin",
+      "status": "Interview 1 · duration needs confirmation",
+      "address": "Plaza Patricio Aylwin, Providencia · across from Parque Inés de Suárez, between Pocuro, Francisco Bilbao and Regimiento Cazadores",
+      "mapQuery": "Plaza Patricio Aylwin Azócar, Providencia, Santiago, Chile",
+      "lat": -33.4379168,
+      "lng": -70.6120216,
+      "coordinateSource": {
+        "title": "OpenStreetMap · Plaza Patricio Aylwin Azócar, way 13910379",
+        "url": "https://www.openstreetmap.org/way/13910379",
+        "checkedAt": "2026-11-12",
+        "method": "Centre of the mapped plaza boundary's bounding box; area pin, not an entrance or meeting point."
+      },
+      "shots": [
+        {"id": "david-interview", "text": "David and Goran's conversation: main camera, second-camera reactions and clean answers; Inmarchitables, his experience and Venezuela."},
+        {"id": "david-sound", "text": "Check wind protection, traffic noise and both camera recordings; capture clean ambient sound before packing."}
+      ],
+      "light": "Use the 10:15–10:45 setup to find stable open shade and a quiet background for both cameras.",
+      "transfer": "Arrive 10:15 after the 10:00 B-roll departure. Lunch follows at 13:00 in Providencia.",
+      "notes": "The call sheet gives a 10:45–13:00 interview but also says interviews last at most two hours including setup. Retain the 13:00 lunch hold until production resolves the conflict. The pin marks the plaza area, formerly Plaza Inés de Suárez; confirm the exact meeting point, unloading and filming access with local production."
+    },
+    {
+      "id": "lunch-providencia",
+      "time": "13:00–14:00 · crew lunch",
+      "title": "Lunch · Providencia",
+      "status": "Crew lunch · venue to confirm",
+      "address": "Lunch venue TBC, Providencia",
+      "shots": [],
+      "transfer": "Packed and ready for the 14:00 departure to the afternoon venue, targeting 14:30 arrival.",
+      "notes": "No restaurant is specified in the call sheet. Production chooses a venue that fits the afternoon transfer."
+    },
+    {
+      "id": "hrvoj-interview",
+      "time": "14:30 setup · 15:00–17:00 interview",
+      "title": "Hrvoj Ostojić Perić · interview",
+      "status": "Interview 2 · location TBC; duration to confirm",
+      "address": "Location TBC",
+      "shots": [
+        {"id": "hrvoj-interview", "text": "Hrvoj and Goran's conversation; main and second-camera coverage, reactions and listening beats. Hrvoj is Honorary Consul of Croatia in Iquique."},
+        {"id": "hrvoj-sound", "text": "Check both camera recordings and sound; capture a short clean room tone or atmosphere before packing."}
+      ],
+      "light": "Use the 14:30–15:00 setup to assess the confirmed venue and control background light and sound.",
+      "transfer": "Depart lunch at 14:00, arrive 14:30 and start at 15:00. Confirm the location before calculating a route.",
+      "notes": "The location is not provided. Do not navigate to Iquique or infer a consulate address from the contributor's title. The 14:30–17:00 setup/interview window exceeds the source's stated two-hour total; production confirms the duration."
+    },
+    {
+      "id": "return",
+      "time": "17:00 · estimated wrap, then hotel return",
+      "title": "Wrap · Hotel Diego de Velázquez",
+      "status": "Estimated end of filming",
+      "address": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia",
+      "mapQuery": "Hotel Diego de Velázquez, Guardia Vieja 150, Providencia, Chile",
+      "shots": [
+        {"id": "media-check", "text": "Check media, sound files and backups; carry any missing B-roll into the master list for the remaining days."}
+      ],
+      "transfer": "Hotel directions open from your current location. Leave after packing and loading; the call sheet gives no hotel arrival time.",
+      "notes": "Estimated wrap is 17:00, subject to the confirmed interview duration."
+    }
+  ],
+  "deferred": [],
+  "sources": [
+    {"title": "Municipalidad de Providencia · inauguration of Plaza Patricio Aylwin", "url": "https://providencia.cl/provi/explora/inauguracion-de-plaza-patricio-aylwin"},
+    {"title": "Municipalidad de Providencia · plaza naming and location (competition bases)", "url": "https://providencia.cl/provi/site/docs/20240109/20240109153039/bases_concurso_patricio_aylwin.pdf"},
+    {"title": "OpenStreetMap · mapped plaza boundary, checked 12 November 2026", "url": "https://www.openstreetmap.org/way/13910379"}
+  ]
+}
