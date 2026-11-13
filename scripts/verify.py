@@ -6,7 +6,7 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
 photos = json.loads((root / 'photos.json').read_text())
-assert len(photos) == 98
+assert len(photos) == 97
 assert len({photo['id'] for photo in photos}) == len(photos)
 assert not ({'A03', 'A04', 'A10', 'A22', 'A30', 'A42'} & {p['id'] for p in photos})
 allowed = {'id', 'title', 'lat', 'lng', 'capturedAt', 'locationLabel', 'category', 'image', 'thumb'}
@@ -38,9 +38,9 @@ assert unmapped_additions == {'N08', 'N09'}
 assert all(p['lat'] is not None and p['lng'] is not None for p in additions if p['id'] not in {'N08', 'N09'})
 assert all(p['locationLabel'] == 'Private location' for p in additions if p['id'] in {'N08', 'N09'})
 mapped_count = sum(p['lat'] is not None for p in photos)
-assert mapped_count == 96, 'Only source-backed, cleared GPS belongs on the photo map'
+assert mapped_count == 95, 'Only source-backed, cleared GPS belongs on the photo map'
 market_additions = [p for p in photos if re.fullmatch(r'M\d{2}', p['id'])]
-assert {p['id'] for p in market_additions} == {f'M{i:02}' for i in range(1, 34)}
+assert {p['id'] for p in market_additions} == {f'M{i:02}' for i in range(1, 34)} - {'M11'}
 assert all(p['lat'] is not None and p['lng'] is not None for p in market_additions)
 assert all(p['category'] == 'market' and p['locationLabel'] == 'La Vega Central, Santiago' for p in market_additions)
 assert all(datetime.fromisoformat(p['capturedAt'].replace(' ', 'T')).date().isoformat() == '2026-11-12' for p in market_additions)

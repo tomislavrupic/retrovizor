@@ -825,17 +825,6 @@
     "thumb": "assets/thumbs/M10.jpg"
   },
   {
-    "id": "M11",
-    "title": "A family passing the toy stall",
-    "lat": -33.4287917,
-    "lng": -70.6488583,
-    "capturedAt": "2026-11-12T09:08:50-03:00",
-    "locationLabel": "La Vega Central, Santiago",
-    "category": "market",
-    "image": "assets/photos/M11.jpg",
-    "thumb": "assets/thumbs/M11.jpg"
-  },
-  {
     "id": "M12",
     "title": "A second glance at the toys",
     "lat": -33.4287917,
