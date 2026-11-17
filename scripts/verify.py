@@ -6,7 +6,11 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
 photos = json.loads((root / 'photos.json').read_text())
-assert len(photos) == 97
+valparaiso = [p for p in photos if re.fullmatch(r'V\d{2}', p['id'])]
+assert len(photos) == 97 + len(valparaiso)
+assert {p['id'] for p in valparaiso} == {f'V{i:02}' for i in range(1, len(valparaiso) + 1)}
+baseline_photos = [p for p in photos if not p['id'].startswith('V')]
+assert len(baseline_photos) == 97
 assert len({photo['id'] for photo in photos}) == len(photos)
 assert not ({'A03', 'A04', 'A10', 'A22', 'A30', 'A42'} & {p['id'] for p in photos})
 allowed = {'id', 'title', 'lat', 'lng', 'capturedAt', 'locationLabel', 'category', 'image', 'thumb'}
@@ -14,12 +18,20 @@ for photo in photos:
     assert set(photo) == allowed
     assert (photo['lat'] is None) == (photo['lng'] is None)
     if photo['lat'] is not None:
-        assert -33.6 < photo['lat'] < -33.3 and -70.8 < photo['lng'] < -70.5
+        if photo['id'].startswith('V'):
+            assert -33.2 < photo['lat'] < -32.9 and -71.7 < photo['lng'] < -71.45
+        else:
+            assert -33.6 < photo['lat'] < -33.3 and -70.8 < photo['lng'] < -70.5
     assert isinstance(photo['capturedAt'], str) and photo['capturedAt'].strip()
     captured = datetime.fromisoformat(photo['capturedAt'].replace(' ', 'T'))
     assert captured.date().isoformat() >= '2026-11-07'
     if photo['id'].startswith('M'):
         assert captured.date().isoformat() == '2026-11-12'
+    elif photo['id'].startswith('V'):
+        assert captured.date().isoformat() == '2026-11-16'
+        assert photo['category'] == 'valparaiso'
+        if photo['lat'] is None:
+            assert photo['locationLabel'] in {'Location not recorded', 'Private location'}
     else:
         assert captured.date().isoformat() <= '2026-11-10'
     for field in ('image', 'thumb'):
@@ -38,7 +50,8 @@ assert unmapped_additions == {'N08', 'N09'}
 assert all(p['lat'] is not None and p['lng'] is not None for p in additions if p['id'] not in {'N08', 'N09'})
 assert all(p['locationLabel'] == 'Private location' for p in additions if p['id'] in {'N08', 'N09'})
 mapped_count = sum(p['lat'] is not None for p in photos)
-assert mapped_count == 95, 'Only source-backed, cleared GPS belongs on the photo map'
+baseline_mapped_count = sum(p['lat'] is not None for p in baseline_photos)
+assert baseline_mapped_count == 95, 'Only source-backed, cleared GPS belongs on the existing photo map'
 market_additions = [p for p in photos if re.fullmatch(r'M\d{2}', p['id'])]
 assert {p['id'] for p in market_additions} == {f'M{i:02}' for i in range(1, 34)} - {'M11'}
 assert all(p['lat'] is not None and p['lng'] is not None for p in market_additions)
@@ -212,7 +225,7 @@ assert '/Users/' not in public_text
 assert not re.search(r'\b(?:Apt|Apartment|Depto)\.?\s*\d', public_text, re.I), 'Private apartment details must not be published'
 assert not re.search(r'\+56\s*\d', (root / 'shoot-plan-day4.json').read_text()), 'Crew and source contact numbers stay in the private call sheet'
 assert not list(root.glob('*.pdf')), 'Production source PDFs must remain outside public site'
-print(f'PASS: {len(photos)} photos (48 original selections + 17 supplied additions + {len(market_additions)} market photos; {mapped_count} mapped), exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
+print(f'PASS: {len(photos)} photos (48 original selections + 17 supplied additions + {len(market_additions)} market photos + {len(valparaiso)} Valparaíso photos; {mapped_count} mapped), exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
 print(f'PASS: Day 3 has {len(day3["stops"])} entries, {len(day3_shots)} tasks, 2 public pins, and private-address/route checks.')
 print(f'PASS: Day 4 has {len(day4["stops"])} entries, {len(day4_shots)} tasks, 2 public pins; TBC venues, transfer holds and source timing conflict are preserved.')
 print(f'PASS: Master B-roll guide has {len(groups)} zones, {len(routes)} public route links and {sum(len(p["shots"]) for p in places) + len(scouting["generalShots"])} stable checklist tasks.')

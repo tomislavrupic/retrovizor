@@ -24,7 +24,8 @@ const captions = {
   'restaurant-street': 'Tables, conversation, and the street moving around them.',
   'street-art': 'Color and everyday life sharing the same corner.',
   interior: 'A small look inside one of the city’s everyday spaces.',
-  'behind-the-scenes': 'A glimpse of the work happening around the story.'
+  'behind-the-scenes': 'A glimpse of the work happening around the story.',
+  valparaiso: 'A day by the Pacific, following Valparaíso’s hills and streets.'
 };
 
 function element(tag, className, text) {
@@ -176,7 +177,7 @@ function selectPhoto(id, {pan=false,hash=true}={}) {
   if(hasLocation){directions.href=photoDirectionsUrl(photo);directions.setAttribute('aria-label',`Get directions to ${photo.locationLabel||'this photo location'}`);}
   else directions.removeAttribute('href');
   if(state.view==='map'){
-    $('map-note-title').textContent=hasLocation?'SANTIAGO, CHILE':privateLocation?'PRIVATE LOCATION':'LOCATION NOT RECORDED';
+    $('map-note-title').textContent=hasLocation?(photo.category==='valparaiso'?'VALPARAÍSO, CHILE':'SANTIAGO, CHILE'):privateLocation?'PRIVATE LOCATION':'LOCATION NOT RECORDED';
     $('map-note-copy').textContent=hasLocation?'Choose a photograph to explore a moment.':`${photo.title} is in the library without a map pin.`;
   }
   $('photo-scout').hidden=!state.scouts.some(place=>place.photoIds?.includes(id));
@@ -225,7 +226,7 @@ function setView(view,{writeHash=true}={}) {
   $('collection-count').hidden=view==='scout'||view==='plan';
   const planLabels=view==='plan';
   $('map-region').setAttribute('aria-label',planLabels?'Filming stop locations':'Photograph locations');
-  $('map').setAttribute('aria-label',planLabels?'Map of numbered filming stops':'Interactive map of Santiago photograph locations');
+  $('map').setAttribute('aria-label',planLabels?'Map of numbered filming stops':'Interactive map of Chile photograph locations');
   $('map-footer-note').textContent=planLabels?'Filming stops; photo GPS, venue maps and geocoded place locations.':'Pins follow the original photo geotags.';
   if(state.map) {
     const planMode=view==='plan';
@@ -242,8 +243,8 @@ function setView(view,{writeHash=true}={}) {
   if(view==='plan'&&writeHash&&!location.hash.startsWith('#plan')) history.replaceState(null,'',`${location.pathname}${location.search}#plan`);
   if(view==='map'&&!wasPlan&&!wasScout&&location.hash.startsWith('#scout')) history.replaceState(null,'',`${location.pathname}${location.search}`);
   if(view==='plan') {$('map-note-title').textContent='FILMING PLAN';$('map-note-copy').textContent=state.plan?.summary||'Numbered filming stops; directions open the road or walking route.';}
-  else if(view==='map'&&state.current&&!hasPhotoLocation(state.current)) {$('map-note-title').textContent='LOCATION NOT RECORDED';$('map-note-copy').textContent=`${state.current.title} is in the library without a map pin.`;}
-  else {$('map-note-title').textContent='SANTIAGO, CHILE';$('map-note-copy').textContent='Choose a photograph to explore a moment.';}
+  else if(view==='map'&&state.current&&!hasPhotoLocation(state.current)) {$('map-note-title').textContent=state.current.locationLabel==='Private location'?'PRIVATE LOCATION':'LOCATION NOT RECORDED';$('map-note-copy').textContent=`${state.current.title} is in the library without a map pin.`;}
+  else {$('map-note-title').textContent=state.current?.category==='valparaiso'?'VALPARAÍSO, CHILE':'SANTIAGO, CHILE';$('map-note-copy').textContent='Choose a photograph to explore a moment.';}
 }
 function externalLink(text,url,className='') {
   const link=element('a',className,text);link.href=url;link.target='_blank';link.rel='noopener';return link;
@@ -475,7 +476,7 @@ async function copyMemory() {
 }
 async function start() {
   try {
-    const response=await fetch('photos.json?v=20261113-market2');if(!response.ok)throw new Error('Photo list unavailable');
+    const response=await fetch('photos.json?v=20261117-valparaiso1');if(!response.ok)throw new Error('Photo list unavailable');
     const photos=await response.json();
     state.photos=photos.map((photo,index)=>({photo,index,timestamp:photoCaptureTime(photo)})).sort((a,b)=>{
       if(a.timestamp===null&&b.timestamp!==null)return 1;
@@ -485,7 +486,7 @@ async function start() {
     }).map(item=>item.photo);
     if(!state.photos.length)throw new Error('Empty photo list');
     try {const scoutResponse=await fetch('scouting.json?v=20261112-broll1');if(!scoutResponse.ok)throw new Error('Scouting guide unavailable');state.scoutGuide=await scoutResponse.json();state.scouts=state.scoutGuide.locations;initScouting();}catch(error){$('scout-cards').textContent='The filming guide could not load. Reload the page to try again.';console.error(error);}
-    const planFiles=['shoot-plan.json?v=20261111-day3a','shoot-plan-day3.json?v=20261111-day3a','shoot-plan-day4.json?v=20261112-day4a'];
+    const planFiles=['shoot-plan.json?v=20261117-valparaiso1','shoot-plan-day3.json?v=20261117-valparaiso1','shoot-plan-day4.json?v=20261117-valparaiso1'];
     const loadedPlans=await Promise.all(planFiles.map(async path=>{try{const response=await fetch(path);if(!response.ok)throw new Error(`Plan unavailable: ${path}`);return await response.json();}catch(error){console.error(error);return null;}}));
     state.plans=loadedPlans.filter(plan=>plan&&typeof plan.date==='string'&&Array.isArray(plan.stops)).sort((a,b)=>a.date.localeCompare(b.date));
     state.plan=latestPlan();
