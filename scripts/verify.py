@@ -28,7 +28,11 @@ for photo in photos:
     if photo['id'].startswith('M'):
         assert captured.date().isoformat() == '2026-11-12'
     elif photo['id'].startswith('V'):
-        assert captured.date().isoformat() == '2026-11-16'
+        expected_date = '2026-11-16' if int(photo['id'][1:]) <= 51 else '2026-11-17'
+        assert captured.date().isoformat() == expected_date
+        if expected_date == '2026-11-17':
+            assert photo['lat'] is not None
+            assert photo['locationLabel'] in {'Viña del Mar, Chile', 'Valparaíso, Chile'}
         assert photo['category'] == 'valparaiso'
         if photo['lat'] is None:
             assert photo['locationLabel'] in {'Location not recorded', 'Private location'}

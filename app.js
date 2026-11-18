@@ -25,7 +25,7 @@ const captions = {
   'street-art': 'Color and everyday life sharing the same corner.',
   interior: 'A small look inside one of the city’s everyday spaces.',
   'behind-the-scenes': 'A glimpse of the work happening around the story.',
-  valparaiso: 'A day by the Pacific, following Valparaíso’s hills and streets.'
+  valparaiso: 'From the coast of Viña del Mar to the painted hills and streets of Valparaíso.'
 };
 
 function element(tag, className, text) {
@@ -476,7 +476,7 @@ async function copyMemory() {
 }
 async function start() {
   try {
-    const response=await fetch('photos.json?v=20261117-valparaiso1');if(!response.ok)throw new Error('Photo list unavailable');
+    const response=await fetch('photos.json?v=20261118-valparaiso2');if(!response.ok)throw new Error('Photo list unavailable');
     const photos=await response.json();
     state.photos=photos.map((photo,index)=>({photo,index,timestamp:photoCaptureTime(photo)})).sort((a,b)=>{
       if(a.timestamp===null&&b.timestamp!==null)return 1;
@@ -486,7 +486,7 @@ async function start() {
     }).map(item=>item.photo);
     if(!state.photos.length)throw new Error('Empty photo list');
     try {const scoutResponse=await fetch('scouting.json?v=20261112-broll1');if(!scoutResponse.ok)throw new Error('Scouting guide unavailable');state.scoutGuide=await scoutResponse.json();state.scouts=state.scoutGuide.locations;initScouting();}catch(error){$('scout-cards').textContent='The filming guide could not load. Reload the page to try again.';console.error(error);}
-    const planFiles=['shoot-plan.json?v=20261117-valparaiso1','shoot-plan-day3.json?v=20261117-valparaiso1','shoot-plan-day4.json?v=20261117-valparaiso1'];
+    const planFiles=['shoot-plan.json?v=20261118-valparaiso2','shoot-plan-day3.json?v=20261118-valparaiso2','shoot-plan-day4.json?v=20261118-valparaiso2'];
     const loadedPlans=await Promise.all(planFiles.map(async path=>{try{const response=await fetch(path);if(!response.ok)throw new Error(`Plan unavailable: ${path}`);return await response.json();}catch(error){console.error(error);return null;}}));
     state.plans=loadedPlans.filter(plan=>plan&&typeof plan.date==='string'&&Array.isArray(plan.stops)).sort((a,b)=>a.date.localeCompare(b.date));
     state.plan=latestPlan();
