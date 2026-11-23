@@ -1923,5 +1923,137 @@
     "category": "valparaiso",
     "image": "assets/photos/V78.jpg",
     "thumb": "assets/thumbs/V78.jpg"
+  },
+  {
+    "id": "C01",
+    "title": "A glimpse across Valparaíso",
+    "lat": -33.03228333333333,
+    "lng": -71.59108611111111,
+    "capturedAt": "2026-11-18 10:46:42-03:00",
+    "locationLabel": "Valparaíso, Chile",
+    "category": "valparaiso",
+    "image": "assets/photos/C01.jpg",
+    "thumb": "assets/thumbs/C01.jpg"
+  },
+  {
+    "id": "C02",
+    "title": "The pier reaches into the bay",
+    "lat": -33.030722222222224,
+    "lng": -71.58908888888888,
+    "capturedAt": "2026-11-18 11:43:09-03:00",
+    "locationLabel": "Valparaíso, Chile",
+    "category": "valparaiso",
+    "image": "assets/photos/C02.jpg",
+    "thumb": "assets/thumbs/C02.jpg"
+  },
+  {
+    "id": "C03",
+    "title": "Pelicans above the waterfront",
+    "lat": -33.03078333333333,
+    "lng": -71.58906666666667,
+    "capturedAt": "2026-11-18 11:44:55-03:00",
+    "locationLabel": "Valparaíso, Chile",
+    "category": "valparaiso",
+    "image": "assets/photos/C03.jpg",
+    "thumb": "assets/thumbs/C03.jpg"
+  },
+  {
+    "id": "C04",
+    "title": "A view along the coast",
+    "lat": -33.02155,
+    "lng": -71.55928888888889,
+    "capturedAt": "2026-11-18 12:58:19-03:00",
+    "locationLabel": "Viña del Mar, Chile",
+    "category": "valparaiso",
+    "image": "assets/photos/C04.jpg",
+    "thumb": "assets/thumbs/C04.jpg"
+  },
+  {
+    "id": "C05",
+    "title": "Portraits on the memorial wall",
+    "lat": -33.439724999999996,
+    "lng": -70.67962777777778,
+    "capturedAt": "2026-11-19 16:12:38-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "art",
+    "image": "assets/photos/C05.jpg",
+    "thumb": "assets/thumbs/C05.jpg"
+  },
+  {
+    "id": "C06",
+    "title": "Faces held in memory",
+    "lat": -33.439727777777776,
+    "lng": -70.67961944444446,
+    "capturedAt": "2026-11-19 17:12:50-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "public-art",
+    "image": "assets/photos/C06.jpg",
+    "thumb": "assets/thumbs/C06.jpg"
+  },
+  {
+    "id": "C07",
+    "title": "A small image of the coast",
+    "lat": -33.43959444444444,
+    "lng": -70.67945,
+    "capturedAt": "2026-11-19 16:23:06-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "art",
+    "image": "assets/photos/C07.jpg",
+    "thumb": "assets/thumbs/C07.jpg"
+  },
+  {
+    "id": "C08",
+    "title": "The city moves beneath the towers",
+    "lat": -33.41393333333333,
+    "lng": -70.60345555555556,
+    "capturedAt": "2026-11-20 09:36:25-03:00",
+    "locationLabel": "Las Condes, Santiago",
+    "category": "cityscape",
+    "image": "assets/photos/C08.jpg",
+    "thumb": "assets/thumbs/C08.jpg"
+  },
+  {
+    "id": "C09",
+    "title": "Crossing the city",
+    "lat": -33.41376944444444,
+    "lng": -70.60303611111111,
+    "capturedAt": "2026-11-20 09:39:05-03:00",
+    "locationLabel": "Las Condes, Santiago",
+    "category": "street-life",
+    "image": "assets/photos/C09.jpg",
+    "thumb": "assets/thumbs/C09.jpg"
+  },
+  {
+    "id": "C10",
+    "title": "The square before La Moneda",
+    "lat": -33.44129444444444,
+    "lng": -70.65410555555556,
+    "capturedAt": "2026-11-21 14:06:20-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "plaza",
+    "image": "assets/photos/C10.jpg",
+    "thumb": "assets/thumbs/C10.jpg"
+  },
+  {
+    "id": "C11",
+    "title": "A monument in the plaza",
+    "lat": -33.43816666666666,
+    "lng": -70.65045277777779,
+    "capturedAt": "2026-11-21 12:59:44-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "sculpture",
+    "image": "assets/photos/C11.jpg",
+    "thumb": "assets/thumbs/C11.jpg"
+  },
+  {
+    "id": "C12",
+    "title": "Allende before La Moneda",
+    "lat": -33.44368333333333,
+    "lng": -70.65322222222223,
+    "capturedAt": "2026-11-21 14:58:16-03:00",
+    "locationLabel": "Santiago, Chile",
+    "category": "sculpture",
+    "image": "assets/photos/C12.jpg",
+    "thumb": "assets/thumbs/C12.jpg"
   }
 ]
