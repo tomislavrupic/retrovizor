@@ -8,11 +8,14 @@ root = Path(__file__).resolve().parent.parent
 photos = json.loads((root / 'photos.json').read_text())
 valparaiso = [p for p in photos if re.fullmatch(r'V\d{2}', p['id'])]
 chile_additions = [p for p in photos if re.fullmatch(r'C\d{2}', p['id'])]
+uruguay_additions = [p for p in photos if re.fullmatch(r'U\d{2}', p['id'])]
+assert len(uruguay_additions) == 22
+assert {p['id'] for p in uruguay_additions} == {f'U{i:02}' for i in range(1, len(uruguay_additions) + 1)}
 assert len(chile_additions) == 12
 assert {p['id'] for p in chile_additions} == {f'C{i:02}' for i in range(1, 13)}
-assert len(photos) == 97 + len(valparaiso) + len(chile_additions)
+assert len(photos) == 97 + len(valparaiso) + len(chile_additions) + len(uruguay_additions)
 assert {p['id'] for p in valparaiso} == {f'V{i:02}' for i in range(1, len(valparaiso) + 1)}
-baseline_photos = [p for p in photos if not p['id'].startswith(('V', 'C'))]
+baseline_photos = [p for p in photos if not p['id'].startswith(('V', 'C', 'U'))]
 assert len(baseline_photos) == 97
 assert len({photo['id'] for photo in photos}) == len(photos)
 assert not ({'A03', 'A04', 'A10', 'A22', 'A30', 'A42'} & {p['id'] for p in photos})
@@ -21,7 +24,9 @@ for photo in photos:
     assert set(photo) == allowed
     assert (photo['lat'] is None) == (photo['lng'] is None)
     if photo['lat'] is not None:
-        if photo['id'].startswith('V') or (photo['id'].startswith('C') and photo['locationLabel'] in {'Valparaíso, Chile', 'Viña del Mar, Chile'}):
+        if photo['id'].startswith('U'):
+            assert -35.1 < photo['lat'] < -34.6 and -56.7 < photo['lng'] < -55.8
+        elif photo['id'].startswith('V') or (photo['id'].startswith('C') and photo['locationLabel'] in {'Valparaíso, Chile', 'Viña del Mar, Chile'}):
             assert -33.2 < photo['lat'] < -32.9 and -71.7 < photo['lng'] < -71.45
         else:
             assert -33.6 < photo['lat'] < -33.3 and -70.8 < photo['lng'] < -70.5
@@ -30,6 +35,11 @@ for photo in photos:
     assert captured.date().isoformat() >= '2026-11-07'
     if photo['id'].startswith('M'):
         assert captured.date().isoformat() == '2026-11-12'
+    elif photo['id'].startswith('U'):
+        assert captured.date().isoformat() in {'2026-11-22', '2026-11-23'}
+        assert photo['lat'] is not None and photo['lng'] is not None
+        assert photo['locationLabel'] == 'Montevideo, Uruguay'
+        assert photo['category'] in {'architecture', 'art', 'cityscape', 'landscape', 'mural', 'plaza', 'public-art', 'sculpture', 'street', 'street-art', 'street-life'}
     elif photo['id'].startswith('C'):
         assert captured.date().isoformat() in {'2026-11-18', '2026-11-19', '2026-11-20', '2026-11-21'}
         assert photo['lat'] is not None and photo['lng'] is not None
@@ -44,7 +54,7 @@ for photo in photos:
         assert photo['category'] == 'valparaiso'
         if photo['lat'] is None:
             assert photo['locationLabel'] in {'Location not recorded', 'Private location'}
-    elif not photo['id'].startswith('C'):
+    elif not photo['id'].startswith(('C', 'U')):
         assert captured.date().isoformat() <= '2026-11-10'
     for field in ('image', 'thumb'):
         path = photo[field]
@@ -237,7 +247,7 @@ assert '/Users/' not in public_text
 assert not re.search(r'\b(?:Apt|Apartment|Depto)\.?\s*\d', public_text, re.I), 'Private apartment details must not be published'
 assert not re.search(r'\+56\s*\d', (root / 'shoot-plan-day4.json').read_text()), 'Crew and source contact numbers stay in the private call sheet'
 assert not list(root.glob('*.pdf')), 'Production source PDFs must remain outside public site'
-print(f'PASS: {len(photos)} photos (48 original selections + 17 supplied additions + {len(market_additions)} market photos + {len(valparaiso)} Valparaíso photos + {len(chile_additions)} Chile photos; {mapped_count} mapped), exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
+print(f'PASS: {len(photos)} photos (48 original selections + 17 supplied additions + {len(market_additions)} market photos + {len(valparaiso)} Valparaíso photos + {len(chile_additions)} Chile photos + {len(uruguay_additions)} Uruguay photos; {mapped_count} mapped), exclusions, stripped EXIF and assets; {len(places)} guide locations; {len(stops)} plan stops, {len(shot_ids)} shot tasks, references, pending locations and route legs.')
 print(f'PASS: Day 3 has {len(day3["stops"])} entries, {len(day3_shots)} tasks, 2 public pins, and private-address/route checks.')
 print(f'PASS: Day 4 has {len(day4["stops"])} entries, {len(day4_shots)} tasks, 2 public pins; TBC venues, transfer holds and source timing conflict are preserved.')
 print(f'PASS: Master B-roll guide has {len(groups)} zones, {len(routes)} public route links and {sum(len(p["shots"]) for p in places) + len(scouting["generalShots"])} stable checklist tasks.')
